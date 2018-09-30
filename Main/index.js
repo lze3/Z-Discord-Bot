@@ -47,7 +47,7 @@ bot.on("message", async message => {
         return message.react("👍");
     }
 
-    if(cmd === `<!417197419546017792>`) {
+    if(cmd === `<@!417197419546017792>`) {
         message.channel.send(`What? ${message.author}`)
     }
 
