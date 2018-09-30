@@ -47,6 +47,10 @@ bot.on("message", async message => {
         return message.react("👍");
     }
 
+    if(cmd === `<!485504145877499904>`) {
+        message.channel.send(`What? ${message.author}`)
+    }
+
     if(cmd === `${prefix}setbotuserstatus`) {
         message.delete().catch(O_o => {})
         if (args[0] === 'dnd') {

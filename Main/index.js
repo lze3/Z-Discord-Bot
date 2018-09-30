@@ -47,6 +47,10 @@ bot.on("message", async message => {
         return message.react("👍");
     }
 
+    if(cmd === `<!417197419546017792>`) {
+        message.channel.send(`What? ${message.author}`)
+    }
+
     if(cmd === `${prefix}banned`) {
         message.channel.send('If you, or somebody you know was banned, submit an appeal on <https://jcrpweb.com>. Support for bans will not be given.')
     }
