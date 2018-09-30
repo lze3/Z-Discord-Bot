@@ -24,7 +24,7 @@ fs.readdir("./commands/", (err, files) => {
 // Displays the message in console
 bot.on("ready", async () => {
     
-    bot.user.setActivity("jcrpweb.com", {type: "PLAYING"});
+    // bot.user.setActivity("jcrpweb.com", {type: "PLAYING"});
     // console.log('\x1b[92m', `${bot.user.username} is now online.\n ${bot.user.username} is now active on ${bot.guilds.size} guilds.`);
     console.log(`Bot online and currently serving in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`)
 
@@ -45,6 +45,31 @@ bot.on("message", async message => {
 
     if(cmd === `hello`){
         return message.react("👍");
+    }
+
+    if(cmd === `${prefix}setbotuserstatus`) {
+        message.delete().catch(O_o => {})
+        if (args[0] === 'dnd') {
+            bot.user.setStatus('Dnd')
+            message.channel.send(`${message.author}, done!`)
+        } else
+
+        if (args[0] === 'idle') {
+            bot.user.setStatus('Idle')
+            message.channel.send(`${message.author}, done!`)
+        } else
+        
+        if (args[0] === 'online') {
+            bot.user.setStatus('Online')
+            message.channel.send(`${message.author}, done!`)
+        } else
+        
+        if (args[0] === 'offline') {
+            bot.user.setStatus('Invisible')
+            message.channel.send(`${message.author}, done!`)
+        }
+        else
+            message.channel.send(`${message.author}, incorrect usage.`)
     }
 
     if(cmd === `${prefix}banned`) {
