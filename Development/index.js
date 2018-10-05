@@ -30,6 +30,15 @@ bot.on("ready", async () => {
 
     bot.user.setStatus('Online') // Online, idle, invisible & dnd
 });
+
+bot.on("guildCreate", guild => {
+	console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+});
+
+bot.on("guildDelete", guild => {
+	console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+});
+
 // Bot Start
 bot.on("message", async message => {
     if(message.author.bot) return;
@@ -44,7 +53,7 @@ bot.on("message", async message => {
     if(commandfile) commandfile.run(bot, message, args);
 
     if(cmd === `hello`){
-        return message.react("👍");
+        return dm.send("HEY");
     }
 
     if(cmd === `<@!485504145877499904>`) {
