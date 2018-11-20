@@ -24,7 +24,7 @@ fs.readdir("./commands/", (err, files) => {
 // Displays the message in console
 bot.on("ready", async () => {
     
-    // bot.user.setActivity("jcrpweb.com", {type: "PLAYING"});
+    bot.user.setActivity("JusticeCommunityRP | jcrpweb.com", {type: "PLAYING"});
     // console.log('\x1b[92m', `${bot.user.username} is now online.\n ${bot.user.username} is now active on ${bot.guilds.size} guilds.`);
     console.log(`Bot online and currently serving in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`)
 
@@ -47,6 +47,18 @@ bot.on("message", async message => {
         return message.react("👍");
     }
 
+    if (cmd === 'setbotstatus') 
+    {
+        if (args[0] === 'test')
+        {
+            message.channel.send('test')
+        }
+        else
+        {
+            message.channel.send(message.author + ' error.')
+        }
+    }
+
     if(cmd === `<@!417197419546017792>`) {
         message.channel.send(`What? ${message.author}`)
     }
@@ -60,7 +72,12 @@ bot.on("message", async message => {
     }
 
     if(cmd === `${prefix}civdiscord`) {
+        let firstmention = message.mentions.users.first()
         message.delete().catch(O_o => {})
+        if (firstmention) {
+            message.channel.send(firstmention + ', here is a permanent invite to the civilian operations Discord: https://discord.gg/nWaukXd')
+        }else
+        message.channel.send('Here is a permanent invite to the civilian operations Discord: https://discord.gg/nWaukXd')
     }
 
 

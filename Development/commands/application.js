@@ -6,9 +6,9 @@ module.exports.run = async(bot, message, args) => {
     let SAHPFTO = message.guild.roles.find('name', 'SAHP - FTO')
     let DIRECTOR = message.guild.roles.find('name', 'The Directorate')
     let when = args.join(' ')
+    let sicon = message.guild.iconURL
 
     if(!(when === '')) {
-        message.channel.send('-new--command duration')
         
         if(message.member.roles.find('name', 'The Directorate')) {
 
@@ -18,6 +18,7 @@ module.exports.run = async(bot, message, args) => {
             .addField('Field Training Officer', `${message.author}`)
             .addField('Any Questions or Concerns?', `Message the Field Training Officer (${message.author})`)
             .setColor('#FFD894')
+            .setThumbnail(sicon)
 
             message.delete().catch(O_o=>{});
 

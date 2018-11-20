@@ -19,14 +19,15 @@ var numResourcesDV = 'N/A'
 var numPlayersOnline = 'N/A'
 var playerList = 'N/A'
 
-var ip = '74.91.119.194'
+var ip = '149.56.241.128'
 
 module.exports.run = async(bot, message, args, user) => {
     message.delete().catch(O_o=>{})
+    if(!(message.member.roles.has('481541340337930269'))) return message.channel.send("This command has temporarily been disabled.")
     if (args[0] === "s1") {
         UpdateFiveMServerS1()
         var http = require('http');
-        http.get(ip + ':30123', function(res) {
+        http.get('http://' + ip + ':30123', function(res) {
             let statusEmbed = new Discord.RichEmbed()
             .setTitle('JusticeCommunityRP')
             // .setURL('http://jcrpweb.com')
@@ -34,7 +35,7 @@ module.exports.run = async(bot, message, args, user) => {
             .addField('Status', 'Online <:GTick:492023314244698132>')
             .addField('Players Online', numPlayersOnlineS1)
             .addField('List of Players', playerListS1)
-            .addField('Address', '<fivem://connect/fivem.jcrpweb.com:30123>')
+            .addField('Address', '<fivem://connect/' + ip + ':30123>\n' + ip + ':30123')
             .addField('External', `Command entered by: ${message.author}`)
             .setColor('#9ae7ff')
             message.channel.send(statusEmbed);
@@ -53,7 +54,7 @@ module.exports.run = async(bot, message, args, user) => {
     if (args[0] === "s2") {
         UpdateFiveMServerS2()
         var http = require('http')
-        http.get(ip + ':30124', function(res) {
+        http.get('http://' + ip + ':30124', function(res) {
             let statusEmbed = new Discord.RichEmbed()
             .setTitle('JusticeCommunityRP')
             .setURL('http://jcrpweb.com')
@@ -61,7 +62,7 @@ module.exports.run = async(bot, message, args, user) => {
             .addField('Status', 'Online <:GTick:492023314244698132>')
             .addField('Players Online', numPlayersOnlineS2)
             .addField('List of Players', playerListS2)
-            .addField('Address', '<fivem://connect/fivem.jcrpweb.com:30124>')
+            .addField('Address', '<fivem://connect/' + ip + ':30124>\n' + ip + ':30124')
             .addField('External', `Command entered by: ${message.author}`)
             .setColor('#9ae7ff')
             message.channel.send(statusEmbed);
@@ -80,7 +81,7 @@ module.exports.run = async(bot, message, args, user) => {
     if (args[0] === "training") {
         UpdateFiveMServerTR()
         var http = require('http')
-        http.get(ip + ':30199', function(res) {
+        http.get('http://' + ip + ':30199', function(res) {
             let statusEmbed = new Discord.RichEmbed()
             .setTitle('JusticeCommunityRP')
             .setURL('http://jcrpweb.com')
@@ -103,9 +104,9 @@ module.exports.run = async(bot, message, args, user) => {
     }
     else 
     if (args[0] === "dv") {
-        UpdateFiveMServerDV('301') // '301' indicates the port of the server
+        UpdateFiveMServerDV() // '301' indicates the port of the server
         var http = require('http')
-        http.get(ip + ':301', function(res) {
+        http.get('http://' + ip + ':301', function(res) {
             let statusEmbed = new Discord.RichEmbed()
             .setTitle('JusticeCommunityRP')
             .setURL('http://jcrpweb.com')
@@ -134,47 +135,9 @@ module.exports.run = async(bot, message, args, user) => {
 
 var request = require('request')
 
-function UpdateFiveMServer(port)
-{
-    server = ip + ':' + port + '/players.json'
-    request(server, function(error, response, html){
-        if(!error) {
-            var r = JSON.parse(html)
-            if(r) 
-            {
-                numPlayersOnline = r.length
-                playerList = r.map(p => `${p.name} | ${p.id}`).join('\n')
-            }
-            else
-            {
-                numPlayersOnline = 'N/A'
-                playerList = '-'
-            }
-            if(r.length === 0)
-            {
-                numPlayersOnline = 0
-                playerList = 'N/A'
-            }
-            if(r.length >= 32)
-            {
-                numPlayersOnline = `${r.length} **FULL**`
-                playerList = r.map(p => `${p.name} | ${p.id}`).join('\n')
-            }
-        }
-        else
-        {
-            numPlayersOnline = 0
-            playerList = '-'
-        }
-    })
-}
-
-UpdateFiveMServer(port)
-setInterval(UpdateFiveMServer, 60000)
-
 function UpdateFiveMServerS1()
 {
-    server = ip + ':30123/players.json'
+    server = 'http://' + ip + ':30123/players.json'
     serverback = ip + ':30123/info.json'
     request(server, function(error, response, html){
         if(!error){
@@ -191,7 +154,7 @@ function UpdateFiveMServerS1()
             }
             if(r.length === 0)
             {
-                numPlayersOnlineS1 = 0
+                numPlayersOnlineS1 = '0'
                 playerListS1 = 'N/A'
             }
             if(r.length >= 32)
@@ -202,7 +165,7 @@ function UpdateFiveMServerS1()
         }
         else
         {
-            numPlayersOnlineS1 = 0
+            numPlayersOnlineS1 = '0'
             playerListS1 = '-'
         }
     })
@@ -213,7 +176,7 @@ setInterval(UpdateFiveMServerS1, 60000)
 
 function UpdateFiveMServerS2()
 {
-    server = ip + ':30124/players.json'
+    server = 'http://' + ip + ':30124/players.json'
     request(server, function(error, response, html){
         if(!error){
             var r = JSON.parse(html)
@@ -229,7 +192,7 @@ function UpdateFiveMServerS2()
             }
             if(r.length === 0)
             {
-                numPlayersOnlineS2 = 0
+                numPlayersOnlineS2 = '0'
                 playerListS2 = 'N/A'
             }
             if(r.length >= 32)
@@ -240,7 +203,7 @@ function UpdateFiveMServerS2()
         }
         else
         {
-            numPlayersOnlineS2 = 0
+            numPlayersOnlineS2 = '0'
             playerListS2 = '-'
         }
     })
@@ -251,7 +214,7 @@ setInterval(UpdateFiveMServerS2, 60000)
 
 function UpdateFiveMServerTR()
 {
-    server = ip + ':30199/players.json'
+    server = 'http://' + ip + ':30199/players.json'
     request(server, function(error, response, html){
         if(!error){
             var r = JSON.parse(html)
@@ -267,7 +230,7 @@ function UpdateFiveMServerTR()
             }
             if(r.length === 0)
             {
-                numPlayersOnlineTR = 0
+                numPlayersOnlineTR = '0'
                 playerListTR = 'N'
             }
             if(r.length >= 32)
@@ -278,7 +241,7 @@ function UpdateFiveMServerTR()
         }
         else
         {
-            numPlayersOnlineTR = 0
+            numPlayersOnlineTR = '0'
             playerListTR = '-'
         }
     })
@@ -289,7 +252,7 @@ setInterval(UpdateFiveMServerTR, 60000)
 
 function UpdateFiveMServerDV()
 {
-    server = ip + ':301/players.json'
+    server = 'http://' + ip + ':301/players.json'
     request(server, function(error, response, html){
         if(!error){
             var r = JSON.parse(html)
@@ -305,7 +268,7 @@ function UpdateFiveMServerDV()
             }
             if(r.length === 0)
             {
-                numPlayersOnlineDV = 0
+                numPlayersOnlineDV = '0'
                 playerListDV = 'N/A'
             }
             if(r.length >= 32)
@@ -316,7 +279,7 @@ function UpdateFiveMServerDV()
         }
         else
         {
-            numPlayersOnlineDV = 0
+            numPlayersOnlineDV = '0'
             playerListDV = '-'
         }
     })
