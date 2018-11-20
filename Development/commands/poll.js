@@ -9,10 +9,9 @@ module.exports.run = async (bot, message, args) => {
     return message.reply('**Invalid Format:** `;Poll <Question>`')
 
     const embed = new Discord.RichEmbed()
-    .setTitle("A Poll Has Been Started!")
+    .setAuthor(message.author.username + '#' + message.author.discriminator + ' has started a poll.', message.author.avatarURL)
     .setColor("#5599ff")
     .setDescription(`${question}`)
-    .setFooter(`Poll Started By: ${message.author.username}`, `${message.author.avatarURL}`)
   
     message.channel.send({embed}).then( (message) => {
         message.react('👍')

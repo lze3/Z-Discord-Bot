@@ -17,6 +17,7 @@ module.exports.run = async(bot, message, args) => {
             .addField('When?', when)
             .addField('Field Training Officer', `${message.author}`)
             .addField('Any Questions or Concerns?', `Message the Field Training Officer (${message.author})`)
+            .setThumbnail()
             .setColor('#FFD894')
             .setThumbnail(sicon)
 
