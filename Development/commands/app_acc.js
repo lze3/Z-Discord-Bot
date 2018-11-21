@@ -3,16 +3,26 @@ const Discord = require('discord.js')
 let config = require('../botconfig.json')
 let prefix = config.prefix
 
-const main_discord_info = 
+let info = 
 {
-    ["id"] : '354062777737936896',
-    ["name"] : 'JusticeCommunityRP' // might change
+    main = 
+    {
+        ["id"] : '354062777737936896',
+        ["name"] : 'JusticeCommunityRP' // might change
+    },
+
+    development = 
+    {
+        ["id"] : '492021406377443328',
+        ["name"] : 'JusticeCommunityRP - Development'
+    }
+
 }
 
 
 module.exports.run = async(bot, message, args) => {
     let applicant = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]) // target
-    if(message.member.roles.find('name', 'Director' || 'The Directorate') || message.guild.name === 'JusticeCommunityRP - Development')
+    if(message.member.roles.find('name', 'Director' || 'The Directorate') || message.guild.name === info.development.name)
     {
         if(applicant)
         {
@@ -27,7 +37,7 @@ module.exports.run = async(bot, message, args) => {
 
                 message.channel.send(embed)
 
-                if(message.guild.id === main_discord_info.id)
+                if(message.guild.id === info.main.id)
                 {
                     applicant.addRole('354074453270986752')
                     applicant.addRole('354074696322514950')
@@ -44,7 +54,7 @@ module.exports.run = async(bot, message, args) => {
 
                 message.channel.send(embed)
 
-                if(message.guild.id === main_discord_info.id)
+                if(message.guild.id === info.main.id)
                 {
                     applicant.addRole('354073428795588618') // LSSD
                     applicant.addRole('354074696322514950')
@@ -61,7 +71,7 @@ module.exports.run = async(bot, message, args) => {
 
                 message.channel.send(embed)
 
-                if(message.guild.id === main_discord_info.id)
+                if(message.guild.id === info.main.id)
                 {
                     applicant.addRole('505871307041406997') // LSSD
                     applicant.addRole('354074696322514950')
