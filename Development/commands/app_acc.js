@@ -3,26 +3,23 @@ const Discord = require('discord.js')
 let config = require('../botconfig.json')
 let prefix = config.prefix
 
-let info = 
+let main = 
 {
-    main = 
-    {
-        ["id"] : '354062777737936896',
-        ["name"] : 'JusticeCommunityRP' // might change
-    },
-
-    development = 
-    {
-        ["id"] : '492021406377443328',
-        ["name"] : 'JusticeCommunityRP - Development'
-    }
-
+    ["id"] : '354062777737936896',
+    ["name"] : 'JusticeCommunityRP' // might change
 }
+
+let dev =
+{
+    ["id"] : '492021406377443328',
+    ["name"] : 'JusticeCommunityRP - Development'
+}
+
 
 
 module.exports.run = async(bot, message, args) => {
     let applicant = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]) // target
-    if(message.member.roles.find('name', 'Director' || 'The Directorate') || message.guild.name === info.development.name)
+    if(message.member.roles.find('name', 'Director' || 'The Directorate') || message.guild.name === dev.name)
     {
         if(applicant)
         {
@@ -37,7 +34,7 @@ module.exports.run = async(bot, message, args) => {
 
                 message.channel.send(embed)
 
-                if(message.guild.id === info.main.id)
+                if(message.guild.id === main.id)
                 {
                     applicant.addRole('354074453270986752')
                     applicant.addRole('354074696322514950')
@@ -54,7 +51,7 @@ module.exports.run = async(bot, message, args) => {
 
                 message.channel.send(embed)
 
-                if(message.guild.id === info.main.id)
+                if(message.guild.id === main.id)
                 {
                     applicant.addRole('354073428795588618') // LSSD
                     applicant.addRole('354074696322514950')
@@ -71,7 +68,7 @@ module.exports.run = async(bot, message, args) => {
 
                 message.channel.send(embed)
 
-                if(message.guild.id === info.main.id)
+                if(message.guild.id === main.id)
                 {
                     applicant.addRole('505871307041406997') // LSSD
                     applicant.addRole('354074696322514950')
@@ -79,7 +76,7 @@ module.exports.run = async(bot, message, args) => {
             }
             else
             {
-                message.channel.send(message.author + ", improper usage. " + prefix + module.exports.help.name + " user dept")
+                message.channel.send(message.author + ", improper usage. `" + prefix + module.exports.help.name + " user dept`.")
             }
         }
         else
