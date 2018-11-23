@@ -1,27 +1,54 @@
-const Discord = require("discord.js")
+const Discord = require('discord.js')
 
-module.exports.run = async (bot, message, args) => {
-    let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    let text = args[1]
-        if(!rUser) return message.channel.send("<:RTick:452668819832569867> I can't find that user. ");
-        let reason = args.join(" ").slice(22);
+const config = require('../botconfig.json')
+const prefix = config.prefix
 
-        let reportEmbed = new Discord.RichEmbed()
-        .setDescription("Player Report")
-        .setColor("#ffb5b5")
-        .addField("Reported user", `${rUser} with ID: ${rUser.id}`)
-        .addField("Reported by", `${message.author} with ID: ${message.author.id}`)
-        .addField("Channel", message.channel)
-        .addField("Time", message.createdAt)
-        .addField("Reason", reason);
+let enabled = true
 
-       let reportschannel = message.guild.channels.find(`name`, "jcrp-reports");
-       if(!reportschannel) return message.channel.send("Couldn't find reports channel.");
+module.exports.run = async(bot, message, args) => {
+    let report = args.join(" ").slice(22)
+    if(enabled)
+    {
+        if(args[0] && args[1] !== '')
+        {
+            if(report !== '')
+            {
+                let report_c = message.guild.channels.find('name', 'jcrp-discord_reports')
+                if(report_c)
+                {
+                    let embed = new Discord.RichEmbed()
+                    .setTitle("Player Report")
+                    .addField("Offender", args[0], true)
+                    .addField("Report Creator", message.author, true)
+                    .addField("Reason", report, true)
+                    .setTimestamp()
+                    .setColor("#9ae7ff")
 
-        message.delete().catch(O_o=>{});
-        reportschannel.send(reportEmbed);
+                    report_c.send(embed)
+                }
+                else
+                {
+                    message.channel.send(message.author + ", this channel does not exist. Contact <@!264662751404621825> about this.")
+                }
+            }
+            else
+            {
+                message.channel.send(message.author + ", improper usage. `" + prefix + module.exports.help.name + " user reason`.")
+            }
+
+        }
+        else
+        {
+            message.channel.send(message.author + ", improper usage. `" + prefix + module.exports.help.name + " user reason`.")
+        }
+    }
+    else
+    {
+        message.channel.send(message.author + ", this command is disabled.")
+    }
+
 }
 
 module.exports.help = {
-    name: "report"
+    name: 'report'
 }
