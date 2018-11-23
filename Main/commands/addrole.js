@@ -1,26 +1,44 @@
 const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
-//!addrole @andrew Dog Person
-  if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply("Sorry pal, you can't do that.");
-  let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if(!rMember) return message.reply("Couldn't find that user, yo.");
-  let role = args.join(" ").slice(22);
-  if(!role) return message.reply("Specify a role!");
-  let gRole = message.guild.roles.find(`name`, role);
-  if(!gRole) return message.reply("Couldn't find that role.");
+	let user_t = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+	let role_c = args.join(" ").slice(22)
+	let role_s = message.guild.roles.find('name', role_c)
+	if(user_t)
+	{
+		if(role_s)
+		{
+			if(!user_t.roles.has(role_s.id))
+			{
+				message.channel.send(user_t + " has been given the " + role_c + " role.")
 
-  if(rMember.roles.has(gRole.id)) return message.reply("They already have that role.");
-  await(rMember.addRole(gRole.id));
+				try
+				{
+					user_t.send("You have been given the " + role_c + " role.")
+				}
+				catch(e)
+				{
+					console.log(e.stack)
+					message.channel.send(user_t + " has been given the " + role_c + " role. We couldn't DM you as your DMs are disabled.")
+				}
+			}
+			else
+			{
+				message.channel.send(message.author + ", that user already has that role.")
+			}
 
-  try{
-    await rMember.send(`Congrats, you have been given the role ${gRole.name}`)
-  }catch(e){
-    console.log(e.stack);
-    message.channel.send(`Congrats to <@${rMember.id}>, they have been given the role ${gRole.name}. We tried to DM them, but their DMs are locked.`)
-  }
+		}
+		else
+		{
+			message.channel.send(message.author + ", I could not find that role.")
+		}
+	}
+	else
+	{
+		message.channel.send(message.author + ", I could not find that user.")
+	}
 }
 
 module.exports.help = {
-    name: "addrole"
+	name: "addrole"
 }
