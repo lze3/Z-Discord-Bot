@@ -217,6 +217,7 @@ module.exports.run = async(bot, message, args) => {
     else
     {
         message.channel.send(user_s + ", you do not have permission to use that command.")
+        console.warn(user_s.username + " tried executing a command that they do not have permission for.")
     }
     console.log(user_s.username + " entered a command: [ " + prefix + module.exports.help.name + " ]. Arguments: [ " + args[0] + " " + args[1] + " ].")
     message.delete().catch(O_o => {});
