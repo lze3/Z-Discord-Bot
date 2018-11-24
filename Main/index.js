@@ -3,6 +3,8 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 
+const utils = require('./utils.js')
+
 // const errorchannel = member.guild.channels.find('name', 'jcrp-logs')
 bot.commands = new Discord.Collection(); 
 
