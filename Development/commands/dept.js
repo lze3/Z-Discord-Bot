@@ -40,7 +40,8 @@ module.exports.run = async(bot, message, args) => {
     let user_t = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]) // target
     if (message.member.roles.has('505550111099584512') || message.member.roles.has('354074456940871681') || message.member.roles.has('354074444265947147') || message.member.roles.has('354087776259538954') || message.member.roles.has('481541340337930269') || message.guild.name === 'JusticeCommunityRP - Development')
     {
-        if (user_t) {
+        if (user_t) 
+        {
             if (args[1] !== "")
             {
                 if (args[1] === 'lspd' && (message.member.roles.has('505550111099584512') || message.member.roles.has('481541340337930269')) || message.guild.name === 'JusticeCommunityRP - Development')
@@ -69,7 +70,7 @@ module.exports.run = async(bot, message, args) => {
                             {
                                 user_t.removeRole('354074696322514950') // Interview Me
                             }
-                            SAHP_c.send(embed)
+                            LSPD_c.send(embed)
                         }
                         else
                         {
@@ -107,7 +108,7 @@ module.exports.run = async(bot, message, args) => {
                             {
                                 user_t.removeRole('354074696322514950') // Interview Me
                             }
-                            SAHP_c.send(embed)
+                            LSSD_c.send(embed)
                         }
                         else
                         {
@@ -184,7 +185,7 @@ module.exports.run = async(bot, message, args) => {
                             {
                                 user_t.removeRole('354074696322514950') // Interview Me
                             }
-                            SAHP_c.send(embed)
+                            SAFD_c.send(embed)
                         }
                         else
                         {
