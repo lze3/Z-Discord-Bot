@@ -3,20 +3,89 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 
-const utils = require('./utils.js')
+global.channels =
+{
+    "announcements" : "354125626724057089",
+    "update" : "378425233008361472",
+    "logs" : "368193331638829056",
+    "main" : "372942940550463488",
+    "offtopic" : "372943832876056576",
+    "bots" : "452156710983827456",
+    "reports" : "514898951346847754",
+    "support" : "471428670607589386",
+    "devc" : "500035199183093771", // dev chat
+    "devi" : "500035221572550676", // dev ideas
+    "vip" : "372949800720531456",
+    "leinfo" : "354137604754505749",
+    "lecommand" : "420777683325288448",
+    "ftochat" : "376183384239767572",
 
-// const errorchannel = member.guild.channels.find('name', 'jcrp-logs')
+    "lspdan" : "500807329558560784",
+    "lspd" : "500807575382654976",
+    "lspdfto" : "505512109287931914",
+    "lspdhc" : "505512143957786644",
+
+    "lssdan" : "457265877826666497",
+    "lssd" : "372953122919940097",
+    "lssdfto" : "372954592406929408",
+    "lssdlc" : "471064696208752674",
+    "lssdhc" : "405459821345898506",
+
+    "sahpan" : "457266379574345738",
+    "sahp" : "372952535700602880",
+    "sahpfto" : "372954039396204555",
+    "sahphc" : "405459919295479808",
+
+    "safdan" : "356984068446879744",
+    "safd" : "372953316193337344",
+    "safdfto" : "372954813157343232",
+    "safdhc" : "405459561651109888"
+}
+
+global.roles = 
+{
+    "sahpdept" : "367796502824878080",
+    "sahpfto" : "354074444265947147",
+    "sahpsrank" : "354067549970890767",
+    "sahphighc" : "405444705560559618",
+
+    "lspddept" : "500799280974397463",
+    "lspdfto" : "505550111099584512",
+    "lspdsrank" : "500800444616933406",
+    "lspdhighc" : "500799280974397463",
+
+    "lssddept" : "367796714586898433",
+    "lssdfto" : "354074456940871681",
+    "lssdsrank" : "354074458618855444",
+    "lssdhighc" : "367796714586898433",
+
+    "safddept" : "367796857272926218",
+    "safdfto" : "354087776259538954",
+    "safdsrank" : "354086496996818946",
+    "safdhighc" : "405456643497918464",
+
+    "director" : "481541340337930269",
+    "intadmin" : "501076418399043604",
+    "leadadmin" : "481358002771722272",
+    "senioradmin" : "354091746533179392",
+    "admin" : "354091780989255691",
+    "junioradmin" : "377330373081956352",
+    "staff" : "455237281402585089"
+}
+
 bot.commands = new Discord.Collection(); 
 
 fs.readdir("./commands/", (err, files) => {
     if(err) console.log(err);
     let jsfile = files.filter(f => f.split(".").pop() === "js")
-    if(jsfile.length <= 0){
+    if (jsfile.length <= 0)
+    {
         console.log("Could not file coomads.");
         return;
     }
 
-    jsfile.forEach((f, i) =>{
+    jsfile.forEach((f, i) =>
+    {
         let props = require(`./commands/${f}`);
         console.log(`${f} loaded!`);
         bot.commands.set(props.help.name, props);

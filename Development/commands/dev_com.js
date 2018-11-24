@@ -11,8 +11,7 @@ module.exports.run = async(bot, message, args) => {
         {
             message.channel.send("whois?")
         }
-        else
-        if (args[0] === 'guild-info')
+        else if (args[0] === 'guild-info')
         {
             let embed = new Discord.RichEmbed()
             .setAuthor(message.guild.name + " - Server Information", message.guild.iconURL)
@@ -25,13 +24,11 @@ module.exports.run = async(bot, message, args) => {
 
             message.channel.send(embed)
         }
-        else
-        if (args[0] === 'role-color')
+        else if (args[0] === 'role-color')
         {
             message.channel.send(message.guild.roles.find("name", "San Andreas Highway Patrol").hexColor)
         }
-        else
-        if (args[0] === 'cname')
+        else if (args[0] === 'cname')
         {
             let c_embed = new Discord.RichEmbed()
             .setAuthor(message.guild.name + " - Channel Information", message.guild.iconURL)
@@ -39,6 +36,10 @@ module.exports.run = async(bot, message, args) => {
             .addField("Channel ID", message.channel.id, true)
         
             message.channel.send(c_embed)
+        }
+        else if (args[0] === 'glob')
+        {
+            message.channel.send(roles.sahpdept)
         }
         else
         {
