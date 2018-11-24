@@ -13,7 +13,7 @@ module.exports.run = async(bot, message, args) => {
     }
     else
     {
-        if(args[1] === 'sahp')
+        if (args[1] === 'sahp')
         {
             let embed = new Discord.RichEmbed()
             .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
