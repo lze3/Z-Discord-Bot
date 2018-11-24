@@ -12,7 +12,7 @@ module.exports.run = async(bot, message, args) => {
             let embed = new Discord.RichEmbed()
             .setAuthor("General Announcement", message.author.avatarURL)
             .setDescription(":tada::tada::tada:\n\nCongratulations " + user_t + " you have been assigned Junior Administrator by Director " + user_s.username + "\n\nWe appreciate all the hard work you have been putting in on the server and we believe that you deserve this staff position. \n\n:tada::tada::tada:")
-            .setFooter("Server Administration", 'https://i.imgur.com/AptoaoJ.png')
+            .setFooter("Server Directorate - " + user_s.username, 'https://i.imgur.com/AptoaoJ.png')
             .setTimestamp()
             .setColor("#c2f1ff")
 
