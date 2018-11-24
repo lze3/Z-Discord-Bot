@@ -3,6 +3,12 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 
+global.info =
+{
+    "authorid" : "264662751404621825",
+    "authorname" : "Jack H."
+}
+
 global.channels =
 {
     "announcements" : "354125626724057089",
