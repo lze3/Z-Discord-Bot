@@ -19,7 +19,7 @@ module.exports.run = async(bot, message, args) => {
             .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
             .setDescription(applicant + "'s application for the San Andreas Highway Patrol has been accepted!")
             .setFooter("Department FTO", 'https://i.imgur.com/mVLhtCc.png')
-            .setTimestamp() // nothing needs to be placed here apparently.
+            .setTimestamp()
             .setColor("#c2f1ff")
 
             applicant.addRole('354074453270986752') // Train Me (SAHP)

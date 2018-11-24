@@ -26,7 +26,7 @@ module.exports.run = async(bot, message, args) => {
                 .setAuthor("Law Enforcement Announcement from " + message.author.username, message.author.avatarURL)
                 .setDescription("\n" + announcement)
                 .setFooter("Server Administration", 'https://i.imgur.com/AptoaoJ.png')
-                .setTimestamp() // nothing needs to be placed here apparently.
+                .setTimestamp()
                 .setColor("#c2f1ff")
 
                 message.channel.send(embed)

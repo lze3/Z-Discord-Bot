@@ -16,7 +16,7 @@ module.exports.run = async(bot, message, args) => {
         }
         else
         {
-            if (!args[0]) // checking if args[0] is _only_ given
+            if (!args[0]) // checking if no args are provided
             {
                 message.author.send("Invalid amount of arguments used in command `" + config.prefix + module.exports.help.name + "`.")
             }
@@ -26,7 +26,7 @@ module.exports.run = async(bot, message, args) => {
                 .setAuthor("San Andreas Highway Patrol Announcement from " + message.author.username, message.author.avatarURL)
                 .setDescription("\n" + announcement)
                 .setFooter("San Andreas Highway Patrol - Administration", 'https://i.imgur.com/32GKJrY.png')
-                .setTimestamp() // nothing needs to be placed here apparently.
+                .setTimestamp()
                 .setColor("#f7fd92")
 
                 message.channel.send(embed)

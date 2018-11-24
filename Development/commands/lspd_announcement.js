@@ -25,7 +25,7 @@ module.exports.run = async(bot, message, args) => {
                 .setAuthor("Los Santos Police Department Announcement from " + message.author.username, message.author.avatarURL)
                 .setDescription("\n" + announcement)
                 .setFooter("Los Santos Police Department - Administration", 'https://i.imgur.com/nWbeUut.png')
-                .setTimestamp() // nothing needs to be placed here apparently.
+                .setTimestamp()
                 .setColor("#94d2ff")
 
                 message.channel.send(embed)

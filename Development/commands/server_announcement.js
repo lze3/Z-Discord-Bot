@@ -19,7 +19,7 @@ module.exports.run = async(bot, message, args) => {
             .setAuthor("Server Announcement from " + message.author.username, message.author.avatarURL)
             .setDescription("\n" + announcement)
             .setFooter(message.guild.name + " | jcrpweb.com", 'https://a.pomf.su/oasYg.png')
-            .setTimestamp() // nothing needs to be placed here apparently.
+            .setTimestamp()
             .setColor("#9ae7ff")
 
             message.channel.send(embed)
