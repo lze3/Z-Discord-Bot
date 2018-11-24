@@ -15,8 +15,6 @@ let dev =
     ["name"] : 'JusticeCommunityRP - Development'
 }
 
-
-
 module.exports.run = async(bot, message, args) => {
     let applicant = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]) // target
     if(message.member.roles.find('name', 'Director' || 'The Directorate') || message.guild.name === dev.name)
