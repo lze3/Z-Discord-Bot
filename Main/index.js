@@ -95,7 +95,7 @@ fs.readdir("./commands/", (err, files) => {
 // Displays the message in console
 bot.on("ready", async () => {
     
-    bot.user.setActivity("JusticeCommunityRP | jcrpweb.com", {type: "PLAYING"});
+    bot.user.setActivity(".info | jcrpweb.com", {type: "WATCHING"});
     // console.log('\x1b[92m', `${bot.user.username} is now online.\n ${bot.user.username} is now active on ${bot.guilds.size} guilds.`);
     console.log(`Bot online and currently serving in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`)
 
@@ -106,7 +106,7 @@ bot.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
 
-    let prefix = botconfig.prefix;
+    let prefix = botconfig.prefix || "<@!498235770008502287> ";
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
