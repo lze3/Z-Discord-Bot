@@ -40,7 +40,7 @@ module.exports.run = async (bot, message, args) => {
         //Discord rich embed
         const whois = new Discord.RichEmbed()
         .setColor('#C2F1FF')
-        .setAuthor(`${user.username}#${user.discriminator}`, message.author.avatarURL)
+        .setAuthor(`${user.username}#${user.discriminator}`, member.avatarURL)
         .addField('Status', status, true)
         .addField('Joined', member.joinedAt, true)
         .addField('Registered', user.createdAt, true)
