@@ -167,10 +167,10 @@ module.exports.run = async(bot, message, args) => {
                 let SAFD_c = message.guild.channels.find('name', 'jcrp-safd')
                 let embed = new Discord.RichEmbed()
                 .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
-                .setDescription(user_t + " has passed their SAHP training and has been given SAHP department roles! Give them a warm welcome!")
-                .setFooter("SAHP Department FTO", "https://i.imgur.com/mVLhtCc.png")
+                .setDescription(user_t + " has passed their SAFD training and has been given SAHP department roles! Give them a warm welcome!")
+                .setFooter("SAFD Department FTO", "https://i.imgur.com/yekwbNs.png")
                 .setTimestamp()
-                .setColor("#b8ffab")
+                .setColor("#f6a8ff")
 
                 if (message.guild.id === '354062777737936896')
                 {
