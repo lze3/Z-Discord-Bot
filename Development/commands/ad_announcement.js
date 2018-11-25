@@ -11,8 +11,13 @@ module.exports.run = async(bot, message, args) => {
     {
         if(!(message.channel.name === 'jcrp-staff_info' || message.guild.name === 'JusticeCommunityRP - Development'))
         {
-            message.author.send("You need to use this command in channel `jcrp-staff_info`")
-            message.author.send("Here's the message incase you forgot to save it: \n`" + announcement + "`")
+            try {
+                await message.author.send("You need to use this command in channel `jcrp-staff_info`")
+                // await message.author.send("Here's the message incase you forgot to save it: \n`" + announcement + "`")
+            } catch(error) {
+                console.log("Tried DMing user [ " + message.author.username + " ], failed - DMs are disabled.")
+            }
+            
         }
         else
         {
