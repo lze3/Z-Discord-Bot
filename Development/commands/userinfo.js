@@ -31,27 +31,27 @@ module.exports.run = async (bot, message, args) => {
         else
             acknow = 'None';
 
-        let icon; 
-        if (user.id === '264662751404621825')
-            icon = images;
+        if (member.roles.has('501076418399043604') || member.roles.has('455237281402585089'))
+            icon = 'https://i.imgur.com/sT3ev1X.png';
         else
-            icon = user.avatarURL;
-        
-        //Discord rich embed
-        const UserInfoEmbed = new Discord.RichEmbed()
-            .setColor('#C2F1FF')
-            .setAuthor(`${user.username}#${user.discriminator}`, user.avatarURL)
-            .addField('Status', status, true)
-            .addField('Joined', member.joinedAt, true)
-            .addField('Registered', user.createdAt, true)
-            .addField('Roles', member.roles.map(roles => `<@&${roles.id}>`).join(' '), true)
-            .addField('Acknowledgements', acknow)
-            .setThumbnail(icon)
+            icon = member.author.avatarURL;
 
         
-        message.channel.send(UserInfoEmbed).then(msg => msg.delete(25000));  
+        //Discord rich embed
+        const whois = new Discord.RichEmbed()
+        .setColor('#C2F1FF')
+        .setAuthor(`${user.username}#${user.discriminator}`, message.author.avatarURL)
+        .addField('Status', status, true)
+        .addField('Joined', member.joinedAt, true)
+        .addField('Registered', user.createdAt, true)
+        .addField('Roles', member.roles.map(roles => `<@&${roles.id}>`).join(' '), true)
+        .addField('Acknowledgements', acknow)
+        .setThumbnail(icon)
+
+        
+        message.channel.send(whois)/*.then(msg => msg.delete(25000));  */
 }
 
 module.exports.help = {
-    name: "whois"
+    name: "_whois"
 }
