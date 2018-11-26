@@ -24,7 +24,6 @@ module.exports.run = async(bot, message, args, user) => {
         http.get('http://fivem.jcrpweb.com:30123', function(res) {
             let statusEmbed = new Discord.RichEmbed()
             .setTitle('JusticeCommunityRP')
-            // .setURL('http://jcrpweb.com')
             .setDescription('Main Server Information')
             .addField('Status', 'Online <:GTick:492023314244698132>')
             .addField('Players Online', numPlayersOnlineS1)

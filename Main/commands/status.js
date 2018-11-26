@@ -23,7 +23,7 @@ var ip = '149.56.241.128'
 
 module.exports.run = async(bot, message, args, user) => {
     message.delete().catch(O_o=>{})
-    if(!(message.member.roles.has('481541340337930269'))) return message.channel.send("This command has temporarily been disabled.")
+    if(!(message.member.roles.has('481541340337930269'))) return message.channel.send(message.author + ", this command has temporarily been disabled.")
     if (args[0] === "s1") {
         UpdateFiveMServerS1()
         var http = require('http');
