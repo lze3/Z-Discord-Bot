@@ -136,8 +136,7 @@ bot.on("message", async message => {
             message.channel.send(firstmention + ', here is a permanent invite to the civilian operations Discord: https://discord.gg/nWaukXd')
         }
         else
-        message.channel.send('Here is a permanent invite to the civilian operations Discord: https://discord.gg/nWaukXd')
-        
+        message.channel.send('Here is a permanent invite to the civilian operations Discord: https://discord.gg/nWaukXd')        
     }
 
 

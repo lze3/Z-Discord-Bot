@@ -7,26 +7,26 @@ module.exports.run = async (bot, message, args) => {
     if(!server) {
         let embed = new Discord.RichEmbed()
            .setTitle("Server not specified")
-           .setDescription("S1 - Public 1\nS2 - Public 2\nTR = Training")
-            .setColor("#FABF32")
+           .setDescription("S1 = Public 1\nS2 = Public 2\n Tr = Training\n Dev = Development")
+           .setColor("#FABF32")
            return message.channel.send(embed)
     }
-    else if(server.toUpperCase() === "S1" || server === 's1'){
+    else if(server.toUpperCase() === "S1"){
         IP = "149.56.241.128:30123"
-        Title = "JusticeCommunityRP - Main Server"
+        Title = "JCRP Server 1"
     }
-    else if(server.toUpperCase() === "S2" || server === 's2'){
+    else if(server.toUpperCase() === "S2"){
         IP = "149.56.241.128:30124"
-        Title = "JusticeCommunityRP - Secondary Server"
+        Title = "JCRP Server 1"
     }
-    else if(server.toUpperCase() === "TR" || server === 'tr'){
+    else if(server.toUpperCase() === "TR"){
         IP = "149.56.241.128:30199"
-        Title = "JusticeCommunityRP - Training Server"
+        Title = "JCRP Training Server"
     }
     else {
         let embed = new Discord.RichEmbed()
            .setTitle("Incorrect Server")
-           .setDescription("S1 => Public 1\nS2 => Public 2\n Tr => Training")
+           .setDescription("S1 = Public 1\nS2 = Public 2\n Tr = Training")
            .setColor("#FABF32")
         return message.channel.send(embed)
     }
@@ -50,21 +50,12 @@ module.exports.run = async (bot, message, args) => {
                     var embed = new Discord.RichEmbed()
                     .setColor("#9ae7ff")
                     .setAuthor(Title , avatar, `http://jcrpweb.com`)
-                    .addField("Server IP", IP)
-                    .addField("Status", "Online")
-                    .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
-
+                    .setDescription(`**${playersCount}** out of **${start2.vars.sv_maxClients}** Players.\n\n` + start.map(element => '**' + element.name + "**  \/ ID: ``" + element.id + "``").join("\n\n"))
+                    .setFooter(`Server IP: ${IP}`)
                     message.channel.send(embed);
                 } catch (err) {
                     console.log(err)
-                    var embed = new Discord.RichEmbed()
-                    .setColor("#FF470F") 
-                    .setAuthor(Title , avatar, `http://jcrpweb.com`)
-                    .addField("Server IP", IP)
-                    .addField("Status", "Offline")
-                    .addField("Players", "Server Offline")
-
-                    message.channel.send(embed);
+                    error.invalid(message, "Server", "Server cannnot be reached (Offline)")
                 }
             
 
@@ -74,12 +65,13 @@ module.exports.run = async (bot, message, args) => {
         
     } catch (err) {
         console.log(err)
+        message.channel.send("Server is ``Offline``")
     }
 
   };
   
   exports.help = {
-    name: "status",
+    name: "players",
   };
   
   
