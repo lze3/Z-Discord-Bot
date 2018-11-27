@@ -3,6 +3,8 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 
+bot.ConfigCommands = new Discord.Collection();
+
 global.info =
 {
     "authorid" : "264662751404621825",
@@ -146,5 +148,23 @@ bot.on("message", async message => {
         return postVeri.channel.send("Welcome.");
     }
 });
+
+var rebootmsg1 = new Discord.RichEmbed()
+    .setDescription("Restarting bot...")
+    .setFooter("This process may take up to 1 minute.")
+    .setColor("#F4613F")
+
+var rebootmsg2 = new Discord.RichEmbed()
+    .setDescription("Bot has restarted!")
+    .setFooter(bot.commands.size + " errors encountered")
+    .setColor("#417af4")
+
+global.reboot = function resetBot(channel) {
+    channel.send(rebootmsg1)
+    .then(msg => bot.destroy())
+    .then(() => bot.login(botconfig.token))
+    .then(() => channel.send(rebootmsg2)
+    .then(() => console.log(`  Ping: ${bot.ping}\n  Process restarted!`)));
+}
 
 bot.login(botconfig.token);
