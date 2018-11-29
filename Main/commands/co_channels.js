@@ -17,6 +17,8 @@ module.exports.run = async(bot, message, args) => {
     `)
     .setFooter("Head of Civilian Operations", "https://i.imgur.com/ODI3OLT.png")
     .setTimestamp()
+
+    message.channel.send(embed)
 }
 
 module.exports.help = {
