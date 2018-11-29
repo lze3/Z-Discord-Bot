@@ -149,21 +149,6 @@ bot.on("message", async message => {
     }
 });
 
-bot.on("messageDelete", message => {
-    if (message.author.bot) return undefined;
-
-    global.logChannel = message.guild.channels.find("name", "jcrp-logs_backup")
-
-    let embed = new Discord.RichEmbed()
-    .setAuthor(message.author.username + "#" + message.author.discriminator, message.author.avatarURL)
-    .setDescription("**Message sent by <@!" + message.author.id + "> in " + message.channel + "**\n" + message.content)
-    .setFooter("ID: " + message.id)
-    .setColor('#FF470F')
-    .setTimestamp()
-
-    logChannel.send(embed)
-})
-
 var rebootmsg1 = new Discord.RichEmbed()
     .setDescription("Restarting bot...")
     .setFooter("This process may take up to 1 minute.")
