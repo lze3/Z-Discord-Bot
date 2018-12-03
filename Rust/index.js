@@ -1,5 +1,5 @@
 global.config = require("./config.json");
-global.Discord = require("discord.js");
+const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 
@@ -47,6 +47,7 @@ bot.on("ready", async () => {
 
     bot.user.setStatus('Online') // Online, idle, invisible & dnd
 });
+
 // Bot Start
 bot.on("message", async message => {
     if(message.author.bot) return;
@@ -104,17 +105,6 @@ bot.on("message", async message => {
         return postVeri.channel.send("Welcome.");
     }
 });
-
-bot.on("messageDelete", message => {
-    if (message.author.bot) return undefined;
-
-    global.logChannel = message.guild.channels.find("name", "logs")
-
-    let embed = new Discord.RichEmbed()
-    .setAuthor(message.author.username + "#" + message.author.discriminator, message.author.avatarURL)
-    .setDescription("**Message sent by <@!" + message.author.id + "> in " + message.channel + "\n" + message.content)
-    logChannel.send(embed)
-})
 
 var rebootmsg1 = new Discord.RichEmbed()
     .setDescription("Restarting bot...")

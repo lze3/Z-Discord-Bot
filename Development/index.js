@@ -139,7 +139,7 @@ bot.on("message", async message => {
         }
         else
         message.channel.send('Here is a permanent invite to the civilian operations Discord: https://discord.gg/nWaukXd')        
-    }
+    } 
 
 
 // After verification
