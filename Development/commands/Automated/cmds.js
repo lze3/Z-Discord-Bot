@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const config = require("../botconfig.json");
+const config  = require("../../botconfig.json");
 
 module.exports.run = async (message) => {
     let botembed = new Discord.RichEmbed()

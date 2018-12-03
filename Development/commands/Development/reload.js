@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 
 const fs = require('fs')
 
-const config = require('../botconfig.json')
+const config = require('../../botconfig.json')
 const prefix = config.prefix
 
 module.exports.run = async(bot, message, args) => {

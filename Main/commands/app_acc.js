@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 
-let config = require('../botconfig.json')
+let config = require('../../botconfig.json')
 let prefix = config.prefix
 
 let main = 

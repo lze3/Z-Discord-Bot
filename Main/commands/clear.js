@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 
-const config = require('../botconfig.json')
+const config = require('../../botconfig.json')
 const prefix = config.prefix
 
 module.exports.run = async (bot, message, args) => {

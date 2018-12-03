@@ -1,18 +1,17 @@
 const Discord = require('discord.js')
-const config = require('../botconfig.json')
+const config = require('../../botconfig.json')
 
 module.exports.run = async(bot, message, args) => {
     let announcement = args.join(" ")
-    if(!(message.member.roles.has('481541340337930269') || message.member.roles.has('455237281402585089') || message.guild.name === 'JusticeCommunityRP - Development'))
+    if(!(message.member.roles.has('481541340337930269') || message.member.roles.has('362368086290071564') || message.guild.name === 'JusticeCommunityRP - Development'))
     {
         message.author.send("**You need the `LSSD - Command Staff` role to be able to use the **`" + config.prefix + module.exports.help.name + "` **command.**")
     }
     else
     {
-        if(!(message.channel.name === 'jcrp-law_enforcement_info' || message.guild.name === 'JusticeCommunityRP - Development'))
+        if(!(message.channel.name === 'jcrp-lspd_announcements' || message.guild.name === 'JusticeCommunityRP - Development'))
         {
-            message.author.send("You need to use this command in channel `jcrp-law_enforcement_info`")
-            message.author.send("Here's the message incase you forgot to save it: \n`" + announcement + "`")
+            message.author.send("You need to use this command in channel `jcrp-lspd_announcements`")
         }
         else
         {
@@ -23,19 +22,20 @@ module.exports.run = async(bot, message, args) => {
             else
             {
                 let embed = new Discord.RichEmbed()
-                .setAuthor("Law Enforcement Announcement from " + message.author.username, message.author.avatarURL)
+                .setAuthor("Los Santos Police Department Announcement from " + message.author.username, message.author.avatarURL)
                 .setDescription("\n" + announcement)
-                .setFooter("Server Administration", 'https://i.imgur.com/AptoaoJ.png')
+                .setFooter("Los Santos Police Department - Administration", 'https://i.imgur.com/nWbeUut.png')
                 .setTimestamp()
-                .setColor("#c2f1ff")
+                .setColor("#94d2ff")
 
                 message.channel.send(embed)
             }
-        }            
+        }
+            
     }
     message.delete().catch(O_o => {});
 }
 
 module.exports.help = {
-    name: "le-announce"
+    name: "lspd-announce"
 }

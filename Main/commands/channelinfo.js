@@ -8,12 +8,20 @@ module.exports.run = async(bot, message, args) => {
         channel = message.channel
     else
         channel = message.mentions.channels.first() || message.guild.channels.find('name', args.join(" ")) || message.guild.channels.get(args[0])
+
+    if(!channel || channel === undefined || channel === null) return message.reply("I couldn't find that channel.")
     let topic = channel.topic ? channel.topic : "None"
     let type = channel.type
-    let nsfw = channel.nsfw ? channel.nsfw: "N/A"
+    let nsfw = channel.nsfw
     let id = channel.id
     let name = channel.name
     let created = moment.utc(channel.createdAt).format("MM/DD/YYYY hh:mm:ss");
+
+    if (type === 'voice')
+        nsfw = "N/A" 
+    else
+        nsfw = channel.nsfw
+    
 
     let chanInfo = new Discord.RichEmbed()
     .setDescription(`Info about **${name}** (ID: ${id})`)

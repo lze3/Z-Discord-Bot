@@ -1,6 +1,6 @@
 
 const Discord = require('discord.js')
-const config = require('../botconfig.json')
+const config = require('../../botconfig.json')
 
 module.exports.run = async(bot, message, args) => {
     if(!(message.member.roles.has('455237281402585089') /* Staff role */ || message.member.roles.has('354093626592329739') /* LEO or Fire Supervisor/FTO role */ || message.member.roles.has('484129797195300868') /* Chief of Development role */)) // Checking if user has the 'LSPD - FTO' role or the 'Staff' role

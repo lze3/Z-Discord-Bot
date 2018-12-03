@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const config = require('../botconfig.json')
+const config = require('../../botconfig.json')
 
 var numPlayersOnlineS1 = 'N/A'
 var playerListS1 = 'N/A'
