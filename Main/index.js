@@ -81,21 +81,94 @@ global.roles =
 
 bot.commands = new Discord.Collection(); 
 
-fs.readdir("./commands/", (err, files) => {
-    if(err) console.log(err);
-    let jsfile = files.filter(f => f.split(".").pop() === "js")
-    if (jsfile.length <= 0)
-    {
-        console.log("Could not file coomads.");
+fs.readdir("./commands/Automated", (err, files) => {
+    if (err) console.log("ERROR: [ " + err + " ].");
+    let jsFile = files.filter(f => f.split(".").pop() === "js")
+    if (jsFile.length <= 0) {
+        console.log("ERROR: No automated commands loaded.")
         return;
     }
 
-    jsfile.forEach((f, i) =>
-    {
-        let props = require(`./commands/${f}`);
-        console.log(`${f} loaded!`);
-        bot.commands.set(props.help.name, props);
-    });
+    jsFile.forEach((f, i) => {
+        let props = require(`./commands/Automated/${f}`);
+        console.log(`Command [ ${f} ] loaded! [Automated]`)
+        bot.commands.set(props.help.name, props)
+    })
+});
+
+fs.readdir("./commands/Department", (err, files) => {
+    if (err) console.log("ERROR: [ " + err + " ].");
+    let jsFile = files.filter(f => f.split(".").pop() === "js")
+    if (jsFile.length <= 0) {
+        console.log("ERROR: No department commands loaded.")
+        return;
+    }
+
+    jsFile.forEach((f, i) => {
+        let props = require(`./commands/Department/${f}`);
+        console.log(`Command [ ${f} ] loaded! [Department]`)
+        bot.commands.set(props.help.name, props)
+    })
+});
+
+fs.readdir("./commands/Development", (err, files) => {
+    if (err) console.log("ERROR: [ " + err + " ].");
+    let jsFile = files.filter(f => f.split(".").pop() === "js")
+    if (jsFile.length <= 0) {
+        console.log("ERROR: No development commands loaded.")
+        return;
+    }
+
+    jsFile.forEach((f, i) => {
+        let props = require(`./commands/Development/${f}`);
+        console.log(`Command [ ${f} ] loaded! [Development]`)
+        bot.commands.set(props.help.name, props)
+    })
+});
+
+fs.readdir("./commands/Miscellaneous", (err, files) => {
+    if (err) console.log("ERROR: [ " + err + " ].");
+    let jsFile = files.filter(f => f.split(".").pop() === "js")
+    if (jsFile.length <= 0) {
+        console.log("ERROR: No miscellaneous commands loaded.")
+        return;
+    }
+
+    jsFile.forEach((f, i) => {
+        let props = require(`./commands/Miscellaneous/${f}`);
+        console.log(`Command [ ${f} ] loaded! [Miscellaneous]`)
+        bot.commands.set(props.help.name, props)
+    })
+});
+
+fs.readdir("./commands/Moderation", (err, files) => {
+    if (err) console.log("ERROR: [ " + err + " ].");
+    let jsFile = files.filter(f => f.split(".").pop() === "js")
+    if (jsFile.length <= 0) {
+        console.log("ERROR: No moderation commands loaded.")
+        return;
+    }
+
+    jsFile.forEach((f, i) => {
+        let props = require(`./commands/Moderation/${f}`);
+        console.log(`Command [ ${f} ] loaded! [Moderation]`)
+        bot.commands.set(props.help.name, props)
+    })
+});
+
+fs.readdir("./commands/Server", (err, files) => {
+    if (err) console.log("ERROR: [ " + err + " ].");
+    let jsFile = files.filter(f => f.split(".").pop() === "js")
+    if (jsFile.length <= 0) {
+        console.log("ERROR: No server commands loaded.")
+        return;
+    }
+
+    jsFile.forEach((f, i) => {
+        let props = require(`./commands/Server/${f}`);
+        console.log(`Command [ ${f} ] loaded! [Server]`)
+        bot.commands.set(props.help.name, props)
+    })
 });
 
 // Displays the message in console
