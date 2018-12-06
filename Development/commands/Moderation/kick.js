@@ -1,26 +1,28 @@
 const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
-    let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-        if(!kUser) return message.channel.send(" Haha, what a name, maybe try a real one?");
-        let kReason = args.join(" ").slice(22);
-        if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("Your joking right? Have fun NOT kicking <:megalul:451674383333982208>");
-        if(kUser.hasPermission("KICK_MEMBERS")) return message.channel.send("Hmmmm. Should I still be trusting you? <:thonkDong:451674850684174337>");
+    let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args.join(" ")) // target
+    let reason = args.join(" ").split(15)
+    if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("you do not have permission for that command.")
+    if (!message.guild.me.hasPermission("KICK_MEMBERS")) return message.reply("I do not have the `KICK_MEMBERS` permission, therefore I cannot kick this user.")
+    if (!user) return message.reply("I could not find that user.")
+    if (user.hasPermission("KICK_MEMBERS")) return message.reply("I cannot kick that user.")
 
-        let kickEmbed = new Discord.RichEmbed()
-        .setDescription("Kick")
-        .setColor("#fc4b4b")
-        .addField("Kicked User", `${kUser} with ID ${kUser.id}`)
-        .addField("Kicked By", `<@${message.author.id}> with ID ${message.author.id}`)
-        .addField("Kicked In", message.channel)
-        .addField("Time", message.createdAt)
-        .addField("Reason", kReason);
+    if (args[0])
+        reason = "No reason provided."
 
-        let kickChannel = message.guild.channels.find(`name`, "mod-chat");
-        if(!kickChannel) return message.channel.send("Can't find channel.");
+    try {
+        let kickchannel = message.guild.channels.find("name", "jcrp-mod_logs")
+        const embed = new Discord.RichEmbed()
+        .setAuthor("Action | Kick | " + user.username + "#" + user.discriminator, user.avatarURL)
+        // .setDescription
+        
+        user.kick(reason)
+        kickchannel.send(embed)
+    } catch(err) {
+        console.log(err)
+    }
 
-        message.guild.member(kUser).kick(kReason);
-        kickChannel.send(kickEmbed);
 }
 
 module.exports.help = {
