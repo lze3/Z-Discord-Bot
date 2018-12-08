@@ -7,7 +7,7 @@ module.exports.run = async(bot, message, args) => {
     if (!args[0]) 
         channel = message.channel
     else
-        channel = message.mentions.channels.first() || message.guild.channels.find('name', args.join(" ")) || message.guild.channels.find("name", `▌${args.join(" ")}`)
+        channel = message.mentions.channels.first() || message.guild.channels.find('name', args.join(" ")) || message.guild.channels.get(args[0]) || message.guild.channels.find("name", `▌${args.join(" ")}`)
 
     if(!channel || channel === undefined || channel === null) return message.reply("I couldn't find that channel.")
     let topic = channel.topic ? channel.topic : "None"
