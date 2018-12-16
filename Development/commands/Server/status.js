@@ -32,8 +32,8 @@ module.exports.run = async (bot, message, args) => {
         let avatar = "https://i.imgur.com/ODI3OLT.png"
         let api1 = `http://${IP}/players.json`
         let api2 = `http://${IP}/info.json`
-        request(api2, function (err, response, main) {
-            request(api1, function (err, response, body) {
+        request.get(api2, {timeout: 2000},function (err, response, main) {
+            request.get(api1, {timeout: 2000},function (err, response, body) {
                 try {
                     var start = JSON.parse(body)
                     var start2 = JSON.parse(main)

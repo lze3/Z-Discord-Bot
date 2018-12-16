@@ -3,7 +3,10 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 
+bot.commands = new Discord.Collection();
 bot.ConfigCommands = new Discord.Collection();
+
+global.commands = bot.commands
 
 global.info =
 {
@@ -213,15 +216,93 @@ bot.on("message", async message => {
         }
         else
         message.channel.send('Here is a permanent invite to the civilian operations Discord: https://discord.gg/nWaukXd')        
-    }   
-
-
-// After verification
-    if(messageArray === `?reg`){
-        let postVeri = message.guild.channels.find(`name`, "jcrp-off_topic");
-        return postVeri.channel.send("Welcome.");
     }
-});
+
+    if (message.channel.id === "452156710983827456") {
+        if (message.content.includes("https://") || message.content.includes("http://")) {
+            message.delete()
+            console.log("Test succeeded.")
+        }
+    }
+})
+
+/*
+bot.on("message", message => {
+
+    if (message.author.bot) return // Ignore for bots
+    // LSSD mass tag
+    if (message.content.includes("<@&367796714586898433>") && !(message.member.roles.has("354074456940871681") || message.member.roles.has("362368086290071564")))
+    {
+        let logCh = message.guild.channels.find('name', "jcrp-staff")
+        message.member.addRole("354074357896708101")
+        
+        let autoMute = new Discord.RichEmbed()
+        .setAuthor(message.author.username + "#" + message.author.discriminator + " | Mute [Auto]", message.author.avatarURL)
+        .setDescription("**Message Content**\n" + message.content)
+        .addField("User", message.author)
+        .addField("Reason", "Mass tagging")
+        .setTimestamp()
+        .setColor("#FF470F")
+
+        message.author.send("You have been muted for mass tagging **(AUTO)**. Please take this up with an administrator.")
+
+        logCh.send(autoMute)
+    }
+
+    // SAHP mass tag
+    if (message.content.includes("<@&367796502824878080>") && !(message.member.roles.has("405444705560559618")))
+    {
+        message.member.addRole("354074357896708101")
+        
+        let autoMute = new Discord.RichEmbed()
+        .setAuthor(message.author.username + "#" + message.author.discriminator + " | Mute [Auto]", message.author.avatarURL)
+        .setDescription("**Message Content**\n" + message.content)
+        .addField("User", message.author)
+        .addField("Reason", "Mass tagging")
+        .setTimestamp()
+        .setColor("#FF470F")
+
+        message.author.send("You have been muted for mass tagging **(AUTO)**. Please take this up with an administrator.")
+
+        logCh.send(autoMute)
+    }
+
+    // LSPD mass tag
+    if (message.content.includes("<@&500799280974397463>") && !(message.member.roles.has("500799280974397463")))
+    {
+        message.member.addRole("354074357896708101")
+        
+        let autoMute = new Discord.RichEmbed()
+        .setAuthor(message.author.username + "#" + message.author.discriminator + " | Mute [Auto]", message.author.avatarURL)
+        .setDescription("**Message Content**\n" + message.content)
+        .addField("User", message.author)
+        .addField("Reason", "Mass tagging")
+        .setTimestamp()
+        .setColor("#FF470F")
+
+        message.author.send("You have been muted for mass tagging **(AUTO)**. Please take this up with an administrator.")
+
+        logCh.send(autoMute)
+    }
+
+        // SAFD mass tag
+        if (message.content.includes("<@&367796857272926218>") && !(message.member.roles.has("500799280974397463")))
+        {
+            message.member.addRole("354074357896708101")
+            
+            let autoMute = new Discord.RichEmbed()
+            .setAuthor(message.author.username + "#" + message.author.discriminator + " | Mute [Auto]", message.author.avatarURL)
+            .setDescription("**Message Content**\n" + message.content)
+            .addField("User", message.author)
+            .addField("Reason", "Mass tagging")
+            .setTimestamp()
+            .setColor("#FF470F")
+    
+            message.author.send("You have been muted for mass tagging **(AUTO)**. Please take this up with an administrator.")
+    
+            logCh.send(autoMute)
+        }
+})*/
 
 var rebootmsg1 = new Discord.RichEmbed()
     .setDescription("Restarting bot...")

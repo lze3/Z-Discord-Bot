@@ -7,8 +7,6 @@ const prefix = config.prefix
 module.exports.run = async (bot, message, args) => {
     let server = args[0];
 
-    if (!message.member.roles.has('481541340337930269')) return message.channel.send(message.author + ", this command is temporarily disabled.")
-
     if(!server) {
         return message.channel.send(message.author + ", invalid server. `" + prefix + module.exports.help.name + " server`. Servers: `S1`, `S2`, `TR`")
     }
@@ -32,8 +30,8 @@ module.exports.run = async (bot, message, args) => {
         let avatar = "https://i.imgur.com/ODI3OLT.png"
         let api1 = `http://${IP}/players.json`
         let api2 = `http://${IP}/info.json`
-        request(api2, function (err, response, main) {
-            request(api1, function (err, response, body) {
+        request.get(api2, {timeout: 2000},function (err, response, main) {
+            request.get(api1, {timeout: 2000},function (err, response, body) {
                 try {
                     var start = JSON.parse(body)
                     var start2 = JSON.parse(main)

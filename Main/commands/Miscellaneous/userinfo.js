@@ -1,57 +1,46 @@
 const Discord = require("discord.js")
 const images = ('../images/special.png')
 
+const moment = require('moment')
+
 module.exports.run = async (bot, message, args) => {
-    message.delete();
+    if (!args[0]) 
+        member = message.guild.member(message.author),
+        user   = message.author
+    else
+        member = message.guild.member(message.mentions.users.first()) || message.guild.member(message.guild.members.get(args[0])),
+        user   = message.mentions.users.first() || message.guild.user(message.guild.members.get(args[0]))
 
-        let user;
-        // If the user mentions someone, display their stats. If they just run userinfo without mentions, it will show their own stats.
-        if (message.mentions.users.first()) {
-          user = message.mentions.users.first();
-        } else {
-            user = message.author;
-        }
+    if(!user || user === undefined || user === null) return message.reply("I couldn't find that user.")
+    
+    // Member properties
+    let joinedAt = moment.utc(member.joinedAt).format("MM/DD/YYYY hh:mm:ss")
+    let nickname = "• Nickname: " + member.nickname
 
-        let status = user.presence.status
-        if (status === 'online')
-            status = 'Online';
-        if (status === 'offline')
-            status = 'Offline';
-        if (status === 'idle')
-            status = 'Idle';
-        if (status === 'dnd')
-            status = 'Do Not Disturb';
+    if(nickname === "" || nickname === null || nickname === undefined || nickname === " ")
+        nickname = "• No nickname"
 
-        // Define the member of a guild.
-        const member = message.guild.member(user);
+    // User properties
+    let id        = user.id
+    let username  = user.username
+    let createdAt = moment.utc(user.createdAt).format("MM/DD/YYYY hh:mm:ss")
+    let status    = user.presence.status.toUpperCase()
 
-        let acknow;
-        if (user.id === '264662751404621825')
-            acknow = 'Bot creator!';
-        else
-            acknow = 'None';
+    if (member.presence.game === "" || member.presence.game === null)
+        activity = "None"
+    else
+        activity = member.presence.game.name
 
-        if (member.roles.has('501076418399043604') || member.roles.has('455237281402585089'))
-            icon = 'https://i.imgur.com/sT3ev1X.png';
-        else
-            icon = member.author.avatarURL;
+    let userInfo = new Discord.RichEmbed()
+    .setDescription(`Info about **${username}** (ID: ${user.id})`)
+    .addField("❯ Member Details", `${nickname}\n• Joined at: ${joinedAt}`)
+    .addField("❯ User Details", `• ID: ${id}\n• Username: ${username}\n• Created at: ${createdAt}\n• Status: ${status}\n• Activity: ${activity}`)
+    .setColor('#3498DB')
+    .setThumbnail(user.avatarURL)
 
-        
-        //Discord rich embed
-        const whois = new Discord.RichEmbed()
-        .setColor('#C2F1FF')
-        .setAuthor(`${user.username}#${user.discriminator}`, member.avatarURL)
-        .addField('Status', status, true)
-        .addField('Joined', member.joinedAt, true)
-        .addField('Registered', user.createdAt, true)
-        .addField('Roles', member.roles.map(roles => `<@&${roles.id}>`).join(' '), true)
-        .addField('Acknowledgements', acknow)
-        .setThumbnail(icon)
-
-        
-        message.channel.send(whois)/*.then(msg => msg.delete(25000));  */
+    message.channel.send(userInfo).then(msg => msg.delete(50000))
 }
 
 module.exports.help = {
-    name: "_whois"
+    name: "user"
 }
