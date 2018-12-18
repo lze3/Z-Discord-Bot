@@ -176,7 +176,7 @@ module.exports.run = async(bot, message, args) => {
                         {
                             user_t.addRole(safd.id)
                             user_t.addRole(safd.start)
-                            user_t.addRole('354095488666042380') // Law Enforcement
+                            user_t.addRole('354095512225316876') // First Responders
 
                             user_t.removeRole(safd.trn)
                             user_t.removeRole('354074696515584000') // Train Me
