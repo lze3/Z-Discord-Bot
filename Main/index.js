@@ -238,6 +238,8 @@ bot.on("message", async message => {
     }
 });
 
+bot.on("error", console.error);
+
 var rebootmsg1 = new Discord.RichEmbed()
     .setDescription("Restarting bot...")
     .setFooter("This process may take up to 1 minute.")
