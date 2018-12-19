@@ -57,6 +57,7 @@ module.exports.run = async (bot, message, args) => {
                     .addField("Status", "Online")
                     .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
                     .addField("Uptime", start2.vars.Uptime)
+                    .addField("Current Roleplay Area", start2.vars.Map)
 
                     message.channel.send(embed);
                 } catch (err) {
