@@ -56,6 +56,7 @@ module.exports.run = async (bot, message, args) => {
                     .addField("Server IP", IP)
                     .addField("Status", "Online")
                     .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
+                    .addField("Uptime", start2.vars.Uptime)
 
                     message.channel.send(embed);
                 } catch (err) {
