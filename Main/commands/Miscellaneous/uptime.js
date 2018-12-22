@@ -13,11 +13,10 @@ module.exports.run = async (bot, message) => {
     }
 
     let uptimeEmbed = new Discord.RichEmbed()
-    .setDescription("Uptime")
-    .setColor("#117ea6")
-    .addField("Hours", hours)
-    .addField("Minutes", minutes)
-    .addField("Seconds", seconds)
+    .setTitle("Uptime")
+    .setDescription(`${hours} hrs, ${minutes} mins`)
+    .setTimestamp()
+    
     
     message.channel.send(uptimeEmbed).then(msg => msg.delete(10000));
 }
