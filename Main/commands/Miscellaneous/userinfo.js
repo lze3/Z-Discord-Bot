@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
     let joinedAt = moment.utc(member.joinedAt).format("MM/DD/YYYY hh:mm:ss")
     let nickname = `• Nickname: ${member.nickname}`
 
-    if(nickname === "" || nickname === null || nickname === undefined || nickname === " ")
+    if(member.nickname === null)
         nickname = "• No nickname"
 
     // User properties
