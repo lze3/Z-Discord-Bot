@@ -80,6 +80,7 @@ global.roles =
 }
 
 bot.commands = new Discord.Collection(); 
+bot.ConfigCommands = new Discord.Collection();
 
 fs.readdir("./commands/Automated", (err, files) => {
     if (err) console.log("ERROR: [ " + err + " ].");
