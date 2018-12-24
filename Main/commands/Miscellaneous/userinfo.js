@@ -9,13 +9,13 @@ module.exports.run = async (bot, message, args) => {
         user   = message.author
     else
         member = message.guild.member(message.mentions.users.first()) || message.guild.member(message.guild.members.get(args[0])),
-        user   = message.mentions.users.first() || message.guild.user(message.guild.members.get(args[0]))
+        user   = message.mentions.users.first() || bot.users.get(args[0])
 
     if(!user || user === undefined || user === null) return message.reply("I couldn't find that user.")
     
     // Member properties
     let joinedAt = moment.utc(member.joinedAt).format("MM/DD/YYYY hh:mm:ss")
-    let nickname = "• Nickname: " + member.nickname
+    let nickname = `• Nickname: ${member.nickname}`
 
     if(nickname === "" || nickname === null || nickname === undefined || nickname === " ")
         nickname = "• No nickname"
