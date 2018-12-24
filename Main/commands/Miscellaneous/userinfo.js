@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
     .setColor('#3498DB')
     .setThumbnail(user.avatarURL)
 
-    message.channel.send(userInfo).then(msg => msg.delete(50000))
+    message.channel.send(userInfo)
 }
 
 module.exports.help = {
