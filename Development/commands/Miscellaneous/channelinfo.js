@@ -7,7 +7,7 @@ module.exports.run = async(bot, message, args) => {
     if (!args[0]) 
         channel = message.channel
     else
-        channel = message.mentions.channels.first() || message.guild.channels.find('name', args.join(" ")) || message.guild.channels.get(args[0])
+        channel = message.mentions.channels.first() || message.guild.channels.find('name', args.join(" ")) || message.guild.channels.get(args[0]) || message.guild.channels.find("name", `▌${args.join(" ")}`)
 
     if(!channel || channel === undefined || channel === null) return message.reply("I couldn't find that channel.")
     let topic = channel.topic ? channel.topic : "None"
@@ -31,7 +31,7 @@ module.exports.run = async(bot, message, args) => {
     .setColor('#3498DB')
     .setThumbnail('https://i.imgur.com/ODI3OLT.png')
 
-    message.channel.send(chanInfo).then(msg => msg.delete(50000))
+    message.channel.send(chanInfo)
 }
 
 module.exports.help = {
