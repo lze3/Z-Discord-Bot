@@ -30,7 +30,7 @@ const lssd =
 const safd = 
 {
     ["id"] : '367796857272926218',
-    ["start"] : '354086496996818946',
+    ["start"] : '354086496065683456',
     ["trn"] : '354088117806039040',
     ["fto"] : '354087776259538954'
 }
@@ -165,10 +165,10 @@ module.exports.run = async(bot, message, args) => {
                     let SAFD_c = message.guild.channels.find('name', 'jcrp-safd')
                     let embed = new Discord.RichEmbed()
                     .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
-                    .setDescription(user_t + " has passed their SAHP training and has been given SAHP department roles! Give them a warm welcome!")
-                    .setFooter("SAHP Department FTO", "https://i.imgur.com/mVLhtCc.png")
+                    .setDescription(user_t + " has passed their SAHP training and has been given SAFD department roles! Give them a warm welcome!")
+                    .setFooter("SAFD Department FTO", "https://i.imgur.com/mVLhtCc.png")
                     .setTimestamp()
-                    .setColor("#b8ffab")
+                    .setColor("#f6a8ff")
 
                     if (message.guild.id === '354062777737936896')
                     {
