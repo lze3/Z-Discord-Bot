@@ -1,4 +1,3 @@
 *.bat
 
-Main/botconfig.json
-Development/botconfig.json          
+botconfig.json   
