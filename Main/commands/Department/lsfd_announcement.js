@@ -5,13 +5,13 @@ module.exports.run = async(bot, message, args) => {
     let announcement = args.join(" ")
     if(!(message.member.roles.has('481541340337930269') || message.member.roles.has('405456643497918464') || message.guild.name === 'JusticeCommunityRP - Development'))
     {
-        message.author.send("**You need the `SAFD - Command Staff` role to be able to use the **`" + config.prefix + module.exports.help.name + "` **command.**")
+        message.author.send("**You need the `LSFD - Command Staff` role to be able to use the **`" + config.prefix + module.exports.help.name + "` **command.**")
     }
     else
     {
-        if(!(message.channel.name === 'jcrp-safd_announcements' || message.guild.name === 'JusticeCommunityRP - Development'))
+        if(!(message.channel.name === 'jcrp-lsfd_announcements' || message.guild.name === 'JusticeCommunityRP - Development'))
         {
-            message.author.send("You need to use this command in channel `jcrp-safd_announcements`")
+            message.author.send("You need to use this command in channel `jcrp-lsfd_announcements`")
         }
         else
         {
@@ -22,9 +22,9 @@ module.exports.run = async(bot, message, args) => {
             else
             {
                 let embed = new Discord.RichEmbed()
-                .setAuthor("San Andreas Fire Department Announcement from " + message.author.username, message.author.avatarURL)
+                .setAuthor("Los Santos Fire Department Announcement from " + message.author.username, message.author.avatarURL)
                 .setDescription("\n" + announcement)
-                .setFooter("San Andreas Fire Department - Administration", 'https://i.imgur.com/yekwbNs.png')
+                .setFooter("Los Santos Fire Department - Administration", 'https://i.imgur.com/yekwbNs.png')
                 .setTimestamp()
                 .setColor("#f6a8ff")
 
