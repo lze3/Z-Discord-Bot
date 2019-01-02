@@ -16,8 +16,9 @@ module.exports.run = async (bot, message, args) => {
     // Member properties
     let joinedAt = moment.utc(member.joinedAt).format("MM/DD/YYYY hh:mm:ss")
     let nickname = `• Nickname: ${member.nickname}`
+    let acknowledgments = `• No acknowledgments`
 
-    if(nickname === "" || nickname === null || nickname === undefined || nickname === " ")
+    if(member.nickname === null)
         nickname = "• No nickname"
 
     // User properties
@@ -31,10 +32,18 @@ module.exports.run = async (bot, message, args) => {
     else
         activity = member.presence.game.name
 
+    if (member.hoistRole.id === '481541340337930269')
+        acknowledgments = 
+        `• Server Director
+        • Community staff
+        • Forum administrator`
+
+
     let userInfo = new Discord.RichEmbed()
     .setDescription(`Info about **${username}** (ID: ${user.id})`)
     .addField("❯ Member Details", `${nickname}\n• Joined at: ${joinedAt}`)
-    .addField("❯ User Details", `• ID: ${id}\n• Username: ${username}\n• Created at: ${createdAt}\n• Status: ${status}\n• Activity: ${activity}`)
+    .addField("❯ User Details", `• ID: ${id}\n• Username: ${username}/#${user.discriminator}\n• Created at: ${createdAt}\n• Status: ${status}\n• Activity: ${activity}`)
+    .addField("❯ Acknowledgments", `${acknowledgments}`)
     .setColor('#3498DB')
     .setThumbnail(user.avatarURL)
 
