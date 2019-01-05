@@ -9,7 +9,7 @@ module.exports.run = async(bot, message, args) => {
     }
     else
     {
-        if(!(message.channel.name === 'jcrp-law_enforcement_info' || message.guild.name === 'JusticeCommunityRP - Development'))
+        if(!(message.channel.name === 'jcrp-law_enforcement_info' || message.channel.name === 'jcrp-law_enforcement_links' || message.guild.name === 'JusticeCommunityRP - Development'))
         {
             message.author.send("You need to use this command in channel `jcrp-law_enforcement_info`")
             message.author.send("Here's the message incase you forgot to save it: \n`" + announcement + "`")
