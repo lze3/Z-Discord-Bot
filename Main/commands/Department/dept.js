@@ -129,7 +129,7 @@ module.exports.run = async(bot, message, args) => {
                     .setDescription(user_t + " has passed their SAHP training and has been given SAHP department roles! Give them a warm welcome!")
                     .setFooter("SAHP Department FTO", "https://i.imgur.com/mVLhtCc.png")
                     .setTimestamp()
-                    .setColor("#b8ffab")
+                    .setColor("#f7fd92")
 
                     if (message.guild.id === '354062777737936896')
                     {
