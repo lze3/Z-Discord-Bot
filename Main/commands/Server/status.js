@@ -66,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
                         .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
                         .addField("Server IP", IP)
                         .addField("Status", "Online")
-                        .addField("Hostname", start2.vars.sv_hostname)
+                        .addField("Hostname", start2.sv_hostname)
                         .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
                         .addField("Uptime", start2.vars.Uptime)
                         .addField("Server Version", start2.version)
