@@ -26,6 +26,10 @@ module.exports.run = async (bot, message, args) => {
         IP = "149.56.241.128:30199"
         Title = "JusticeCommunityRP - Training Server"
     }
+    else if(server.toUpperCase() === "cst" && message.member.roles.has('484129797195300868')){
+        IP = args.join(" ")
+        Title = "Custom Server Information"
+    }
     else {
         let embed = new Discord.RichEmbed()
         .setTitle("Incorrect Server")
@@ -43,6 +47,12 @@ module.exports.run = async (bot, message, args) => {
                 try {
                     var start = JSON.parse(body)
                     var start2 = JSON.parse(main)
+                    var resource_ = JSON.stringify(start2.resources)
+                    if (resource_.length > 850) {
+                        var resources = `There are too many resources to list.`
+                    } else {
+                        var resources = resource_
+                    }
             
                     if (start == null || start == []) {
                         var playersCount = 0
@@ -50,14 +60,29 @@ module.exports.run = async (bot, message, args) => {
                         var playersCount = start.length;
                     }
 
-                    var embed = new Discord.RichEmbed()
-                    .setColor("#9ae7ff")
-                    .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
-                    .addField("Server IP", IP)
-                    .addField("Status", "Online")
-                    .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
-                    .addField("Uptime", start2.vars.Uptime)
-                    // .addField("Current Roleplay Area", start2.vars.Map)
+                    if (message.member.roles.has('484129797195300868')) {
+                        var embed = new Discord.RichEmbed()
+                        .setColor("#9ae7ff")
+                        .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
+                        .addField("Server IP", IP)
+                        .addField("Status", "Online")
+                        .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
+                        .addField("Uptime", start2.vars.Uptime)
+                        .addField("Server Version", start2.version)
+                        .addField("Resources", resources)
+                        .addField("OneSync Enabled", start2.vars.onesync_enabled)
+                        .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
+                    } else {
+                        var embed = new Discord.RichEmbed()
+                        .setColor("#9ae7ff")
+                        .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
+                        .addField("Server IP", IP)
+                        .addField("Status", "Online")
+                        .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
+                        .addField("Uptime", start2.vars.Uptime)
+                    }
+
+
 
                     message.channel.send(embed);
                 } catch (err) {
