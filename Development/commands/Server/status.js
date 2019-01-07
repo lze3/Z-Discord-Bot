@@ -60,7 +60,20 @@ module.exports.run = async (bot, message, args) => {
                         var playersCount = start.length;
                     }
 
-                    if (message.member.roles.has('484129797195300868')) {
+                    if (server.toUpperCase() === "CST") {
+                        var embed = new Discord.RichEmbed()
+                        .setColor("#9ae7ff")
+                        .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
+                        .addField("Server IP", IP)
+                        .addField("Status", "Online")
+                        .addField("Hostname", start2.vars.sv_hostname)
+                        .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
+                        .addField("Uptime", start2.vars.Uptime)
+                        .addField("Server Version", start2.version)
+                        .addField("Resources", `\`\`\`json\n${resources}\n\`\`\``)
+                        .addField("OneSync Enabled", start2.vars.onesync_enabled)
+                        .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
+                    } else if (message.member.roles.has('484129797195300868')) {
                         var embed = new Discord.RichEmbed()
                         .setColor("#9ae7ff")
                         .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
