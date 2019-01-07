@@ -26,8 +26,8 @@ module.exports.run = async (bot, message, args) => {
         IP = "149.56.241.128:30199"
         Title = "JusticeCommunityRP - Training Server"
     }
-    else if(server.toUpperCase() === "cst" && message.member.roles.has('484129797195300868')){
-        IP = args.join(" ")
+    else if(server.toUpperCase() === "CST" && message.member.roles.has('484129797195300868')){
+        IP = args.join(" ").slice(4)
         Title = "Custom Server Information"
     }
     else {
