@@ -48,7 +48,10 @@ module.exports.run = async (bot, message, args) => {
                     try {
                         var start = JSON.parse(body)
                         var start2 = JSON.parse(main)
+                        var start3 = JSON.parse(content)
+
                         var resource_ = JSON.stringify(start2.resources)
+                        var licenseKeyToken = start3
 
                         if (resource_.length > 850) {
                             var resources = `There are too many resources to list.`
@@ -64,8 +67,8 @@ module.exports.run = async (bot, message, args) => {
 
                         if (server.toUpperCase() === "CST") {
                             var embed = new Discord.RichEmbed()
-                            .setColor("#9ae7ff")
-                            .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
+                            .setColor("#54C86D")
+                            .setAuthor("Server Information" , avatar)
                             .addField("Server IP", IP)
                             .addField("Status", "Online")
                             .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
@@ -109,7 +112,7 @@ module.exports.run = async (bot, message, args) => {
 
                         message.channel.send(embed);
                     }
-                    
+
                     })
 
                 })
