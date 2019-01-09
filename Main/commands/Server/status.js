@@ -44,69 +44,73 @@ module.exports.run = async (bot, message, args) => {
         let api2 = `http://${IP}/info.json`
         request.get(api2, {timeout: 2000},function (err, response, main) {
             request.get(api1, {timeout: 2000},function (err, response, body) {
-                try {
-                    var start = JSON.parse(body)
-                    var start2 = JSON.parse(main)
-                    var resource_ = JSON.stringify(start2.resources)
-                    if (resource_.length > 850) {
-                        var resources = `There are too many resources to list.`
-                    } else {
-                        var resources = resource_
-                    }
-            
-                    if (start == null || start == []) {
-                        var playersCount = 0
-                    } else {
-                        var playersCount = start.length;
-                    }
+                request.get(`https://policy-live.fivem.net/api/policy/${JSON.parse(main).vars.sv_licenseKeyToken}`, {timeout: 2000}, function(err, response, content) {
+                    try {
+                        var start = JSON.parse(body)
+                        var start2 = JSON.parse(main)
+                        var resource_ = JSON.stringify(start2.resources)
 
-                    if (server.toUpperCase() === "CST") {
+                        if (resource_.length > 850) {
+                            var resources = `There are too many resources to list.`
+                        } else {
+                            var resources = resource_
+                        }
+                
+                        if (start == null || start == []) {
+                            var playersCount = 0
+                        } else {
+                            var playersCount = start.length;
+                        }
+
+                        if (server.toUpperCase() === "CST") {
+                            var embed = new Discord.RichEmbed()
+                            .setColor("#9ae7ff")
+                            .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
+                            .addField("Server IP", IP)
+                            .addField("Status", "Online")
+                            .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
+                            .addField("Server Version", start2.server)
+                            .addField("Resources", `\`\`\`json\n${resources}\n\`\`\``)
+                            .addField("OneSync Enabled", start2.vars.onesync_enabled)
+                            .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
+                            .addField("Policy", `\`\`\`json\n${licenseKeyToken}\n\`\`\``)
+                        } else if (message.member.roles.has('484129797195300868')) {
+                            var embed = new Discord.RichEmbed()
+                            .setColor("#9ae7ff")
+                            .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
+                            .addField("Server IP", IP)
+                            .addField("Status", "Online")
+                            .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
+                            .addField("Uptime", start2.vars.Uptime)
+                            .addField("Server Version", start2.server)
+                            .addField("Resources", resources)
+                            .addField("OneSync Enabled", start2.vars.onesync_enabled)
+                            .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
+                        } else {
+                            var embed = new Discord.RichEmbed()
+                            .setColor("#9ae7ff")
+                            .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
+                            .addField("Server IP", IP)
+                            .addField("Status", "Online")
+                            .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
+                            .addField("Uptime", start2.vars.Uptime)
+                        }
+
+
+
+                        message.channel.send(embed);
+                    } catch (err) {
                         var embed = new Discord.RichEmbed()
-                        .setColor("#9ae7ff")
+                        .setColor("#FF470F") 
                         .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
                         .addField("Server IP", IP)
-                        .addField("Status", "Online")
-                        .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
-                        .addField("Server Version", start2.server)
-                        .addField("Resources", `\`\`\`json\n${resources}\n\`\`\``)
-                        .addField("OneSync Enabled", start2.vars.onesync_enabled)
-                        .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
-                    } else if (message.member.roles.has('484129797195300868')) {
-                        var embed = new Discord.RichEmbed()
-                        .setColor("#9ae7ff")
-                        .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
-                        .addField("Server IP", IP)
-                        .addField("Status", "Online")
-                        .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
-                        .addField("Uptime", start2.vars.Uptime)
-                        .addField("Server Version", start2.server)
-                        .addField("Resources", resources)
-                        .addField("OneSync Enabled", start2.vars.onesync_enabled)
-                        .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
-                    } else {
-                        var embed = new Discord.RichEmbed()
-                        .setColor("#9ae7ff")
-                        .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
-                        .addField("Server IP", IP)
-                        .addField("Status", "Online")
-                        .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
-                        .addField("Uptime", start2.vars.Uptime)
+                        .addField("Status", "Offline")
+                        .addField("Players", "No players.")
+
+                        message.channel.send(embed);
                     }
-
-
-
-                    message.channel.send(embed);
-                } catch (err) {
-                    var embed = new Discord.RichEmbed()
-                    .setColor("#FF470F") 
-                    .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
-                    .addField("Server IP", IP)
-                    .addField("Status", "Offline")
-                    .addField("Players", "No players.")
-
-                    message.channel.send(embed);
-                }
-            
+                    
+                    })
 
                 })
         
