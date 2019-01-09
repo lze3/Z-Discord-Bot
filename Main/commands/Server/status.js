@@ -68,7 +68,7 @@ module.exports.run = async (bot, message, args) => {
                         if (server.toUpperCase() === "CST") {
                             var embed = new Discord.RichEmbed()
                             .setColor("#54C86D")
-                            .setAuthor("Server Information" , avatar)
+                            .setAuthor("Server Information" , 'https://i.imgur.com/PnzJ35e.png')
                             .addField("Server IP", IP)
                             .addField("Status", "Online")
                             .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
