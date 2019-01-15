@@ -53,16 +53,22 @@ module.exports.run = async (bot, message, args) => {
                         var resource_ = JSON.stringify(start2.resources)
                         var licenseKeyToken = start3
 
-                        if (resource_.length > 850) {
+                        if (resource_.length > 1024) {
                             var resources = `There are too many resources to list.`
                         } else {
-                            var resources = resource_
+                            var resources = `\`\`\`json\n${start2.resources.join("\"\n")}\n\`\`\``
                         }
                 
                         if (start == null || start == []) {
                             var playersCount = 0
                         } else {
                             var playersCount = start.length;
+                        }
+
+                        if (licenseKeyToken === null || licenseKeyToken === "") {
+                            var policy = `\`\`\`json\n["No policy."]\n\`\`\``
+                        } else {
+                            var policy = `\`\`\`json\n${start3.map(m => `["${m}"]\n`)}\n\`\`\``
                         }
 
                         if (server.toUpperCase() === "CST") {
@@ -73,10 +79,10 @@ module.exports.run = async (bot, message, args) => {
                             .addField("Status", "Online")
                             .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
                             .addField("Server Version", start2.server)
-                            .addField("Resources", `\`\`\`json\n${resources}\n\`\`\``)
+                            .addField("Resources", resources)
                             .addField("OneSync Enabled", start2.vars.onesync_enabled)
                             .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
-                            .addField("Policy", `\`\`\`json\n${licenseKeyToken}\n\`\`\``)
+                            .addField("Policy", policy)
                         } else if (message.member.roles.has('484129797195300868')) {
                             var embed = new Discord.RichEmbed()
                             .setColor("#9ae7ff")
@@ -110,7 +116,16 @@ module.exports.run = async (bot, message, args) => {
                         .addField("Status", "Offline")
                         .addField("Players", "No players.")
 
-                        message.channel.send(embed);
+                        var err_embed = new Discord.RichEmbed()
+                        .setColor('#FF470F')
+                        .setAuthor("Error Information", avatar)
+                        .setDescription(`\`${err}\``)
+
+                        if (message.member.roles.has('481541340337930269')) {
+                            message.channel.send(err_embed);
+                        } else {
+                            message.channel.send(embed)
+                        }
                     }
 
                     })
