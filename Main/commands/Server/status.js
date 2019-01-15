@@ -56,7 +56,7 @@ module.exports.run = async (bot, message, args) => {
                         if (resource_.length > 1024) {
                             var resources = `There are too many resources to list.`
                         } else {
-                            var resources = resource_.map(x => `"${x}"`)
+                            var resources = start2.resources.map(x => `"${x}"`)
                         }
                 
                         if (start == null || start == []) {
