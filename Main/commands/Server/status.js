@@ -65,7 +65,7 @@ module.exports.run = async (bot, message, args) => {
                             var playersCount = start.length;
                         }
 
-                        if (licenseKeyToken === null || licenseKeyToken === "") {
+                        if (licenseKeyToken === null || licenseKeyToken === "" || licenseKeyToken === " ") {
                             var policy = `\`\`\`json\n["No policy."]\n\`\`\``
                         } else {
                             var policy = `\`\`\`json\n${start3.map(m => `["${m}"]\n`)}\n\`\`\``
