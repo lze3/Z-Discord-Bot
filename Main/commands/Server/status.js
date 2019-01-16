@@ -50,14 +50,7 @@ module.exports.run = async (bot, message, args) => {
                         var start2 = JSON.parse(main)
                         var start3 = JSON.parse(content)
 
-                        var resource_ = JSON.stringify(start2.resources)
                         var licenseKeyToken = start3
-
-                        if (resource_.length > 1024) {
-                            var resources = `There are too many resources to list.`
-                        } else {
-                            var resources = `\`\`\`json\n${start2.resources.map(x => `"${x}\n"`)}\n\`\`\``
-                        }
                 
                         if (start == null || start == []) {
                             var playersCount = 0
@@ -79,7 +72,6 @@ module.exports.run = async (bot, message, args) => {
                             .addField("Status", "Online")
                             .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
                             .addField("Server Version", start2.server)
-                            .addField("Resources", resources)
                             .addField("OneSync Enabled", start2.vars.onesync_enabled)
                             .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
                             .addField("Policy", policy)
