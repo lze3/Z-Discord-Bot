@@ -84,7 +84,6 @@ module.exports.run = async (bot, message, args) => {
                             .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
                             .addField("Uptime", start2.vars.Uptime)
                             .addField("Server Version", start2.server)
-                            .addField("Resources", resources)
                             .addField("OneSync Enabled", start2.vars.onesync_enabled)
                             .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
                             .addField("Policy", `\`\`\`json\n${licenseKeyToken}\n\`\`\``)
