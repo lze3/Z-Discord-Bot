@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
         IP = "149.56.241.128:30199"
         Title = "JusticeCommunityRP - Training Server"
     }
-    else if(server.toUpperCase() === "CST" && message.member.roles.has('484129797195300868')){
+    else if(server.toUpperCase() === "CST" && message.member.roles.has('484129797195300868') || message.member.roles.has('501076418399043604')){
         IP = args.join(" ").slice(4)
         Title = "Custom Server Information"
     }
@@ -56,7 +56,7 @@ module.exports.run = async (bot, message, args) => {
                         if (resource_.length > 850) {
                             var resources = `There are too many resources to list.`
                         } else {
-                            var resources = `\`\`\`json\n${start2.resources.map(x => `"${x},"`)}\n\`\`\``
+                            var resources = `\`\`\`json\n${start2.resources.map(x => `"${x}\n"`)}\n\`\`\``
                         }
                 
                         if (start == null || start == []) {
@@ -83,7 +83,7 @@ module.exports.run = async (bot, message, args) => {
                             .addField("OneSync Enabled", start2.vars.onesync_enabled)
                             .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
                             .addField("Policy", policy)
-                        } else if (message.member.roles.has('484129797195300868')) {
+                        } else if (message.member.roles.has('484129797195300868') || message.member.roles.has('501076418399043604')) {
                             var embed = new Discord.RichEmbed()
                             .setColor("#9ae7ff")
                             .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
