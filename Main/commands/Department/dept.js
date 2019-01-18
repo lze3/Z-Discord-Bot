@@ -23,8 +23,11 @@ module.exports.run = async(bot, message, args) => {
 
         message.channel.send(embed)
 
-        applicant.addRole('354074453270986752')
-        applicant.addRole('354074696322514950')
+        applicant.addRole('354074453270986752', "Application for SAHP accepted!")
+        applicant.addRole('354074696322514950', "Application for SAHP accepted!")
+
+        applicant.removeRole('354074453270986752', "Application for SAHP accepted!")
+        applicant.removeRole('354074696322514950', "Application for SAHP accepted!")
     } else if (dept === "lssd" || dept.toUpperCase() === "LSSD") 
     {
         let embed = new Discord.RichEmbed()
@@ -36,8 +39,11 @@ module.exports.run = async(bot, message, args) => {
 
         message.channel.send(embed)
 
-        applicant.addRole('354073428795588618')
-        applicant.addRole('354074696322514950')
+        applicant.addRole('354073428795588618', "Application for LSSD accepted!")
+        applicant.addRole('354074696322514950', "Application for LSSD accepted!")
+
+        applicant.removeRole('354073428795588618', "Application for LSSD accepted!")
+        applicant.removeRole('354074696322514950', "Application for LSSD accepted!")
     } else if (dept === "lspd" || dept.toUpperCase() === "LSPD") 
     {
         let embed = new Discord.RichEmbed()
@@ -49,8 +55,11 @@ module.exports.run = async(bot, message, args) => {
 
         message.channel.send(embed)
 
-        applicant.addRole('505871307041406997')
-        applicant.addRole('354074696322514950')
+        applicant.addRole('505871307041406997', "Application for LSPD accepted!")
+        applicant.addRole('354074696322514950', "Application for LSPD accepted!")
+
+        applicant.removeRole('354073428795588618', "Application for LSPD accepted!")
+        applicant.removeRole('505871307041406997', "Application for LSPD accepted!")
     } else return message.reply("that is not a valid department.")
 
     message.delete().catch(O_o => {})
