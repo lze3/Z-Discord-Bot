@@ -8,10 +8,10 @@ module.exports.run = async(bot, message, args) => {
     .setDescription(`This channel is for requesting voice channels for your civilian operation. Please use the following format: 
     
     \`\`\`
-Organisation name:
-Channel name:
-Channel purpose:
-Proof of ownership:\`\`\`
+    Organisation name:
+    Channel name:
+    Channel purpose:
+    Proof of ownership:\`\`\`
     For 'proof of ownership' you can just provide a screenshot of you having the owner role for that organisation in the civilian operations Discord.
 
     **NOTE:** Once your channel has been created your message will be deleted.
