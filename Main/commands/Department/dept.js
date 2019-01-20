@@ -27,6 +27,7 @@ module.exports.run = async(bot, message, args) => {
         .setColor("#c2f1ff")
 
         sahp_channel.send(embed)
+        message.reply("done.")
 
         applicant.addRole('354095488666042380')
         applicant.addRole('354095512225316876')
@@ -46,6 +47,7 @@ module.exports.run = async(bot, message, args) => {
         .setColor("#c2f1ff")
 
         lssd_channel.send(embed)
+        message.reply("done.")
 
         applicant.addRole('354095488666042380')
         applicant.addRole('354095512225316876')
@@ -65,6 +67,7 @@ module.exports.run = async(bot, message, args) => {
         .setColor("#c2f1ff")
 
         lspd_channel.send(embed)
+        message.reply("done.")
 
         applicant.addRole('354095488666042380')
         applicant.addRole('354095512225316876')
@@ -85,6 +88,7 @@ module.exports.run = async(bot, message, args) => {
         .setColor("#f6a8ff")
 
         safd_channel.send(embed)
+        message.reply("done.")
 
         applicant.addRole('354095488666042380')
         applicant.addRole('354095512225316876')
