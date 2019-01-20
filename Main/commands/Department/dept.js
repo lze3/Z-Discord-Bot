@@ -1,225 +1,81 @@
-
 const Discord = require('discord.js')
-const config = require('../../botconfig.json')
-const prefix = config.prefix
 
-const sahp =
-{
-    ["id"] : '367796502824878080',
-    ["start"] : '354067549970890767',
-    ["trn"] : '354074453270986752',
-    ["fto"] : '354074444265947147'
-}
-
-const lspd = 
-{
-    ["id"] : '500799280974397463',
-    ["start"] : '500800444616933406',
-    ["trn"] : '505871307041406997',
-    ["fto"] : '505550111099584512'
-}
-
-const lssd = 
-{
-    ["id"] : '367796714586898433',
-    ["start"] : '354074458618855444',
-    ["trn"] : '354073428795588618',
-    ["fto"] : '354074456940871681'
-}
-
-const safd = 
-{
-    ["id"] : '367796857272926218',
-    ["start"] : '354086496065683456',
-    ["trn"] : '354088117806039040',
-    ["fto"] : '354087776259538954'
-}
+let config = require('../../botconfig.json')
+let prefix = config.prefix
 
 module.exports.run = async(bot, message, args) => {
-    let user_s = message.author;
-    let user_t = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]) // target
-    if (message.member.roles.has('505550111099584512') || message.member.roles.has('354074456940871681') || message.member.roles.has('354074444265947147') || message.member.roles.has('354087776259538954') || message.member.roles.has('481541340337930269') || message.guild.name === 'JusticeCommunityRP - Development')
+    let applicant = message.guild.member(message.mentions.users.first()) || message.guild.members.get(message.guild.members.get(args[0]))
+    let dept = args[1]
+
+    if (!(message.member.roles.has('354093626592329739') || message.member.roles.has('481541340337930269'))) return message.reply("you are not allowed to use that command.")
+    if (!applicant) return message.reply("I could not find that user.")
+    if (!applicant.roles.has('354074696515584000')) return message.reply("that user does not have the 'Train Me' role.")
+    if (!dept) return message.reply("you need to state a department.")
+
+    if (dept === "sahp" || dept.toUpperCase() == "SAHP") 
     {
-        if (user_t) 
-        {
-            if (args[1] !== "")
-            {
-                if (args[1] === 'lspd' && (message.member.roles.has('505550111099584512') || message.member.roles.has('481541340337930269')) || message.guild.name === 'JusticeCommunityRP - Development')
-                {
-                    let LSPD_c = message.guild.channels.find('name', 'jcrp-lspd')
-                    let embed = new Discord.RichEmbed()
-                    .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
-                    .setDescription(user_t + " has passed their LSPD training and has been given LSPD department roles! Give them a warm welcome!")
-                    .setFooter("LSPD Department FTO", "https://i.imgur.com/TRW0Nu0.png")
-                    .setTimestamp()
-                    .setColor("#94d2ff")
+        let embed = new Discord.RichEmbed()
+        .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
+        .setDescription(applicant + "'s application for the San Andreas Highway Patrol has been accepted!")
+        .setFooter("SAHP Department FTO", "https://i.imgur.com/mVLhtCc.png")
+        .setTimestamp()
+        .setColor("#c2f1ff")
 
-                    if (message.guild.id === '354062777737936896')
-                    {
-                        if (user_t.roles.has(lspd.trn))
-                        {
-                            user_t.addRole(lspd.id)
-                            user_t.addRole(lspd.start)
-                            user_t.addRole('354095488666042380') // Law Enforcement
-                            user_t.addRole('354095512225316876') // First Responders
+        message.channel.send(embed)
 
-                            user_t.removeRole(lspd.trn) // Train Me (SAHP)
-                            user_t.removeRole('354074696515584000') // Train Me
-                            
-                            if (user_t.roles.has('354074696322514950'))
-                            {
-                                user_t.removeRole('354074696322514950') // Interview Me
-                            }
-                            LSPD_c.send(embed)
-                        }
-                        else
-                        {
-                            message.channel.send(message.author + ", that user does not have the train me role.")
-                        }
-                    }
-                    else
-                    {
-                        message.channel.send(embed)
-                    }
-                }
-                else if (args[1] === 'lssd' && (message.member.roles.has('367796714586898433') || message.member.roles.has('481541340337930269')) || message.guild.name === 'JusticeCommunityRP - Development')
-                {
-                    let LSSD_c = message.guild.channels.find('name', 'jcrp-lssd')
-                    let embed = new Discord.RichEmbed()
-                    .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
-                    .setDescription(user_t + " has passed their LSSD training and has been given LSSD department roles! Give them a warm welcome!")
-                    .setFooter("LSSD Department FTO", "https://i.imgur.com/tLIylue.png")
-                    .setTimestamp()
-                    .setColor("#b8ffab")
+        applicant.addRole('354095488666042380')
+        applicant.addRole('354095512225316876')
+        applicant.addRole('367796502824878080')
+        applicant.addRole('354067549970890767')
 
-                    if (message.guild.id === '354062777737936896')
-                    {
-                        if (user_t.roles.has(lssd.trn))
-                        {
-                            user_t.addRole(lssd.id)
-                            user_t.addRole(lssd.start)
-                            user_t.addRole('354095488666042380') // Law Enforcement
-                            user_t.addRole('354095512225316876') // First Responders
-
-                            user_t.removeRole(lssd.trn) // Train Me (SAHP)
-                            user_t.removeRole('354074696515584000') // Train Me
-                            
-                            if (user_t.roles.has('354074696322514950'))
-                            {
-                                user_t.removeRole('354074696322514950') // Interview Me
-                            }
-                            LSSD_c.send(embed)
-                        }
-                        else
-                        {
-                            message.channel.send(message.author + ", that user does not have the train me role.")
-                        }
-                    }
-                    else
-                    {
-                        message.channel.send(embed)
-                    }
-                }
-
-                else if (args[1] === 'sahp' && (message.member.roles.has('354074444265947147') || message.member.roles.has('481541340337930269')) || message.guild.name === 'JusticeCommunityRP - Development')
-                {
-                    let SAHP_c = message.guild.channels.find('name', 'jcrp-sahp')
-                    let embed = new Discord.RichEmbed()
-                    .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
-                    .setDescription(user_t + " has passed their SAHP training and has been given SAHP department roles! Give them a warm welcome!")
-                    .setFooter("SAHP Department FTO", "https://i.imgur.com/mVLhtCc.png")
-                    .setTimestamp()
-                    .setColor("#f7fd92")
-
-                    if (message.guild.id === '354062777737936896')
-                    {
-                        if (user_t.roles.has(sahp.trn))
-                        {
-                            user_t.addRole(sahp.id)
-                            user_t.addRole(sahp.start)
-                            user_t.addRole('354095488666042380') // Law Enforcement
-                            user_t.addRole('354095512225316876') // First Responders
-
-                            user_t.removeRole(sahp.trn) // Train Me (SAHP)
-                            user_t.removeRole('354074696515584000') // Train Me
-                            
-                            if (user_t.roles.has('354074696322514950'))
-                            {
-                                user_t.removeRole('354074696322514950') // Interview Me
-                            }
-                            SAHP_c.send(embed)
-                        }
-                        else
-                        {
-                            message.channel.send(message.author + ", that user does not have the train me role.")
-                        }
-                    }
-                    else
-                    {
-                        message.channel.send(embed)
-                    }
-                }
-
-                else if (args[1] === 'safd' && (message.member.roles.has('354087776259538954') || message.member.roles.has('481541340337930269')) || message.guild.name === 'JusticeCommunityRP - Development')
-                {
-                    let SAFD_c = message.guild.channels.find('name', 'jcrp-safd')
-                    let embed = new Discord.RichEmbed()
-                    .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
-                    .setDescription(user_t + " has passed their SAHP training and has been given SAFD department roles! Give them a warm welcome!")
-                    .setFooter("SAFD Department FTO", "https://i.imgur.com/mVLhtCc.png")
-                    .setTimestamp()
-                    .setColor("#f6a8ff")
-
-                    if (message.guild.id === '354062777737936896')
-                    {
-                        if (user_t.roles.has(safd.trn))
-                        {
-                            user_t.addRole(safd.id)
-                            user_t.addRole(safd.start)
-                            user_t.addRole('354095512225316876') // First Responders
-
-                            user_t.removeRole(safd.trn)
-                            user_t.removeRole('354074696515584000') // Train Me
-                            
-                            if (user_t.roles.has('354074696322514950'))
-                            {
-                                user_t.removeRole('354074696322514950') // Interview Me
-                            }
-                            SAFD_c.send(embed)
-                        }
-                        else
-                        {
-                            message.channel.send(message.author + ", that user does not have the train me role.")
-                        }
-                    }
-                    else
-                    {
-                        message.channel.send(embed)
-                    }
-                }
-
-                else
-                {
-                    message.channel.send(user_s + ", improper usage. `" + prefix + module.exports.help.name + " user dept`")
-                }
-            }
-            else
-            {
-                message.channel.send(user_s + ", improper usage. `" + prefix + module.exports.help.name + " user dept`. No arguments provided.")
-            }
-        }
-        else
-        {
-            message.channel.send(user_s + ", I could not find that user.")
-        }
-
-    }
-    else
+        applicant.removeRole('354074453270986752')
+        applicant.removeRole('354074696322514950')
+        applicant.removeRole('354074696515584000')
+    } else if (dept === "lssd" || dept.toUpperCase() === "LSSD") 
     {
-        message.channel.send(user_s + ", you do not have permission to use that command.")
-    }
-    console.log(message.author.username + " entered a command [ " + module.exports.help.name + " ]\nargs[0]: " + args[0] + "\nargs[1]: " + args[1])
-    message.delete().catch(O_o => {});
+        let embed = new Discord.RichEmbed()
+        .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
+        .setDescription(applicant + "'s application for the Los Santos Sheriff's Department has been accepted!")
+        .setFooter("LSSD Department FTO", "https://i.imgur.com/tLIylue.png")
+        .setTimestamp()
+        .setColor("#c2f1ff")
+
+        message.channel.send(embed)
+
+        applicant.addRole('354095488666042380')
+        applicant.addRole('354095512225316876')
+        applicant.addRole('367796714586898433')
+        applicant.addRole('354074458618855444')
+
+        applicant.removeRole('354073428795588618')
+        applicant.removeRole('354074696322514950')
+        applicant.removeRole('354074696515584000')
+    } else if (dept === "lspd" || dept.toUpperCase() === "LSPD") 
+    {
+        let embed = new Discord.RichEmbed()
+        .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
+        .setDescription(applicant + "'s application for the Los Santos Police Department has been accepted!")
+        .setFooter("LSPD Department FTO", "https://i.imgur.com/TRW0Nu0.png")
+        .setTimestamp()
+        .setColor("#c2f1ff")
+
+        message.channel.send(embed)
+
+        applicant.addRole('354095488666042380')
+        applicant.addRole('354095512225316876')
+        applicant.addRole('500799280974397463')
+        applicant.addRole('500800444616933406')
+
+        applicant.removeRole('505871307041406997')
+        applicant.removeRole('354074696322514950')
+        applicant.removeRole('354074696515584000')
+        
+    } else return message.reply("that is not a valid department.")
+
+    message.delete().catch(O_o => {})
+
+    
+
 }
 
 module.exports.help = {
