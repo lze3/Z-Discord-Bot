@@ -4,21 +4,22 @@ module.exports.run = async(bot, message, args) => {
 
     sendThenDelete(message.channel, args.join(" "))
 
-    function sendThenDelete(channel, message) 
-    {
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-        channel.send(message).then(msg => msg.delete(200))
-    }
+}
+
+function sendThenDelete(channel, message) 
+{
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
+    channel.send(message).then(msg => msg.delete(200))
 }
 
 module.exports.help = {
