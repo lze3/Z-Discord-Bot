@@ -60,7 +60,7 @@ module.exports.run = async(bot, message, args) => {
         let embed = new Discord.RichEmbed()
         .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
         .setDescription(applicant + " has passed their LSPD training and has been given LSPD department roles. Give them a warm welcome!")
-        .setFooter("LSPD Department FTO", "https://i.imgur.com/TRW0Nu0.png")
+        .setFooter("LSPD Department FTO", "https://i.imgur.com/QFigKNr.png")
         .setTimestamp()
         .setColor("#c2f1ff")
 
@@ -80,7 +80,7 @@ module.exports.run = async(bot, message, args) => {
         let embed = new Discord.RichEmbed()
         .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
         .setDescription(applicant + " has passed their SAFD training and has been given SAFD department roles. Give them a warm welcome!")
-        .setFooter("SAFD Department FTO", "https://i.imgur.com/TRW0Nu0.png")
+        .setFooter("SAFD Department FTO", "https://i.imgur.com/yekwbNs.png")
         .setTimestamp()
         .setColor("#f6a8ff")
 
