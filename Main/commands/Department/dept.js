@@ -106,7 +106,7 @@ module.exports.run = async(bot, message, args) => {
         .setDescription(applicant + " has passed their SACD training and has been given SACD department roles. Give them a warm welcome!")
         .setFooter("SAFD Department FTO", "https://i.imgur.com/yekwbNs.png")
         .setTimestamp()
-        .setColor("#f6a8ff")
+        .setColor("#ff9c9d")
 
         safd_channel.send(embed)
         message.reply("done.")
