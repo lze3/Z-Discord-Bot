@@ -50,6 +50,19 @@ module.exports.run = async(bot, message, args) => {
 
         applicant.addRole('505871307041406997')
         applicant.addRole('354074696322514950')
+    } else if (dept.toUpperCase() === "SACD")
+    {
+        let embed = new Discord.RichEmbed()
+        .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
+        .setDescription(applicant + "'s application for the Los Santos Police Department has been accepted!")
+        .setFooter("LSPD Department FTO", "https://i.imgur.com/TRW0Nu0.png")
+        .setTimestamp()
+        .setColor("#ff9c9d")
+
+        message.channel.send(embed)
+
+        applicant.addRole('536989674560946186')
+        applicant.addRole('354074696322514950')
     } else return message.reply("that is not a valid department.")
 
     message.delete().catch(O_o => {})
