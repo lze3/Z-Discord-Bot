@@ -11,7 +11,7 @@ module.exports.run = async(bot, message, args) => {
     if (!applicant.roles.has('354074696515584000')) return message.reply("that user does not have the 'Train Me' role.")
     if (!dept) return message.reply("you need to state a department.")
     
-    if (dept === "sahp" || dept.toUpperCase() === "SAHP")
+    if (dept.toUpperCase() === "SAHP")
     {
         let embed = new Discord.RichEmbed()
         .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
@@ -24,7 +24,7 @@ module.exports.run = async(bot, message, args) => {
 
         applicant.addRole('354074453270986752')
         applicant.addRole('354074696322514950')
-    } else if (dept === "lssd" || dept.toUpperCase() === "SAHP")
+    } else if (dept.toUpperCase() === "SAHP")
     {
         let embed = new Discord.RichEmbed()
         .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
@@ -37,7 +37,7 @@ module.exports.run = async(bot, message, args) => {
 
         applicant.addRole('354073428795588618')
         applicant.addRole('354074696322514950')
-    } else if (dept === "lspd" || dept.toUpperCase() === "LSPD")
+    } else if (dept.toUpperCase() === "LSPD")
     {
         let embed = new Discord.RichEmbed()
         .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
