@@ -8,7 +8,6 @@ module.exports.run = async(bot, message, args) => {
 
     if (!(message.member.roles.has('354093626592329739') || message.member.roles.has('481541340337930269'))) return message.reply("you are not allowed to use that command.")
     if (!applicant) return message.reply("I could not find that user.")
-    if (!applicant.roles.has('354074696515584000')) return message.reply("that user does not have the 'Train Me' role.")
     if (!dept) return message.reply("you need to state a department.")
     
     if (dept.toUpperCase() === "SAHP")
