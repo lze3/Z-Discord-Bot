@@ -108,7 +108,7 @@ module.exports.run = async(bot, message, args) => {
         .setTimestamp()
         .setColor("#ff9c9d")
 
-        safd_channel.send(embed)
+        message.channel.send(embed)
         message.reply("done.")
 
         applicant.addRole('354095488666042380') // Law Enforcement
