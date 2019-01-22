@@ -1,3 +1,0 @@
-global.cols = {
-    "err": "#"
-}
