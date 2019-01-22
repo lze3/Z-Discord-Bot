@@ -1,4 +1,16 @@
+# Ignore batch files to start the bot.
 *.bat
 
+# Ignore bot config, duh.
 botconfig.json
+
+# Ignore RCON information, contains RCON password.
 rcon_info.json   
+
+# Ignore node_modules folder, pointless when you can just run 'npm i'
+node_modules/
+
+# Ignore development, ELS-Bot and Rust bots
+Development/
+ELS-Bot/
+Rust/
