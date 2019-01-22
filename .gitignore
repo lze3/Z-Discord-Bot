@@ -9,8 +9,3 @@ rcon_info.json
 
 # Ignore node_modules folder, pointless when you can just run 'npm i'
 node_modules/
-
-# Ignore development, ELS-Bot and Rust bots
-Development/
-ELS-Bot/
-Rust/
