@@ -104,7 +104,7 @@ module.exports.run = async(bot, message, args) => {
         let embed = new Discord.RichEmbed()
         .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
         .setDescription(applicant + " has passed their SACD training and has been given SACD department roles. Give them a warm welcome!")
-        .setFooter("SAFD Department FTO", "https://i.imgur.com/yekwbNs.png")
+        .setFooter("SACD Department FTO", "https://i.imgur.com/U5EHyKR.png")
         .setTimestamp()
         .setColor("#ff9c9d")
 

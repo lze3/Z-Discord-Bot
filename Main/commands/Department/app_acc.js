@@ -53,8 +53,8 @@ module.exports.run = async(bot, message, args) => {
     {
         let embed = new Discord.RichEmbed()
         .setAuthor("FTO message from " + message.author.username, message.author.avatarURL)
-        .setDescription(applicant + "'s application for the Los Santos Police Department has been accepted!")
-        .setFooter("LSPD Department FTO", "https://i.imgur.com/TRW0Nu0.png")
+        .setDescription(applicant + "'s application for the San Andreas Communications Department has been accepted!")
+        .setFooter("SACD Department FTO", "https://i.imgur.com/U5EHyKR.png")
         .setTimestamp()
         .setColor("#ff9c9d")
 
