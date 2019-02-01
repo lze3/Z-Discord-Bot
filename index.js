@@ -175,7 +175,7 @@ fs.readdir("./commands/Server", (err, files) => {
 // Displays the message in console
 bot.on("ready", async () => {
     
-    bot.user.setActivity(".info | jcrpweb.com", {type: "WATCHING"}); //
+    bot.user.setActivity("JHodgson1 - Bot", {type: "WATCHING"}); //
     // console.log('\x1b[92m', `${bot.user.username} is now online.\n ${bot.user.username} is now active on ${bot.guilds.size} guilds.`);
     console.log(`Bot online and currently serving in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`)
 
