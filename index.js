@@ -109,18 +109,15 @@ bot.on("ready", async () => {
 bot.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
-
     let prefix = botconfig.prefix
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    console.log(message.author.username+"#"+message.author.discriminator+": "+message.content)
+
     if (!message.content.startsWith(prefix)) return;
     let commandfile = bot.commands.get(cmd.slice(prefix.length));
     if(commandfile) commandfile.run(bot, message, args);
-
-    if (message.channel.name === "private-bots") {
-        message.channel.send(message.content + " hey")
-    }
 
 });
 
