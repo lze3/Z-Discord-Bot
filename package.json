@@ -1,0 +1,33 @@
+{
+  "name": "djs_bot",
+  "version": "1.0.0",
+  "description": "A bot for my Discord server.",
+  "main": "index.js",
+  "dependencies": {
+    "atob": "^2.1.2",
+    "btoa": "^1.2.1",
+    "discord.js": "^11.3.2",
+    "git-auto-pull": "^1.0.9",
+    "moment": "^2.22.2",
+    "moment-duration-format": "^2.2.2",
+    "quake3-rcon": "^0.2.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhodgson1/jh1-discord-bot.git"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "JHodgson1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhodgson1/jh1-discord-bot/issues"
+  },
+  "homepage": "https://github.com/jhodgson1/jh1-discord-bot#readme"
+}

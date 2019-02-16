@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
      return message.channel.send(embed)
     }
     else if(server.toUpperCase() === "S1" || server === 's1'){
-        IP = "149.56.241.128:30123"
+        IP = "fivem.sosarp.net:30120"
         Title = "JusticeCommunityRP - Main Server"
     }
     else if(server.toUpperCase() === "S2" || server === 's2'){
@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
         IP = "149.56.241.128:30199"
         Title = "JusticeCommunityRP - Training Server"
     }
-    else if(server.toUpperCase() === "CST" && message.member.roles.has('484129797195300868') || message.member.roles.has('501076418399043604')){
+    else if(server.toUpperCase() === "CST" && message.member.roles.has('484129797195300868') || message.member.roles.has('501076418399043604') || message.author.id === '264662751404621825'){
         IP = args.join(" ").slice(4)
         Title = "Custom Server Information"
     }
@@ -74,6 +74,7 @@ module.exports.run = async (bot, message, args) => {
                             .addField("Server Version", start2.server)
                             .addField("OneSync Enabled", start2.vars.onesync_enabled)
                             .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
+                            .addField("Server License Key Token", start2.vars.sv_licenseKeyToken)
                             .addField("Policy", policy)
                         } else if (message.member.roles.has('484129797195300868') || message.member.roles.has('501076418399043604')) {
                             var embed = new Discord.RichEmbed()
