@@ -3,13 +3,15 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 
+global.prefix = botconfig.prefix
+
 bot.commands = new Discord.Collection(); 
 bot.ConfigCommands = new Discord.Collection();
 
 fs.readdir("./commands/Automated", (err, files) => {
     if (err) console.log("ERROR: [ " + err + " ].");
     let jsFile = files.filter(f => f.split(".").pop() === "js")
-    if (jsFile.length <= 0) {
+    if (files.length <= 0) {
         console.log("ERROR: No automated commands loaded.")
         return;
     }
@@ -24,7 +26,7 @@ fs.readdir("./commands/Automated", (err, files) => {
 fs.readdir("./commands/Development", (err, files) => {
     if (err) console.log("ERROR: [ " + err + " ].");
     let jsFile = files.filter(f => f.split(".").pop() === "js")
-    if (jsFile.length <= 0) {
+    if (files.length <= 0) {
         console.log("ERROR: No development commands loaded.")
         return;
     }
@@ -39,7 +41,7 @@ fs.readdir("./commands/Development", (err, files) => {
 fs.readdir("./commands/Miscellaneous", (err, files) => {
     if (err) console.log("ERROR: [ " + err + " ].");
     let jsFile = files.filter(f => f.split(".").pop() === "js")
-    if (jsFile.length <= 0) {
+    if (files.length <= 0) {
         console.log("ERROR: No miscellaneous commands loaded.")
         return;
     }
@@ -54,7 +56,7 @@ fs.readdir("./commands/Miscellaneous", (err, files) => {
 fs.readdir("./commands/Moderation", (err, files) => {
     if (err) console.log("ERROR: [ " + err + " ].");
     let jsFile = files.filter(f => f.split(".").pop() === "js")
-    if (jsFile.length <= 0) {
+    if (files.length <= 0) {
         console.log("ERROR: No moderation commands loaded.")
         return;
     }
@@ -69,7 +71,7 @@ fs.readdir("./commands/Moderation", (err, files) => {
 fs.readdir("./commands/Server", (err, files) => {
     if (err) console.log("ERROR: [ " + err + " ].");
     let jsFile = files.filter(f => f.split(".").pop() === "js")
-    if (jsFile.length <= 0) {
+    if (files.length <= 0) {
         console.log("ERROR: No server commands loaded.")
         return;
     }
@@ -94,7 +96,6 @@ bot.on("ready", async () => {
 bot.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
-    let prefix = botconfig.prefix
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
