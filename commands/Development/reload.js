@@ -21,18 +21,6 @@ module.exports.run = async(bot, message, args) => {
     
         message.channel.send(embed)
     } catch(e) {
-        try {
-            delete require.cache[require.resolve(`../../commands/Department/${fName}.js`)]
-            await fs.readdir("../../commands/Department", (err, files) => {
-                let props = require(`../../commands/Department/${fName}.js`);
-                bot.ConfigCommands.set(props.help.name, props);
-            })
-            let embed = new Discord.RichEmbed()
-            .setDescription(`\`\`${fName}\`\`` + " command has been reloaded.")
-            .setColor('#F4613F')
-        
-            message.channel.send(embed)
-        } catch(e) {
             try {
                 delete require.cache[require.resolve(`../../commands/Development/${fName}.js`)]
                 await fs.readdir("../../commands/Development", (err, files) => {
@@ -90,8 +78,6 @@ module.exports.run = async(bot, message, args) => {
     }
 }
 
-
-}
 module.exports.help = {
     name: 'reload'
 }
