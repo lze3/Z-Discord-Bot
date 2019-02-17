@@ -4,47 +4,39 @@ const Discord = require('discord.js')
 const config = require('../../botconfig.json')
 const prefix = config.prefix
 
+function error(channel, ip) {
+    embed = new Discord.RichEmbed()
+    .setTitle("Error")    
+    .setColor('#FA3838')
+    .setDescription("Server could not be reached.")
+    .setFooter(ip)
+    channel.send(embed)
+}
+
 module.exports.run = async (bot, message, args) => {
     let server = args[0];
 
     if(!server) {
         let embed = new Discord.RichEmbed()
-        .setTitle("Incorrect Server")
-        .setDescription("S1 = Main server\nS2 = Secondary server\nTR = Training server")
-        .setColor("#FABF32")
-     return message.channel.send(embed)
-    }
-    else if(server.toUpperCase() === "S1" || server === 's1'){
-        IP = "fivem.sosarp.net:30120"
-        Title = "JusticeCommunityRP - Main Server"
-    }
-    else if(server.toUpperCase() === "S2" || server === 's2'){
-        IP = "149.56.241.128:30124"
-        Title = "JusticeCommunityRP - Secondary Server"
-    }
-    else if(server.toUpperCase() === "TR" || server === 'tr'){
-        IP = "149.56.241.128:30199"
-        Title = "JusticeCommunityRP - Training Server"
-    }
-    else if(server.toUpperCase() === "CST" && message.member.roles.has('484129797195300868') || message.member.roles.has('501076418399043604') || message.author.id === '264662751404621825'){
-        IP = args.join(" ").slice(4)
-        Title = "Custom Server Information"
+        .setTitle("Error")    
+        .setColor('#FA3838')
+        .setDescription("Server could not be found.")
+        return message.channel.send(embed)
     }
     else {
-        let embed = new Discord.RichEmbed()
-        .setTitle("Incorrect Server")
-        .setDescription("S1 = Main server\nS2 = Secondary server\nTR = Training server")
-        .setColor("#FABF32")
-     return message.channel.send(embed)
+        IP = args.join(" ")
+        Title = "Server Information"
     }
 
     try {
-        let avatar = "https://i.imgur.com/ODI3OLT.png"
         let api1 = `http://${IP}/players.json`
         let api2 = `http://${IP}/info.json`
         request.get(api2, {timeout: 2000},function (err, response, main) {
+            if (err) return error(message.channel, `IP: ${IP}`)
             request.get(api1, {timeout: 2000},function (err, response, body) {
+                if (err) return error(message.channel, `IP: ${IP}`)
                 request.get(`https://policy-live.fivem.net/api/policy/${JSON.parse(main).vars.sv_licenseKeyToken}`, {timeout: 2000}, function(err, response, content) {
+                    if (err) return error(message.channel, `IP: ${IP}`)
                     try {
                         var start = JSON.parse(body)
                         var start2 = JSON.parse(main)
@@ -64,61 +56,23 @@ module.exports.run = async (bot, message, args) => {
                             var policy = `\`\`\`json\n${start3.map(m => `["${m}"]\n`)}\n\`\`\``
                         }
 
-                        if (server.toUpperCase() === "CST") {
-                            var embed = new Discord.RichEmbed()
-                            .setColor("#54C86D")
-                            .setAuthor("Server Information" , 'https://i.imgur.com/PnzJ35e.png')
-                            .addField("Server IP", IP)
-                            .addField("Status", "Online")
-                            .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
-                            .addField("Server Version", start2.server)
-                            .addField("OneSync Enabled", start2.vars.onesync_enabled)
-                            .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
-                            .addField("Server License Key Token", start2.vars.sv_licenseKeyToken)
-                            .addField("Policy", policy)
-                        } else if (message.member.roles.has('484129797195300868') || message.member.roles.has('501076418399043604')) {
-                            var embed = new Discord.RichEmbed()
-                            .setColor("#9ae7ff")
-                            .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
-                            .addField("Server IP", IP)
-                            .addField("Status", "Online")
-                            .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
-                            .addField("Uptime", start2.vars.Uptime)
-                            .addField("Server Version", start2.server)
-                            .addField("OneSync Enabled", start2.vars.onesync_enabled)
-                            .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
-                            .addField("Policy", `\`\`\`json\n${licenseKeyToken}\n\`\`\``)
-                        } else {
-                            var embed = new Discord.RichEmbed()
-                            .setColor("#9ae7ff")
-                            .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
-                            .addField("Server IP", IP)
-                            .addField("Status", "Online")
-                            .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
-                            .addField("Uptime", start2.vars.Uptime)
-                        }
-
-
+                        
+                        var embed = new Discord.RichEmbed()
+                        .setColor("#54C86D")
+                        .setAuthor("Server Information" , 'https://i.imgur.com/PnzJ35e.png')
+                        .addField("Server IP", IP)
+                        .addField("Status", "Online")
+                        .addField("Players", playersCount + " | " + start2.vars.sv_maxClients)
+                        .addField("Server Version", start2.server)
+                        .addField("OneSync Enabled", start2.vars.onesync_enabled)
+                        .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
+                        .addField("Server License Key Token", start2.vars.sv_licenseKeyToken)
+                        .addField("Policy", policy)
 
                         message.channel.send(embed);
                     } catch (err) {
-                        var embed = new Discord.RichEmbed()
-                        .setColor("#FF470F") 
-                        .setAuthor(Title , avatar, `http://discourse.jcrpweb.com`)
-                        .addField("Server IP", IP)
-                        .addField("Status", "Offline")
-                        .addField("Players", "No players.")
-
-                        var err_embed = new Discord.RichEmbed()
-                        .setColor('#FF470F')
-                        .setAuthor("Error Information", avatar)
-                        .setDescription(`\`${err}\``)
-
-                        if (message.member.roles.has('481541340337930269')) {
-                            message.channel.send(err_embed);
-                        } else {
-                            message.channel.send(embed)
-                        }
+                        error(message.channel, `Server IP: ${IP}`)
+                        console.log(err.toString())
                     }
 
                     })
@@ -136,5 +90,6 @@ module.exports.run = async (bot, message, args) => {
   exports.help = {
     name: "status",
   };
+
   
   
