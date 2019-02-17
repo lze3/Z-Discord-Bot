@@ -21,21 +21,6 @@ fs.readdir("./commands/Automated", (err, files) => {
     })
 });
 
-fs.readdir("./commands/Department", (err, files) => {
-    if (err) console.log("ERROR: [ " + err + " ].");
-    let jsFile = files.filter(f => f.split(".").pop() === "js")
-    if (jsFile.length <= 0) {
-        console.log("ERROR: No department commands loaded.")
-        return;
-    }
-
-    jsFile.forEach((f, i) => {
-        let props = require(`./commands/Department/${f}`);
-        console.log(`Command [ ${f} ] loaded! [Department]`)
-        bot.commands.set(props.help.name, props)
-    })
-});
-
 fs.readdir("./commands/Development", (err, files) => {
     if (err) console.log("ERROR: [ " + err + " ].");
     let jsFile = files.filter(f => f.split(".").pop() === "js")
