@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 module.exports.run = async(bot, message, args) => {
-    if(message.author.id !== "264662751404621825") return
+    if(!(message.member.roles.has('546360545133985793') || message.member.roles.has('541031422174167105'))) { return message.reply('you cannot use that command.').then(() => console.log(`${message.author} tried executing .exec`))}
     if(!args[0]) return;
     try {
         var code = args.join(" ")
