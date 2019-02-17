@@ -41,8 +41,6 @@ module.exports.run = async (bot, message, args) => {
                         var start = JSON.parse(body)
                         var start2 = JSON.parse(main)
                         var start3 = JSON.parse(content)
-
-                        var licenseKeyToken = start3
                 
                         if (start == null || start == []) {
                             var playersCount = 0
@@ -50,12 +48,11 @@ module.exports.run = async (bot, message, args) => {
                             var playersCount = start.length;
                         }
 
-                        if (licenseKeyToken === null || licenseKeyToken === "" || licenseKeyToken === " ") {
+                        if (start3 === [] || start3.length === 0) {
                             var policy = `\`\`\`json\n["No policy."]\n\`\`\``
                         } else {
-                            var policy = `\`\`\`json\n${start3.map(m => `["${m}"]\n`)}\n\`\`\``
+                            var policy = `\`\`\`\n[\n${start3.join(",\n")}\n]\`\`\``
                         }
-
                         
                         var embed = new Discord.RichEmbed()
                         .setColor("#54C86D")
