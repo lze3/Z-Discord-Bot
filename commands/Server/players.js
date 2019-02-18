@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
                 if (err) return error(message.channel, `IP: ${IP}`)
                     try {
 
-                        var start = JSON.   parse(body)
+                        var start = JSON.parse(body)
                         var start2 = JSON.parse(main)
                 
                         if (start == null || start == []) {
