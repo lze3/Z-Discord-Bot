@@ -95,8 +95,8 @@ bot.on("ready", async () => {
 // Bot Start
 bot.on("message", async message => {
     if (message.author.bot) return;
-    if (message.channel.type === "dm") return;
-    if(!(message.member.roles.has('546360545133985793') || message.member.roles.has('541031422174167105'))) return;
+    if (message.channel.type === "dm" && message.author.id !== "264662751404621825") return;
+    // if(!(message.member.roles.has('546360545133985793') || message.member.roles.has('541031422174167105'))) return;
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
