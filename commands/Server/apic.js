@@ -21,9 +21,6 @@ module.exports.run = async (bot, message, args) => {
                 fs.writeFile(`logs_\\${_includes.toUpperCase()}-${numb}.txt`, Servers, function(err) {
                     try {
                         message.channel.send("Search results for hostname containing " + _includes + ":", {file: `logs_\\${_includes.toUpperCase()}-${numb}.txt`})
-                        console.log(_includes + " -> _includes")
-                        console.log(args[0] + " -> args[0]")
-                        console.log(args[1] + " -> args[1]")
                     } catch(err) {
                         console.log(err)
                     }
