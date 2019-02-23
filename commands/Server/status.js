@@ -49,9 +49,9 @@ module.exports.run = async (bot, message, args) => {
                         }
 
                         if (start3 === [] || start3.length === 0) {
-                            var policy = `\`\`\`json\n["No policy."]\n\`\`\``
+                            var policy = `No policy.`
                         } else {
-                            var policy = `\`\`\`\n[\n${start3.join(",\n")}\n]\`\`\``
+                            var policy = `${start3.join("\n")}`
                         }
                         
                         var embed = new Discord.RichEmbed()
