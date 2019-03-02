@@ -47,6 +47,26 @@ module.exports.run = async (bot, message, args) => {
                     }
                 })
         })
+    } else if (args[0] === "tags") {
+        request({
+            uri: _api,
+            json: true
+        }, (error, response, body) => {
+            let Servers = ""
+            for (let server of body)
+                if (JSON.stringify(server.Data.tags).includes(_includes) || JSON.stringify(server.Data.tags).includes(_includes.toUpperCase())) {
+                    Servers += server.EndPoint + " - " + server.Data.hostname + "\n"
+                }
+
+                let numb = Math.floor(Math.random() * 9999) + 1000
+                fs.writeFile(`logs_\\${_includes.toUpperCase()}-${numb}.txt`, Servers, function(err) {
+                    try {
+                        message.channel.send("Search results for tags containing " + _includes + ":", {file: `logs_\\${_includes.toUpperCase()}-${numb}.txt`})
+                    } catch(err) {
+                        console.log(err)
+                    }
+                })
+        })
     }
 }
 
