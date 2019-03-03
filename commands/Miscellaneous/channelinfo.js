@@ -29,7 +29,7 @@ module.exports.run = async(bot, message, args) => {
     .setDescription(`Info about **${name}** (ID: ${id})`)
     .addField("❯ Info", `• Type: ${type}\n• Topic: ${topic}\n• NSFW: ${nsfw}\n• Creation Date: ${created}\n• Size: ${size}`)
     .setColor('#3498DB')
-    .setThumbnail('https://w.wew.wtf/vhoccw.png')
+    .setThumbnail('https://w.wew.wtf/impcab.png')
 
     message.channel.send(chanInfo)
 }
