@@ -3,6 +3,7 @@
 
 # Ignore bot config, duh.
 botconfig.json
+config.json
 
 # Ignore RCON information, contains RCON password.
 rcon_info.json   
