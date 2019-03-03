@@ -1,0 +1,6 @@
+{
+  "token": "DISCORD_MAIN_BOT_TOKEN",
+  "devtoken": "DISCORD_DEV_BOT_TOKEN",
+  "prefix": ".",
+  "devprefix": "-"
+}
