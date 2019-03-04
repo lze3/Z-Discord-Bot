@@ -105,6 +105,50 @@ bot.on("message", async message => {
 
 });
 
+bot.on("guildMemberAdd", member => {
+    const embed = new Discord.RichEmbed()
+    .setTitle("Member Join")
+    .setDescription(`${member.user.username}#${member.user.discriminator}`)
+    .setFooter(`Member count: ${member.guild.memberCount}`)
+    .setTimestamp()
+    .setColor(7068245)
+    const logs = member.guild.channels.get('552152267399102488')
+    logs.send(embed)
+})
+
+bot.on('guildMemberRemove', member => {
+    const embed = new Discord.RichEmbed()
+    .setTitle("Member Left")
+    .setDescription(`${member.user.username}#${member.user.discriminator}`)
+    .setFooter(`Member count: ${member.guild.memberCount}`)
+    .setTimestamp()
+    .setColor(15226197)
+    const logs = member.guild.channels.get('552152267399102488')
+    logs.send(embed)
+})
+
+bot.on('guildBanAdd', (guild, user) => {
+    const embed = new Discord.RichEmbed()
+    .setTitle("Member Banned")
+    .setDescription(`${user.username}#${user.discriminator}`)
+    .setFooter(`Member count: ${guild.memberCount}`)
+    .setTimestamp()
+    .setColor(16437327)
+    const logs = guild.channels.get('552152267399102488')
+    logs.send(embed)
+})
+
+bot.on('guildBanRemove', (guild, user) => {
+    const embed = new Discord.RichEmbed()
+    .setTitle("Member Unbanned")
+    .setDescription(`${user.username}#${user.discriminator}`)
+    .setFooter(`Member count: ${guild.memberCount}`)
+    .setTimestamp()
+    .setColor(7068245)
+    const logs = guild.channels.get('552152267399102488')
+    logs.send(embed)
+})
+
 bot.on("error", console.error);
 
 var rebootmsg1 = new Discord.RichEmbed()
