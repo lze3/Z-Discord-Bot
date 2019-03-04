@@ -6,7 +6,7 @@
   "dependencies": {
     "atob": "^2.1.2",
     "btoa": "^1.2.1",
-    "discord.js": "^11.3.2",
+    "discord.js": "github:discordjs/discord.js#11.4-dev",
     "git-auto-pull": "^1.0.9",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
