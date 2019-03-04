@@ -19,6 +19,8 @@ module.exports.run = async(bot, message, args) => {
     channel.send(embed_psa)
 
     message.channel.send(`:white_check_mark: **Channel #${channel.name} was successfully deleted.**`)
+    
+    await message.guild.channels.get(channel.id).setName(`${channel.name}-old`)
 }
 
 module.exports.help = {
