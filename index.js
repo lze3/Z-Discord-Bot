@@ -114,6 +114,7 @@ bot.on("guildMemberAdd", member => {
     .setColor(7068245)
     const logs = member.guild.channels.get('552152267399102488')
     logs.send(embed)
+    member.addRole("545006442747527189")
 })
 
 bot.on('guildMemberRemove', member => {
