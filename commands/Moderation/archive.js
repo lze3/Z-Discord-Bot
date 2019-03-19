@@ -18,7 +18,7 @@ module.exports.run = async(bot, message, args) => {
     .setColor('#EA5343')
     channel.send(embed_psa)
 
-    message.channel.send(`:white_check_mark: **Channel #${channel.name} was successfully deleted.**`)
+    message.channel.send(`:white_check_mark: **Channel #${channel.name} was successfully archived.**`)
     
     await message.guild.channels.get(channel.id).setName(`${channel.name}-old`)
 }
