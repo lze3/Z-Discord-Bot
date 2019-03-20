@@ -120,7 +120,6 @@ bot.on("guildMemberAdd", member => {
     welcoming.send(`Hello, ${member}, welcome to JHodgson1's personal Discord. Please ensure to read the rules in <#541288672918765579> and abide by them. If you have any issues or concerns feel free to ask in the <#544999903848300559> or <#544999857174347776> depending on your question. 
     
     We hope you enjoy your stay!`)
-    member.addRole("545006442747527189")
 })
 
 bot.on('guildMemberRemove', member => {
