@@ -10,6 +10,18 @@ global.logging_enabled = false
 bot.commands = new Discord.Collection(); 
 bot.ConfigCommands = new Discord.Collection();
 
+const suggestion_channels = 
+[
+    "545315817462431744", 
+    "anotherIDHere..."
+];
+
+var arrayLength = suggestion_channels.length;
+for (var i = 0; i < arrayLength; i++) 
+{
+    suggestion_channel = suggestion_channels[i];
+}
+
 fs.readdir("./commands/Automated", (err, files) => {
     if (err) console.log("ERROR: [ " + err + " ].");
     let jsFile = files.filter(f => f.split(".").pop() === "js")
@@ -93,6 +105,14 @@ bot.on("ready", async () => {
 
     bot.user.setStatus('Online') // Online, idle, invisible & dnd
 });
+
+bot.on("message", async message => {
+    if (message.channel.id === suggestion_channel) 
+    {
+        await message.react("👍")
+        await message.react("👎")
+    }
+})
 
 // Bot Start
 bot.on("message", async message => {
