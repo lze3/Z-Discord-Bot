@@ -121,6 +121,8 @@ Client.on("message", async message => {
         await message.react("👍")
         await message.react("👎")
     }
+
+    message.guild.channels.find("name", "action-log").send(suggestion_channel)
 })
 
 // Bot Start
