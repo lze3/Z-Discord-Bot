@@ -133,7 +133,10 @@ Client.on("message", async message => {
     let args = messageArray.slice(1);
     if (!message.content.startsWith(prefix)) return;
     let commandfile = Client.commands.get(cmd.slice(prefix.length));
-    if(commandfile) commandfile.run(Client, message, args);
+    if (commandfile) {
+        commandfile.run(Client, message, args);
+        message.guild.channels.get("554365078401449990").send("User " + message.author + " entered the " + cmd + " command.")
+    } 
 
 });
 
