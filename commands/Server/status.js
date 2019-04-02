@@ -4,11 +4,19 @@ const Discord = require('discord.js')
 const config = require('../../botconfig.json')
 const prefix = config.prefix
 
-function error(channel, ip) {
+function error(channel, ip, errorCode) {
+    errCode = "Could not determine status code."
+    if (errorCode.toString() === "1") 
+        errCode = "404 - `info.json could not be reached.`"
+    if (errorCode.toString() === "2")
+        errCode = "404 - `players.json could not be reached.`"
+    if (errorCode.toString() === "3")
+        errCode = "404 - `Server policy could not be obtained.`"
     embed = new Discord.RichEmbed()
     .setTitle("Error")    
     .setColor('#FA3838')
     .setDescription("Server could not be reached.")
+    .addField("Error Code")
     .setFooter(ip)
     channel.send(embed)
 }
@@ -32,11 +40,11 @@ module.exports.run = async (Client, message, args) => {
         let api1 = `http://${IP}/players.json`
         let api2 = `http://${IP}/info.json`
         request.get(api2, {timeout: 2000},function (err, response, main) {
-            if (err) return error(message.channel, `IP: ${IP}`)
+            if (err) return error(message.channel, `IP: ${IP}`, 1)
             request.get(api1, {timeout: 2000},function (err, response, body) {
-                if (err) return error(message.channel, `IP: ${IP}`)
+                if (err) return error(message.channel, `IP: ${IP}`, 2)
                 request.get(`https://policy-live.fivem.net/api/policy/${JSON.parse(main).vars.sv_licenseKeyToken}`, {timeout: 2000}, function(err, response, content) {
-                    if (err) return error(message.channel, `IP: ${IP}`)
+                    if (err) return error(message.channel, `IP: ${IP}`, 3)
                     try {
                         var start = JSON.parse(body)
                         var start2 = JSON.parse(main)
