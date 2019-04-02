@@ -16,7 +16,7 @@ function error(channel, ip, errorCode) {
     .setTitle("Error")    
     .setColor('#FA3838')
     .setDescription("Server could not be reached.")
-    .addField("Error Code")
+    .addField("Error Code", errCode)
     .setFooter(ip)
     channel.send(embed)
 }
