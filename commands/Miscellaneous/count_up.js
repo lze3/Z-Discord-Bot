@@ -1,6 +1,6 @@
 let enabled = false
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     let no = args[1]
     CountUp()
 }

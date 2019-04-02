@@ -5,7 +5,7 @@ const prefix = config.prefix
 
 let enabled = true
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     let report = args.join(" ").slice(22)
     if(enabled)
     {

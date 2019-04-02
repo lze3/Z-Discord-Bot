@@ -1,14 +1,14 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
-const bot = new Discord.Client({disableEveryone: true});
+const Client = new Discord.Client({disableEveryone: true});
 
 global.prefix = botconfig.prefix
 
 global.logging_enabled = false
 
-bot.commands = new Discord.Collection(); 
-bot.ConfigCommands = new Discord.Collection();
+Client.commands = new Discord.Collection(); 
+Client.ConfigCommands = new Discord.Collection();
 
 const suggestion_channels = 
 [
@@ -33,7 +33,7 @@ fs.readdir("./commands/Automated", (err, files) => {
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Automated/${f}`);
         console.log(`Command [ ${f} ] loaded! [Automated]`)
-        bot.commands.set(props.help.name, props)
+        Client.commands.set(props.help.name, props)
     })
 });
 
@@ -48,7 +48,7 @@ fs.readdir("./commands/Development", (err, files) => {
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Development/${f}`);
         console.log(`Command [ ${f} ] loaded! [Development]`)
-        bot.commands.set(props.help.name, props)
+        Client.commands.set(props.help.name, props)
     })
 });
 
@@ -63,7 +63,7 @@ fs.readdir("./commands/Miscellaneous", (err, files) => {
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Miscellaneous/${f}`);
         console.log(`Command [ ${f} ] loaded! [Miscellaneous]`)
-        bot.commands.set(props.help.name, props)
+        Client.commands.set(props.help.name, props)
     })
 });
 
@@ -78,7 +78,7 @@ fs.readdir("./commands/Moderation", (err, files) => {
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Moderation/${f}`);
         console.log(`Command [ ${f} ] loaded! [Moderation]`)
-        bot.commands.set(props.help.name, props)
+        Client.commands.set(props.help.name, props)
     })
 });
 
@@ -93,20 +93,20 @@ fs.readdir("./commands/Server", (err, files) => {
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Server/${f}`);
         console.log(`Command [ ${f} ] loaded! [Server]`)
-        bot.commands.set(props.help.name, props)
+        Client.commands.set(props.help.name, props)
     })
 });
 
 // Displays the message in console
-bot.on("ready", async () => {
+Client.on("ready", async () => {
     
-    console.log('\x1b[92m', `${bot.user.username} is now online.\n ${bot.user.username} is now active on ${bot.guilds.size} guilds.`);
-    console.log(` Bot online and currently serving in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`)
+    console.log('\x1b[92m', `${Client.user.username} is now online.\n ${Client.user.username} is now active on ${Client.guilds.size} guilds.`);
+    console.log(` Bot online and currently serving in ${Client.channels.size} channels on ${Client.guilds.size} servers, for a total of ${Client.users.size} users.`)
 
-    bot.user.setStatus('Online') // Online, idle, invisible & dnd
+    
 });
 
-bot.on("message", async message => {
+Client.on("message", async message => {
     if (message.channel.id === suggestion_channel) 
     {
         await message.react("👍")
@@ -115,7 +115,7 @@ bot.on("message", async message => {
 })
 
 // Bot Start
-bot.on("message", async message => {
+Client.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
 	if (!message.member.hasPermission("MANAGE_GUILD")) return;
@@ -123,13 +123,13 @@ bot.on("message", async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     if (!message.content.startsWith(prefix)) return;
-    let commandfile = bot.commands.get(cmd.slice(prefix.length));
-    if(commandfile) commandfile.run(bot, message, args);
+    let commandfile = Client.commands.get(cmd.slice(prefix.length));
+    if(commandfile) commandfile.run(Client, message, args);
 
 });
 
 if (logging_enabled) {
-    bot.on("guildMemberAdd", member => {
+    Client.on("guildMemberAdd", member => {
         const embed = new Discord.RichEmbed()
         .setTitle("Member Join")
         .setDescription(`${member.user.username}#${member.user.discriminator}`)
@@ -145,7 +145,7 @@ if (logging_enabled) {
         We hope you enjoy your stay!`)
     })
 
-    bot.on('guildMemberRemove', member => {
+    Client.on('guildMemberRemove', member => {
         const embed = new Discord.RichEmbed()
         .setTitle("Member Left")
         .setDescription(`${member.user.username}#${member.user.discriminator}`)
@@ -157,7 +157,7 @@ if (logging_enabled) {
         logs.send(embed)
     })
 
-    bot.on('guildBanAdd', (guild, user) => {
+    Client.on('guildBanAdd', (guild, user) => {
         const embed = new Discord.RichEmbed()
         .setTitle("Member Banned")
         .setDescription(`${user.username}#${user.discriminator}`)
@@ -169,7 +169,7 @@ if (logging_enabled) {
         logs.send(embed)
     })
 
-    bot.on('guildBanRemove', (guild, user) => {
+    Client.on('guildBanRemove', (guild, user) => {
         const embed = new Discord.RichEmbed()
         .setTitle("Member Unbanned")
         .setDescription(`${user.username}#${user.discriminator}`)
@@ -182,7 +182,7 @@ if (logging_enabled) {
     })
 }
 
-bot.on("error", console.error);
+Client.on("error", console.error);
 
 var rebootmsg1 = new Discord.RichEmbed()
     .setDescription("Restarting bot...")
@@ -191,15 +191,15 @@ var rebootmsg1 = new Discord.RichEmbed()
 
 var rebootmsg2 = new Discord.RichEmbed()
     .setDescription("Bot has restarted!")
-    .setFooter(bot.commands.size + " errors encountered")
+    .setFooter(Client.commands.size + " errors encountered")
     .setColor("#417af4")
 
 global.reboot = function resetBot(channel) {
     channel.send(rebootmsg1)
-    .then(() => bot.destroy())
-    .then(() => bot.login(botconfig.token))
+    .then(() => Client.destroy())
+    .then(() => Client.login(botconfig.token))
     .then(() => channel.send(rebootmsg2)
-    .then(() => console.log(`Ping: ${bot.ping}\n  Process restarted!`)));
+    .then(() => console.log(`Ping: ${Client.ping}\n  Process restarted!`)));
 }
 
-bot.login(botconfig.token);
+Client.login(botconfig.token);

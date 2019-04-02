@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const moment = require('moment')
 const format = require('moment-duration-format')
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     // let channel = message.mentions.channels.first() || message.guild.channels.find(args.join(" "))
     if (!args[0]) 
         channel = message.channel

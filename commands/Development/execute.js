@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     if(!message.member.hasPermission("ADMINISTRATOR")) { return message.reply('you cannot use that command.').then(() => console.log(`${message.author} tried executing .exec`))}
     if(!args[0]) return;
     try {

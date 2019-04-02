@@ -13,7 +13,7 @@ function error(channel, ip) {
     channel.send(embed)
 }
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (Client, message, args) => {
     let server = args[0];
 
     if(!server) {

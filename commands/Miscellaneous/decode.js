@@ -1,6 +1,6 @@
 const atob = require('atob')
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     if(args[0]) {
         message.delete().catch(O_o => {});
         let EncodedMessage = args.join(" ")

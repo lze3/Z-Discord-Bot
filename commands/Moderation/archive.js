@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     message.delete()
     const channel = message.mentions.channels.first()
     const archive_category = "548287037418242058"

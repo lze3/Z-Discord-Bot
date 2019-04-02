@@ -5,7 +5,7 @@ const fs = require('fs')
 const config = require('../../botconfig.json')
 const prefix = config.prefix
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     if(!message.member.roles.has('481541340337930269')) return message.channel.send(message.author + ", you do not have permission to use that command.")
     let fName = args[0]
     if(!fName) return message.channel.send(message.author + ", no arguments provided.")

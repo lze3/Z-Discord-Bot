@@ -3,7 +3,7 @@ const images = ('../images/special.png')
 
 const moment = require('moment')
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (Client, message, args) => {
     if (!args[0]) 
         member = message.guild.member(message.author),
         user   = message.author

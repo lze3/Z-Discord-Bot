@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const config  = require("../../botconfig.json");
 
-module.exports.run = async (bot, message) => {
+module.exports.run = async (Client, message) => {
     let botembed = new Discord.RichEmbed()
         .setDescription(`JusticeCommunityRP Bot`)
         .addField("Prefix", '`' + config.prefix + '`')

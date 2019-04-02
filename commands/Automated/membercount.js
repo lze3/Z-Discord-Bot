@@ -1,4 +1,4 @@
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     message.channel.send(message.guild.memberCount.toLocaleString('en-US'))
 }
 

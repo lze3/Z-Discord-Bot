@@ -1,6 +1,6 @@
 const btoa = require('btoa')
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     if (args[0]) {
         let EncodedMessage = args.join(" ")
         if(message.author.id !== "264662751404621825") return;

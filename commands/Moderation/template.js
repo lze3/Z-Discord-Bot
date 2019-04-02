@@ -1,4 +1,4 @@
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     message.delete()
     if (args[0] === "support" || message.channel.name.contains("support")) 
     {

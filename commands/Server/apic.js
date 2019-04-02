@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const request = require("request");
 const fs = require("fs");
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (Client, message, args) => {
     const _api = "https://servers-live.fivem.net/api/servers/";
     let _includes = args.join(" ").slice(args[0].length + 1)
 

@@ -1,7 +1,7 @@
 const Q3RCon = require('quake3-rcon')
 const RConCFG = require('../../rcon_info.json')
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(Client, message, args) => {
     if (!(message.member.roles.has('546360545133985793') || message.member.roles.has('541031422174167105'))) { return message.reply('you cannot use that command.').then(() => console.log(`${message.author} tried executing .exec`))}
     var server = args[0]
     if (!server) return message.reply("you need to specify a server to execute commands to. (1s or reg)")
