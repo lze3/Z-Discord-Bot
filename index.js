@@ -127,7 +127,7 @@ Client.on("message", async message => {
 Client.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
-	if (!message.member.hasPermission("MANAGE_GUILD")) return;
+	// if (!message.member.hasPermission("MANAGE_GUILD")) return;
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
