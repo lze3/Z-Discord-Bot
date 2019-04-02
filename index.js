@@ -103,7 +103,16 @@ Client.on("ready", async () => {
     console.log('\x1b[92m', `${Client.user.username} is now online.\n ${Client.user.username} is now active on ${Client.guilds.size} guilds.`);
     console.log(` Bot online and currently serving in ${Client.channels.size} channels on ${Client.guilds.size} servers, for a total of ${Client.users.size} users.`)
 
+    Client.user.setPresence({
+        status: "online",
+        afk: false,
+        game: {
+            name: "Some miscellaneous bot...",
+            url: "https://twitch.tv/jhodgson1",
+            type: "STREAMING"
+        } 
     
+    })
 });
 
 Client.on("message", async message => {
