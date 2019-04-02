@@ -107,7 +107,7 @@ Client.on("ready", async () => {
         status: "online",
         afk: false,
         game: {
-            name: "Some miscellaneous bot...",
+            name: "Follow JHodgson1 on Twitch!",
             url: "https://twitch.tv/jhodgson1",
             type: "STREAMING"
         } 
