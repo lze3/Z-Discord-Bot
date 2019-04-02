@@ -24,5 +24,5 @@ module.exports.run = async(Client, message, args) => {
 }
 
 module.exports.help = {
-    name: 'delete'
+    name: 'archive'
 }
