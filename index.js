@@ -134,8 +134,14 @@ Client.on("message", async message => {
     if (!message.content.startsWith(prefix)) return;
     let commandfile = Client.commands.get(cmd.slice(prefix.length));
     if (commandfile) {
+        var embed = new Discord.RichEmbed()
+        .setColor("#117EA6")
+        .setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+        .setDescription(`Used \`${cmd}\` command in <#${message.channel.id}>\n${command} ${args}`)
+        .setTimestamp()
+        
         commandfile.run(Client, message, args);
-        message.guild.channels.get("554365078401449990").send("User " + message.author + " entered the " + cmd + " command.")
+        message.guild.channels.get("554365078401449990").send(embed)
     } 
 
 });
