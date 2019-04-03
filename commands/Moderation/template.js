@@ -5,10 +5,10 @@ module.exports.run = async(Client, message, args) => {
         message.channel.send(
         `:warning: __**Support Template**__ :warning:
         
-        What is your issue?
-        When does the issue occur?
-        Have you installed it correctly?
-        Have you read the correct documentation in order to install any dependencies, if applicable?`
+What is your issue?
+When does the issue occur?
+Have you installed it correctly?
+Have you read the correct documentation in order to install any dependencies, if applicable?`
         )
     }
     else 
