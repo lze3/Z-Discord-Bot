@@ -1,6 +1,6 @@
 module.exports.run = async(Client, message, args) => {
     message.delete()
-    if (args[0] === "support" || message.channel.name.contains("support")) 
+    if (args[0] === "support" || message.channel.name.includes("support")) 
     {
         message.channel.send(
         `:warning: __**Support Template**__ :warning:
