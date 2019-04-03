@@ -137,9 +137,9 @@ Client.on("message", async message => {
         var embed = new Discord.RichEmbed()
         .setColor("#117EA6")
         .setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
-        .setDescription(`Used \`${cmd}\` command in <#${message.channel.id}>\n${command} ${args}`)
+        .setDescription(`Used \`${cmd}\` command in <#${message.channel.id}>\n${cmd} ${args}`)
         .setTimestamp()
-        
+
         commandfile.run(Client, message, args);
         message.guild.channels.get("554365078401449990").send(embed)
     } 
