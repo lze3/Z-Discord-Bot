@@ -146,60 +146,14 @@ Client.on("message", async message => {
 
 });
 
-if (logging_enabled) {
-    Client.on("guildMemberAdd", member => {
-        const embed = new Discord.RichEmbed()
-        .setTitle("Member Join")
-        .setDescription(`${member.user.username}#${member.user.discriminator}`)
-        .setFooter(`Member count: ${member.guild.memberCount}`)
-        .setThumbnail(member.user.avatarURL)
-        .setTimestamp()
-        .setColor(7068245)
-        const logs = member.guild.channels.get('552152267399102488')
-        const welcoming = member.guild.channels.get('544999746297790474')
-        logs.send(embed)
-        welcoming.send(`Hello, ${member}, welcome to JHodgson1's personal Discord. Please ensure to read the rules in <#541288672918765579> and abide by them. If you have any issues or concerns feel free to ask in the <#544999903848300559> or <#544999857174347776> depending on your question. 
+Client.on("guildMemberAdd", member => {
+    const welcoming = member.guild.channels.get('544999746297790474')
+    welcoming.send(`Hello, ${member}, welcome to JHodgson1's personal Discord. Please ensure to read the rules in <#541288672918765579> and abide by them. If you have any issues or concerns feel free to ask in the <#544999903848300559> or <#544999857174347776> depending on your question. 
         
-        We hope you enjoy your stay!`)
-    })
+    We hope you enjoy your stay!`)
+})
 
-    Client.on('guildMemberRemove', member => {
-        const embed = new Discord.RichEmbed()
-        .setTitle("Member Left")
-        .setDescription(`${member.user.username}#${member.user.discriminator}`)
-        .setFooter(`Member count: ${member.guild.memberCount}`)
-        .setThumbnail(member.user.avatarURL)
-        .setTimestamp()
-        .setColor(15226197)
-        const logs = member.guild.channels.get('552152267399102488')
-        logs.send(embed)
-    })
-
-    Client.on('guildBanAdd', (guild, user) => {
-        const embed = new Discord.RichEmbed()
-        .setTitle("Member Banned")
-        .setDescription(`${user.username}#${user.discriminator}`)
-        .setFooter(`Member count: ${guild.memberCount}`)
-        .setThumbnail(member.user.avatarURL)
-        .setTimestamp()
-        .setColor(16437327)
-        const logs = guild.channels.get('552152267399102488')
-        logs.send(embed)
-    })
-
-    Client.on('guildBanRemove', (guild, user) => {
-        const embed = new Discord.RichEmbed()
-        .setTitle("Member Unbanned")
-        .setDescription(`${user.username}#${user.discriminator}`)
-        .setFooter(`Member count: ${guild.memberCount}`)
-        .setThumbnail(member.user.avatarURL)
-        .setTimestamp()
-        .setColor(7068245)
-        const logs = guild.channels.get('552152267399102488')
-        logs.send(embed)
-    })
-}
-
+Client.on("warn", console.warn);
 Client.on("error", console.error);
 
 var rebootmsg1 = new Discord.RichEmbed()
