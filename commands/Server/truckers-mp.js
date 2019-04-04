@@ -205,7 +205,7 @@ module.exports.run = async(Client, message, args) => {
             }
 
             var embed = new Discord.RichEmbed()
-            .setAuthor("TruckersMP Server Information", "https://w.wew.wtf/laugpu.png")
+            .setAuthor("TruckersMP Server Information", "https://w.wew.wtf/laugpu.png", "https://truckersmp.com")
             .setColor("#F44336")
             .addField("Server Name", server.serverName)
             .addField("Game", server.game)
@@ -218,6 +218,7 @@ module.exports.run = async(Client, message, args) => {
             .addField("AFK Kick", server.afkKick)
             .addField("Sync Delay", server.syncDelay)
             .setTimestamp()
+            .setFooter(`Requested by ${message.member.user.username}#${message.member.user.discriminator}`)
 
             message.channel.send(embed)
 
