@@ -4,7 +4,10 @@ const request = require('request');
 module.exports.run = async(Client, message, args) => {
     message.delete();
     if (!args) return;
-    if (args[0].toLowerCase() === "pid") 
+    TYPE = "servers"
+    if (args[0] === "pid") { TYPE = "players" }
+    if (args[0] === "servers") { TYPE = "servers" }
+    if (TYPE === "players") 
     {
         let PID = args[1];
         request.get(`https://api.truckersmp.com/v2/player/${PID}`, function(err, response, body) 
@@ -37,8 +40,7 @@ module.exports.run = async(Client, message, args) => {
             message.channel.send(embed)
         })
     }
-    else 
-    if (args[0].toLowerCase() === "servers") 
+    else if (TYPE === "servers") 
     {
         // Instead of handling errors, just set these default values
         let GAME = args[1] ? args[1].toLowerCase() : "ETS2"
