@@ -135,7 +135,7 @@ module.exports.run = async(Client, message, args) => {
                     ATS_US1 =
                     {
                         ["id"]: table.id,
-                        ["game"]: "Euro Truck Simulator 2",
+                        ["game"]: "American Truck Simulator",
                         ["ip"]: table.ip + ":" + table.port,   
                         ["serverName"]: table.name,
                         ["online"]: table.online ? "Yes" : "No :cry:",
@@ -155,7 +155,7 @@ module.exports.run = async(Client, message, args) => {
                     ATS_EU2 =
                     {
                         ["id"]: table.id,
-                        ["game"]: "Euro Truck Simulator 2",
+                        ["game"]: "American Truck Simulator",
                         ["ip"]: table.ip + ":" + table.port,   
                         ["serverName"]: table.name,
                         ["online"]: table.online ? "Yes" : "No :cry:",
