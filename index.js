@@ -148,9 +148,10 @@ Client.on("message", async message => {
 
 Client.on("guildMemberAdd", member => {
     const welcoming = member.guild.channels.get('544999746297790474')
-    welcoming.send(`Hello, ${member}, welcome to JHodgson1's personal Discord. Please ensure to read the rules in <#541288672918765579> and abide by them. If you have any issues or concerns feel free to ask in the <#544999903848300559> or <#544999857174347776> depending on your question. 
+    welcoming.send(
+`Hello, ${member}, welcome to JHodgson1's personal Discord. Please ensure to read the rules in <#541288672918765579> and abide by them. If you have any issues or concerns feel free to ask in the <#544999903848300559> or <#544999857174347776> depending on your question. 
         
-    We hope you enjoy your stay!`)
+We hope you enjoy your stay!`)
 })
 
 Client.on("warn", console.warn);
