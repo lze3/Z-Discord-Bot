@@ -111,8 +111,7 @@ Client.on("ready", async () => {
             url: "https://twitch.tv/jhodgson1",
             type: "STREAMING"
         } 
-    
-    })
+    });
 });
 
 Client.on("message", async message => {
