@@ -22,6 +22,21 @@ for (var i = 0; i < arrayLength; i++)
     suggestion_channel = suggestion_channels[i];
 }
 
+fs.readdir("./commands/Administration", (err, files) => {
+    if (err) console.log("ERROR: [ " + err.toString() + " ].");
+    let jsFile = files.filter(f => f.split(".").pop() === "js")
+    if (files.length <= 0) {
+        console.log("ERROR: No administrative commands loaded.")
+        return;
+    }
+
+    jsFile.forEach((f, i) => {
+        let props = require(`./commands/Administration/${f}`);
+        console.log(`Command [ ${f} ] loaded! [Administration]`)
+        Client.commands.set(props.help.name, props)
+    })
+});
+
 fs.readdir("./commands/Automated", (err, files) => {
     if (err) console.log("ERROR: [ " + err + " ].");
     let jsFile = files.filter(f => f.split(".").pop() === "js")
@@ -148,7 +163,7 @@ Client.on("message", async message => {
 Client.on("guildMemberAdd", member => {
     const welcoming = member.guild.channels.get('544999746297790474')
     welcoming.send(
-`Hello, ${member}, welcome to JHodgson1's personal Discord. Please ensure to read the rules in <#541288672918765579> and abide by them. If you have any issues or concerns feel free to ask in the <#544999903848300559> or <#544999857174347776> depending on your question. 
+`Hello, ${member}, welcome to JHodgson1's personal Discord. Please ensure to read the rules in <#541288672918765579> and abide by them. If you have any issues or concerns feel free to ask in <#544999903848300559> or any of the scripting channels depending on your question. 
         
 We hope you enjoy your stay!`)
 })
