@@ -2,11 +2,8 @@ const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
 const Client = new Discord.Client({disableEveryone: true});
-
 global.prefix = botconfig.prefix
-
 global.logging_enabled = false
-
 Client.commands = new Discord.Collection(); 
 Client.ConfigCommands = new Discord.Collection();
 
