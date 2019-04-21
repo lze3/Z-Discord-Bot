@@ -157,6 +157,13 @@ Client.on("message", async message => {
 
 });
 
+Client.on("messageDelete", message => {
+    if (config.deleteShame || config.deleteShame === null)
+    {
+        message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
+    }
+})
+
 Client.on("guildMemberAdd", member => {
     const welcoming = member.guild.channels.get('544999746297790474')
     welcoming.send(
