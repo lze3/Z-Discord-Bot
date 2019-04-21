@@ -1,6 +1,14 @@
 {
-  "token": "DISCORD_MAIN_BOT_TOKEN",
-  "devtoken": "DISCORD_DEV_BOT_TOKEN",
-  "prefix": ".",
-  "devprefix": "-"
+	"prefix": ".",
+	"token": "DISCORD_BOT_TOKEN_HERE",
+	"presence": {
+		"status": "online",
+		"afk": false,
+		"game": {
+			"name": "This should be a string.",
+			"url": "This is a Twitch URL if below is STREAMING",
+			"type": "PLAYING"
+		}
+	},
+	"deleteShame": true
 }
