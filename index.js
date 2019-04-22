@@ -160,6 +160,7 @@ Client.on("message", async message => {
 });
 
 Client.on("messageDelete", message => {
+    if (message.author.bot) return
     if (botconfig.deleteShame || botconfig.deleteShame === null)
     {
         message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
