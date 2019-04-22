@@ -1,11 +1,13 @@
-const botconfig = require("./botconfig.json");
-const Discord = require("discord.js");
-const fs = require("fs");
-const Client = new Discord.Client({disableEveryone: true});
+global.botconfig = require("./botconfig.json");
+global.Discord = require("discord.js");
+global.fs = require("fs");
+global.Client = new Discord.Client({disableEveryone: true});
 global.prefix = botconfig.prefix
-global.logging_enabled = false
+global.request = require('request')
 Client.commands = new Discord.Collection(); 
 Client.ConfigCommands = new Discord.Collection();
+
+require('./messageHandler.js')
 
 const suggestion_channels = 
 [
@@ -158,7 +160,7 @@ Client.on("message", async message => {
 });
 
 Client.on("messageDelete", message => {
-    if (config.deleteShame || config.deleteShame === null)
+    if (botconfig.deleteShame || botconfig.deleteShame === null)
     {
         message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
     }
