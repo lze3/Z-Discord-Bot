@@ -7,8 +7,6 @@ global.request = require('request')
 Client.commands = new Discord.Collection(); 
 Client.ConfigCommands = new Discord.Collection();
 
-require('./messageHandler.js')
-
 const suggestion_channels = 
 [
     "545315817462431744", 
