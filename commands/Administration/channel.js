@@ -14,7 +14,7 @@ module.exports.run = async(Client, message, args) => {
         }
         else if (args[1] === 'parent') {
             let parent = args[2]
-            message.channel.setParent(parent, `${message.member.user.username} told me to.`).catch(err => { message.channel.send(err.toString()); return })
+            await message.channel.setParent(parent, `${message.member.user.username} told me to.`).catch(err => { message.channel.send(err.toString()); return })
             message.channel.send(`${message.author}, I just set the channel parent to \n\`${message.channel.parent.name}\``)
         }
     }
