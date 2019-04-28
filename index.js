@@ -148,7 +148,7 @@ Client.on("message", async message => {
         var embed = new Discord.RichEmbed()
         .setColor("#117EA6")
         .setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
-        .setDescription(`Used \`${cmd.slice(1)}\` in <#${message.channel.id}>\n${cmd} ${args}`)
+        .setDescription(`Used \`${cmd.slice(1)}\` in <#${message.channel.id}>\n${cmd} ${args.join(" ")}`)
         .setTimestamp()
 
         commandfile.run(Client, message, args);
