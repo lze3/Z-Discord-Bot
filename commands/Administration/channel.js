@@ -1,6 +1,9 @@
+const Discord = require('discord.js')
+const moment = require('moment')
+
 module.exports.run = async(Client, message, args) => {  
     if (!message.member.hasPermission("MANAGE_CHANNEL")) { message.reply("you do not have permission to use that command."); return }
-    if (args.length < 3) { message.reply("you haven't supplied sufficient arguments."); return }
+    if (args.length < 1) { message.reply("you haven't supplied sufficient arguments."); return }
     if (args[0] === 'set') {
         if (args[1] === 'topic') {
             let topic = args.join(" ").slice(args[0].length+args[1].length+1)
@@ -17,6 +20,36 @@ module.exports.run = async(Client, message, args) => {
             await message.channel.setParent(parent, `${message.member.user.username} told me to.`).catch(err => { message.channel.send(err.toString()); return })
             message.channel.send(`${message.author}, I just set the channel parent to \n\`${message.channel.parent.name}\``)
         }
+    } else if (args[0] === 'info') {
+        console.log(args.join(" "))
+        if (!args[1]) 
+            channel = message.channel
+        else
+            channel = message.guild.channels.find(channel => channel.id === args[1]) || message.guild.channels.find(channel => channel.name === args[1])
+
+        if(!channel || channel === undefined || channel === null) return message.reply("I couldn't find that channel.")
+            let topic = channel.topic ? channel.topic : "None"
+            let type = channel.type
+            let nsfw = channel.nsfw
+            let id = channel.id
+            let name = channel.name
+            let size = channel.members.size
+            let created = moment.utc(channel.createdAt).format("MM/DD/YYYY hh:mm:ss");
+
+            if (type === 'voice')
+                nsfw = "N/A"
+            
+            if (type === 'text')
+                size = "N/A"
+            
+
+            let chanInfo = new Discord.RichEmbed()
+            .setDescription(`Info about **${name}** (ID: ${id})`)
+            .addField("❯ Info", `• Type: ${type}\n• Topic: ${topic}\n• NSFW: ${nsfw}\n• Creation Date: ${created}\n• Size: ${size}`)
+            .setColor('#3498DB')
+            .setThumbnail('https://w.wew.wtf/impcab.png')
+
+            message.channel.send(chanInfo)
     }
     
 }
