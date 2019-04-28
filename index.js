@@ -7,17 +7,7 @@ global.request = require('request')
 Client.commands = new Discord.Collection(); 
 Client.ConfigCommands = new Discord.Collection();
 
-const suggestion_channels = 
-[
-    "545315817462431744", 
-    "anotherIDHere..."
-];
-
-var arrayLength = suggestion_channels.length;
-for (var i = 0; i < arrayLength; i++) 
-{
-    suggestion_channel = suggestion_channels[i];
-}
+const suggestion_channels = botconfig.suggestion_channels || []
 
 fs.readdir("./commands/Administration", (err, files) => {
     let mname = "Administration"
@@ -118,8 +108,8 @@ fs.readdir("./commands/Server", (err, files) => {
 // Displays the message in console
 Client.on("ready", async () => {
     
-    console.log('\x1b[92m', `${Client.user.username} is now online.\n ${Client.user.username} is now active on ${Client.guilds.size} guilds.`);
-    console.log(` Bot online and currently serving in ${Client.channels.size} channels on ${Client.guilds.size} servers, for a total of ${Client.users.size} users.`)
+    console.log(`\x1b[92m${Client.user.username} is now online.\n${Client.user.username} is now active on ${Client.guilds.size} guilds.`);
+    console.log(`Bot online and currently serving in ${Client.channels.size} channels on ${Client.guilds.size} servers, for a total of ${Client.users.size} users.`)
 
     Client.user.setPresence({
         status: "online",
@@ -133,10 +123,13 @@ Client.on("ready", async () => {
 });
 
 Client.on("message", async message => {
-    if (message.channel.id === suggestion_channel) 
-    {
-        await message.react("👍")
-        await message.react("👎")
+    var arrayLength = suggestion_channels.length;
+    for (var i = 0; i < arrayLength; i++) {
+        if (message.channel.id === suggestion_channels[i])
+        {
+            await message.react("👍")
+            await message.react("👎")
+        }
     }
 })
 

@@ -10,5 +10,9 @@
 			"type": "PLAYING"
 		}
 	},
+	"suggestion_channels": [
+		"562414016413040711",
+		"567426257847975978"
+	],
 	"deleteShame": true
 }
