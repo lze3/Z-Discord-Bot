@@ -20,7 +20,8 @@ for (var i = 0; i < arrayLength; i++)
 }
 
 fs.readdir("./commands/Administration", (err, files) => {
-    if (err) console.log("ERROR: [ " + err.toString() + " ].");
+    let mname = "Administration"
+    if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
         console.log("ERROR: No administrative commands loaded.")
@@ -29,13 +30,14 @@ fs.readdir("./commands/Administration", (err, files) => {
 
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Administration/${f}`);
-        console.log(`Command [ ${f} ] loaded! [Administration]`)
         Client.commands.set(props.help.name, props)
     })
+    console.log(`[${mname}] module loaded.`)
 });
 
 fs.readdir("./commands/Automated", (err, files) => {
-    if (err) console.log("ERROR: [ " + err + " ].");
+    let mname = "Automated"
+    if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
         console.log("ERROR: No automated commands loaded.")
@@ -44,13 +46,14 @@ fs.readdir("./commands/Automated", (err, files) => {
 
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Automated/${f}`);
-        console.log(`Command [ ${f} ] loaded! [Automated]`)
         Client.commands.set(props.help.name, props)
     })
+    console.log(`[${mname}] module loaded.`)
 });
 
 fs.readdir("./commands/Development", (err, files) => {
-    if (err) console.log("ERROR: [ " + err + " ].");
+    let mname = "Development"
+    if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
         console.log("ERROR: No development commands loaded.")
@@ -59,13 +62,14 @@ fs.readdir("./commands/Development", (err, files) => {
 
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Development/${f}`);
-        console.log(`Command [ ${f} ] loaded! [Development]`)
         Client.commands.set(props.help.name, props)
     })
+    console.log(`[${mname}] module loaded.`)
 });
 
 fs.readdir("./commands/Miscellaneous", (err, files) => {
-    if (err) console.log("ERROR: [ " + err + " ].");
+    let mname = "Miscellaneous"
+    if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
         console.log("ERROR: No miscellaneous commands loaded.")
@@ -74,13 +78,14 @@ fs.readdir("./commands/Miscellaneous", (err, files) => {
 
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Miscellaneous/${f}`);
-        console.log(`Command [ ${f} ] loaded! [Miscellaneous]`)
         Client.commands.set(props.help.name, props)
     })
+    console.log(`[${mname}] module loaded.`)
 });
 
 fs.readdir("./commands/Moderation", (err, files) => {
-    if (err) console.log("ERROR: [ " + err + " ].");
+    let mname = "Moderation"
+    if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
         console.log("ERROR: No moderation commands loaded.")
@@ -89,13 +94,14 @@ fs.readdir("./commands/Moderation", (err, files) => {
 
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Moderation/${f}`);
-        console.log(`Command [ ${f} ] loaded! [Moderation]`)
         Client.commands.set(props.help.name, props)
     })
+    console.log(`[${mname}] module loaded.`)
 });
 
 fs.readdir("./commands/Server", (err, files) => {
-    if (err) console.log("ERROR: [ " + err + " ].");
+    let mname = "Server"
+    if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
         console.log("ERROR: No server commands loaded.")
@@ -104,9 +110,9 @@ fs.readdir("./commands/Server", (err, files) => {
 
     jsFile.forEach((f, i) => {
         let props = require(`./commands/Server/${f}`);
-        console.log(`Command [ ${f} ] loaded! [Server]`)
         Client.commands.set(props.help.name, props)
     })
+    console.log(`[${mname}] module loaded.`)
 });
 
 // Displays the message in console
