@@ -2,9 +2,11 @@ const Discord = require('discord.js')
 const moment = require('moment')
 
 module.exports.run = async(Client, message, args) => {  
-    if (!message.member.hasPermission("MANAGE_CHANNEL")) { message.reply("you do not have permission to use that command."); return }
+    let canExecuteMngCmds = true;
+    if (!message.member.hasPermission("MANAGE_CHANNELS")) { canExecuteMngCmds = false }
     if (args.length < 1) { message.reply("you haven't supplied sufficient arguments."); return }
     if (args[0] === 'set') {
+        if (!canExecuteMngCmds) { message.channel.send(`${message.author}, you are not allowed to use that command.`); return }
         if (args[1] === 'topic') {
             let topic = args.join(" ").slice(args[0].length+args[1].length+1)
             await message.channel.setTopic(topic, `${message.member.user.username} told me to.`);
