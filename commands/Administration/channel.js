@@ -23,7 +23,6 @@ module.exports.run = async(Client, message, args) => {
             message.channel.send(`${message.author}, I just set the channel parent to \n\`${message.channel.parent.name}\``)
         }
     } else if (args[0] === 'info') {
-        console.log(args.join(" "))
         if (!args[1]) 
             channel = message.channel
         else
