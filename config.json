@@ -14,5 +14,9 @@
 		"",
 		""
 	],
-	"deleteShame": true
+	"deleteShame": true,
+	"welcome": {
+		"channelId": "544999746297790474",
+		"message": "Hello, {member}, welcome to JHodgson1's personal Discord server. Please ensure to read the rules in <#544999746297790474> and abide by them. If you have any issues or concerns feel free to ask in <#544999903848300559> or any scripting channel depending on your question.\n\nWe hope you enjoy your stay!" 
+	}
 }

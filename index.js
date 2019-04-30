@@ -177,11 +177,13 @@ Client.on("messageDelete", message => {
 })
 
 Client.on("guildMemberAdd", member => {
-    const welcoming = member.guild.channels.get('544999746297790474')
-    welcoming.send(
-`Hello, ${member}, welcome to JHodgson1's personal Discord. Please ensure to read the rules in <#541288672918765579> and abide by them. If you have any issues or concerns feel free to ask in <#544999903848300559> or any of the scripting channels depending on your question. 
-        
-We hope you enjoy your stay!`)
+    if (botconfig.welcome.channelId === undefined || botconfig.welcome.message === undefined) return
+    const welcoming = member.guild.channels.get(botconfig.welcome.channelId)
+    try {
+        welcoming.send(botconfig.welcome.message.replace("{member}", member))
+    } catch(err) {
+        welcoming.send(err.toString())
+    }
 })
 
 Client.on("warn", console.warn);
