@@ -123,8 +123,8 @@ Client.on("ready", async () => {
 });
 
 Client.on("message", async message => {
-    var arrayLength = suggestion_channels.length;
-    for (var i = 0; i < arrayLength; i++) {
+    const arrayLength = suggestion_channels.length;
+    for (let i = 0; i < arrayLength; i++) {
         if (message.channel.id === suggestion_channels[i])
         {
             await message.react("👍")
@@ -138,9 +138,9 @@ Client.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
 	// if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
+    const messageArray = message.content.split(" ");
+    const cmd = messageArray[0];
+    const args = messageArray.slice(1);
     if (!message.content.startsWith(prefix)) return;
     let commandfile = Client.commands.get(cmd.slice(prefix.length));
     if (commandfile) {
@@ -165,7 +165,7 @@ const commonPrefixes = [
 
 Client.on("messageDelete", message => {
     if (message.author.bot) return
-    for (var i = 0; i < commonPrefixes.length; i++) { 
+    for (let i = 0; i < commonPrefixes.length; i++) { 
         if (!message.content.startsWith(commonPrefixes[i])) {
             if (botconfig.deleteShame || botconfig.deleteShame === null)
             {
