@@ -156,7 +156,7 @@ Client.on("message", async message => {
 
 });
 
-let commonPrefixes = [
+const commonPrefixes = [
     ".",
     "!",
     "?",
@@ -165,10 +165,14 @@ let commonPrefixes = [
 
 Client.on("messageDelete", message => {
     if (message.author.bot) return
-    for (var i = 0; i < commonPrefixes.length; i++) { if (message.content.startsWith(commonPrefixes[i])); return }
-    if (botconfig.deleteShame || botconfig.deleteShame === null)
-    {
-        message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
+    for (var i = 0; i < commonPrefixes.length; i++) { 
+        if (!message.content.startsWith(commonPrefixes[i])) {
+            if (botconfig.deleteShame || botconfig.deleteShame === null)
+            {
+                message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
+                break
+            }
+        }
     }
 })
 
