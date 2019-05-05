@@ -22,5 +22,6 @@ module.exports.run = async (Client, message) => {
 }
 
 module.exports.help = {
-    name: "uptime"
+    name: "uptime",
+    active: true
 }

@@ -10,5 +10,6 @@ module.exports.run = async(Client, message, args) =>
 }
 
 module.exports.help = {
-    name: 'restart'
+    name: 'restart',
+    active: true
 }

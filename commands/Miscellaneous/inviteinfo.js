@@ -16,5 +16,6 @@ module.exports.run = async(Client, message, args) => {
 }
 
 module.exports.help = {
-    name: 'inviteinfo'
+    name: 'inviteinfo',
+    active: true
 }

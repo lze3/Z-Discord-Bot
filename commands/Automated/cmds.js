@@ -15,5 +15,6 @@ module.exports.run = async (Client, message) => {
 }
 
 module.exports.help = {
-    name: "cmds"
+    name: "cmds",
+    active: true
 }

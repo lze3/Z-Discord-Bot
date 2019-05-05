@@ -70,6 +70,7 @@ module.exports.run = async (Client, message, args) => {
   
   exports.help = {
     name: "players",
+    active: true
   };
   
   

@@ -24,5 +24,6 @@ module.exports.run = async(Client, message, args) => {
 }
 
 module.exports.help = {
-    name: 'archive'
+    name: 'archive',
+    active: true
 }

@@ -8,5 +8,6 @@ module.exports.run = async(Client, message, args) => {
 }
 
 module.exports.help = {
-    name: 'edit'
+    name: 'edit',
+    active: true
 }
