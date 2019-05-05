@@ -165,14 +165,39 @@ const commonPrefixes = [
 
 Client.on("messageDelete", message => {
     if (message.author.bot) return
-    for (let i = 0; i < commonPrefixes.length; i++) { 
-        if (!message.content.startsWith(commonPrefixes[i])) {
-            if (botconfig.deleteShame || botconfig.deleteShame === null)
-            {
-                message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
-                break
+    
+    /*
+    commonPrefixes.forEach(function(element, i) {
+        if (message.content.startsWith(element)) 
+            return;
+
+        console.log(element)
+        
+        if (shouldSend) {
+            message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
+        }
+
+        shouldSend = false
+
+    })*/
+
+    let neverSend
+    let shouldSend
+    for (let i=0; i < commonPrefixes.length; i++) {
+        if (message.content.startsWith(commonPrefixes[i])) {
+            shouldSend = false
+        }
+
+        console.log(commonPrefixes[i])
+
+        if (!neverSend) {
+            if (shouldSend) {
+                message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)   
             }
         }
+
+        shouldSend = false;
+
     }
 })
 
