@@ -18,5 +18,6 @@ Have you read the correct documentation in order to install any dependencies, if
 }
 
 module.exports.help = {
-    name: 'template'
+    name: 'template',
+    active: true
 }

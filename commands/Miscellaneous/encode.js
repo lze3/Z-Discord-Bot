@@ -12,5 +12,6 @@ module.exports.run = async(Client, message, args) => {
 }
 
 module.exports.help = {
-    name: 'encode'
+    name: 'encode',
+    active: true
 }

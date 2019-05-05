@@ -79,5 +79,6 @@ module.exports.run = async(Client, message, args) => {
 }
 
 module.exports.help = {
-    name: 'reload'
+    name: 'reload',
+    active: true
 }

@@ -18,5 +18,6 @@ module.exports.run = async(Client, message, args) => {
 }
 
 module.exports.help = {
-    name: 'icon'
+    name: 'icon',
+    active: true
 }

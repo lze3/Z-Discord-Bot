@@ -17,5 +17,6 @@ module.exports.run = async (Client, message, args) => {
 }
 
 module.exports.help = {
-	name: "purge"
+	name: "purge",
+    active: true
 }

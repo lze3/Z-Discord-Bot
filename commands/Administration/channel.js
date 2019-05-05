@@ -56,5 +56,6 @@ module.exports.run = async(Client, message, args) => {
 }
 
 module.exports.help = {
-    name: 'channel'
+    name: 'channel',
+    active: true
 }

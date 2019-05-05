@@ -23,9 +23,10 @@ fs.readdir("./commands/Administration", (err, files) => {
         if (props.help.active || props.help.active === null) {
             Client.commands.set(props.help.name, props)
         }
-        
-        if (props.help.active === null) {
-            console.log(`[${props}] This command does not have a 'active' boolean in the help section - WARN.`)
+
+        if (props.help.active === null || props.help.active === undefined) {
+            console.log(`[${f}] This command does not have an 'active' boolean in the help section - WARN.`)
+            console.log("")
         }
     })
     console.log(`[${mname}] module loaded.`)
@@ -45,9 +46,10 @@ fs.readdir("./commands/Automated", (err, files) => {
         if (props.help.active || props.help.active === null) {
             Client.commands.set(props.help.name, props)
         }
-        
-        if (props.help.active === null) {
-            console.log(`[${props}] This command does not have a 'active' boolean in the help section - WARN.`)
+
+        if (props.help.active === null || props.help.active === undefined) {
+            console.log(`[${f}] This command does not have an 'active' boolean in the help section - WARN.`)
+            console.log("")
         }
     })
     console.log(`[${mname}] module loaded.`)
@@ -67,9 +69,10 @@ fs.readdir("./commands/Development", (err, files) => {
         if (props.help.active || props.help.active === null) {
             Client.commands.set(props.help.name, props)
         }
-        
-        if (props.help.active === null) {
-            console.log(`[${props}] This command does not have a 'active' boolean in the help section - WARN.`)
+
+        if (props.help.active === null || props.help.active === undefined) {
+            console.log(`[${f}] This command does not have an 'active' boolean in the help section - WARN.`)
+            console.log("")
         }
     })
     console.log(`[${mname}] module loaded.`)
@@ -89,9 +92,10 @@ fs.readdir("./commands/Miscellaneous", (err, files) => {
         if (props.help.active || props.help.active === null) {
             Client.commands.set(props.help.name, props)
         }
-        
-        if (props.help.active === null) {
-            console.log(`[${props}] This command does not have a 'active' boolean in the help section - WARN.`)
+
+        if (props.help.active === null || props.help.active === undefined) {
+            console.log(`[${f}] This command does not have an 'active' boolean in the help section - WARN.`)
+            console.log("")
         }
     })
     console.log(`[${mname}] module loaded.`)
@@ -111,9 +115,10 @@ fs.readdir("./commands/Moderation", (err, files) => {
         if (props.help.active || props.help.active === null) {
             Client.commands.set(props.help.name, props)
         }
-        
-        if (props.help.active === null) {
-            console.log(`[${props}] This command does not have a 'active' boolean in the help section - WARN.`)
+
+        if (props.help.active === null || props.help.active === undefined) {
+            console.log(`[${f}] This command does not have an 'active' boolean in the help section - WARN.`)
+            console.log("")
         }
     })
     console.log(`[${mname}] module loaded.`)
@@ -133,9 +138,10 @@ fs.readdir("./commands/Server", (err, files) => {
         if (props.help.active || props.help.active === null) {
             Client.commands.set(props.help.name, props)
         }
-        
-        if (props.help.active === null) {
-            console.log(`[${props}] This command does not have a 'active' boolean in the help section - WARN.`)
+
+        if (props.help.active === null || props.help.active === undefined) {
+            console.log(`[${f}] This command does not have an 'active' boolean in the help section - WARN.`)
+            console.log("")
         }
     })
     console.log(`[${mname}] module loaded.`)

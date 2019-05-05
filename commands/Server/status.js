@@ -94,6 +94,7 @@ module.exports.run = async (Client, message, args) => {
   
   exports.help = {
     name: "status",
+    active: true
   };
 
   

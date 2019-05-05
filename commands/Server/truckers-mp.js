@@ -151,5 +151,6 @@ module.exports.run = async(Client, message, args) => {
 }
 
 module.exports.help = {
-    name: 'tmp'
+    name: 'tmp',
+    active: true
 }

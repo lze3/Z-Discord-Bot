@@ -34,5 +34,6 @@ module.exports.run = async(Client, message, args) => {
 }
 
 module.exports.help = {
-    name: 'rcon'
+    name: 'rcon',
+    active: true
 }

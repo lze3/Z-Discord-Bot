@@ -23,5 +23,6 @@ module.exports.run = async(Client, message, args) =>
 }
 
 module.exports.help = {
-    name: 'info'
+    name: 'info',
+    active: true
 }
