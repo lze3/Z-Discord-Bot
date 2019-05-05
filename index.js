@@ -144,7 +144,7 @@ Client.on("message", async message => {
     if (!message.content.startsWith(prefix)) return;
     let commandfile = Client.commands.get(cmd.slice(prefix.length));
     if (commandfile) {
-        var embed = new Discord.RichEmbed()
+        let embed = new Discord.RichEmbed()
         .setColor("#117EA6")
         .setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
         .setDescription(`Used \`${cmd.slice(1)}\` in <#${message.channel.id}>\n${cmd} ${args.join(" ")}`)
@@ -163,6 +163,7 @@ const commonPrefixes = [
     "-"
 ]
 
+/*
 Client.on("messageDelete", message => {
     if (message.author.bot) return
     
@@ -179,27 +180,32 @@ Client.on("messageDelete", message => {
 
         shouldSend = false
 
-    })*/
+    })*//*
 
-    let neverSend
-    let shouldSend
+    let shouldSend = true
+    let readyToRun = false
     for (let i=0; i < commonPrefixes.length; i++) {
         if (message.content.startsWith(commonPrefixes[i])) {
             shouldSend = false
+            break
         }
 
-        console.log(commonPrefixes[i])
-
-        if (!neverSend) {
-            if (shouldSend) {
-                message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)   
-            }
+        if (i === commonPrefixes.length) {
+            readyToRun = true
+            break
         }
 
-        shouldSend = false;
+        shouldSend = true
+        readyToRun = false
 
     }
+
+    if (readyToRun && shouldSend) {
+        message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
+    }
+
 })
+*/
 
 Client.on("guildMemberAdd", member => {
     if (botconfig.welcome.channelId === undefined || botconfig.welcome.message === undefined) return
