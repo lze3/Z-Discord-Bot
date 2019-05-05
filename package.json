@@ -6,6 +6,7 @@
   "dependencies": {
     "atob": "^2.1.2",
     "btoa": "^1.2.1",
+    "colors": "^1.3.3",
     "discord.js": "github:discordjs/discord.js#11.4-dev",
     "git-auto-pull": "^1.0.9",
     "moment": "^2.22.2",

@@ -2,8 +2,10 @@ global.botconfig = require("./botconfig.json");
 global.Discord = require("discord.js");
 global.fs = require("fs");
 global.Client = new Discord.Client({disableEveryone: true});
-global.prefix = botconfig.prefix
-global.request = require('request')
+global.prefix = botconfig.prefix;
+global.request = require('request');
+global.colors = require('colors');
+
 Client.commands = new Discord.Collection(); 
 Client.ConfigCommands = new Discord.Collection();
 
@@ -147,6 +149,19 @@ fs.readdir("./commands/Server", (err, files) => {
     console.log(`[${mname}] module loaded.`)
 });
 
+fs.readFile("./messageHandler.js", (err, data) => {
+    if (err) {
+        if(err.toString().includes("no such file")) { 
+            console.log("The message handler module was not found, this may be a problem."); 
+            return 
+        } else {
+            throw err
+        }
+    }
+
+    console.log(data)
+})
+
 // Displays the message in console
 Client.on("ready", async () => {
     
@@ -174,29 +189,6 @@ Client.on("message", async message => {
         }
     }
 })
-
-// Bot Start
-Client.on("message", async message => {
-    if(message.author.bot) return;
-    if(message.channel.type === "dm") return;
-	// if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    const messageArray = message.content.split(" ");
-    const cmd = messageArray[0];
-    const args = messageArray.slice(1);
-    if (!message.content.startsWith(prefix)) return;
-    let commandfile = Client.commands.get(cmd.slice(prefix.length));
-    if (commandfile) {
-        let embed = new Discord.RichEmbed()
-        .setColor("#117EA6")
-        .setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
-        .setDescription(`Used \`${cmd.slice(1)}\` in <#${message.channel.id}>\n${cmd} ${args.join(" ")}`)
-        .setTimestamp()
-
-        commandfile.run(Client, message, args);
-        message.guild.channels.get("554365078401449990").send(embed)
-    } 
-
-});
 
 /*
 const commonPrefixes = [
