@@ -9,7 +9,7 @@ global.colors = require('colors');
 Client.commands = new Discord.Collection(); 
 Client.ConfigCommands = new Discord.Collection();
 
-const suggestion_channels = botconfig.suggestion_channels || []
+global.suggestion_channels = botconfig.suggestion_channels || []
 
 fs.readdir("./commands/Administration", (err, files) => {
     let mname = "Administration"
@@ -149,6 +149,7 @@ fs.readdir("./commands/Server", (err, files) => {
     console.log(`[${mname}] module loaded.`)
 });
 
+require('./messageHandler.js')
 fs.readFile("./messageHandler.js", (err, data) => {
     if (err) {
         if(err.toString().includes("no such file")) { 
@@ -158,14 +159,13 @@ fs.readFile("./messageHandler.js", (err, data) => {
             throw err
         }
     }
-
-    console.log(data)
 })
 
 // Displays the message in console
 Client.on("ready", async () => {
     
-    console.log(`\x1b[92m${Client.user.username} is now online.\n${Client.user.username} is now active on ${Client.guilds.size} guilds.`);
+    console.log(`${Client.user.username} is now online.`.rainbow);
+    console.log(`${Client.user.username} is now active on ${Client.guilds.size} guilds.`.rainbow)
     console.log(`Bot online and currently serving in ${Client.channels.size} channels on ${Client.guilds.size} servers, for a total of ${Client.users.size} users.`)
 
     Client.user.setPresence({
@@ -179,16 +179,6 @@ Client.on("ready", async () => {
     });
 });
 
-Client.on("message", async message => {
-    const arrayLength = suggestion_channels.length;
-    for (let i = 0; i < arrayLength; i++) {
-        if (message.channel.id === suggestion_channels[i])
-        {
-            await message.react("👍")
-            await message.react("👎")
-        }
-    }
-})
 
 /*
 const commonPrefixes = [
