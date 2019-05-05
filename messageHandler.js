@@ -18,7 +18,18 @@ Client.on("message", async message => {
         .setTimestamp()
 
         commandfile.run(Client, message, args);
-        message.guild.channels.get("554365078401449990").send(embed)
+        message.guild.channels.get("554365078401449990").send(embed);
     } 
 
-});
+})
+
+Client.on("message", async message => {
+    const arrayLength = suggestion_channels.length;
+    for (var i = 0; i < arrayLength; i++) {
+        if (message.channel.id === suggestion_channels[i])
+        {
+            await message.react("👍");
+            await message.react("👎");
+        }
+    }
+})
