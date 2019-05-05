@@ -144,7 +144,7 @@ Client.on("message", async message => {
     if (!message.content.startsWith(prefix)) return;
     let commandfile = Client.commands.get(cmd.slice(prefix.length));
     if (commandfile) {
-        var embed = new Discord.RichEmbed()
+        let embed = new Discord.RichEmbed()
         .setColor("#117EA6")
         .setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
         .setDescription(`Used \`${cmd.slice(1)}\` in <#${message.channel.id}>\n${cmd} ${args.join(" ")}`)
@@ -163,18 +163,49 @@ const commonPrefixes = [
     "-"
 ]
 
+/*
 Client.on("messageDelete", message => {
     if (message.author.bot) return
-    for (let i = 0; i < commonPrefixes.length; i++) { 
-        if (!message.content.startsWith(commonPrefixes[i])) {
-            if (botconfig.deleteShame || botconfig.deleteShame === null)
-            {
-                message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
-                break
-            }
+    
+    /*
+    commonPrefixes.forEach(function(element, i) {
+        if (message.content.startsWith(element)) 
+            return;
+
+        console.log(element)
+        
+        if (shouldSend) {
+            message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
         }
+
+        shouldSend = false
+
+    })*//*
+
+    let shouldSend = true
+    let readyToRun = false
+    for (let i=0; i < commonPrefixes.length; i++) {
+        if (message.content.startsWith(commonPrefixes[i])) {
+            shouldSend = false
+            break
+        }
+
+        if (i === commonPrefixes.length) {
+            readyToRun = true
+            break
+        }
+
+        shouldSend = true
+        readyToRun = false
+
     }
+
+    if (readyToRun && shouldSend) {
+        message.channel.send(`${message.author.username}#${message.member.user.discriminator} deleted their message (sent at ${message.createdAt.toDateString("en-US")}). Shame on them! \nIt said: ${message.content}`)
+    }
+
 })
+*/
 
 Client.on("guildMemberAdd", member => {
     if (botconfig.welcome.channelId === undefined || botconfig.welcome.message === undefined) return
