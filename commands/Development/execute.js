@@ -4,7 +4,7 @@ module.exports.run = async(Client, message, args) => {
     if(!message.member.hasPermission("ADMINISTRATOR")) { return message.reply('you cannot use that command.').then(() => console.log(`${message.author} tried executing .exec`))}
     if(!args[0]) return;
     try {
-        var code = args.join(" ")
+        let code = args.join(" ")
         eval(code)
     } catch(err) {
         const errembed = new Discord.RichEmbed()

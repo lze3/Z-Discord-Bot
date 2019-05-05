@@ -12,7 +12,7 @@ module.exports.run = async(Client, message, args) => {
         let PID = args[1];
         request.get(`https://api.truckersmp.com/v2/player/${PID}`, function(err, response, body) 
         {
-            var main = JSON.parse(body);
+            let main = JSON.parse(body);
             if (main.err) { message.channel.send(err.toString()); return }
             
             if (main.response === undefined) 
@@ -26,7 +26,7 @@ module.exports.run = async(Client, message, args) => {
                message.channel.send(err_embed)
                return;
             }
-            var embed = new Discord.RichEmbed()
+            let embed = new Discord.RichEmbed()
             .setAuthor("TruckersMP Player Information", "https://w.wew.wtf/laugpu.png")
             .setColor("#F44336")
             .addField("Player Name", main.response.name, true)
@@ -125,7 +125,7 @@ module.exports.run = async(Client, message, args) => {
                 }
             });
 
-            var embed = new Discord.RichEmbed()
+            let embed = new Discord.RichEmbed()
             .setAuthor("TruckersMP Server Information", "https://w.wew.wtf/laugpu.png", "https://truckersmp.com")
             .setColor("#F44336")
             .addField("Server Name", server.serverName)

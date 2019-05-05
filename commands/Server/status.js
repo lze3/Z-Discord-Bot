@@ -46,20 +46,20 @@ module.exports.run = async (Client, message, args) => {
                 request.get(`https://policy-live.fivem.net/api/policy/${JSON.parse(main).vars.sv_licenseKeyToken}`, {timeout: 2000}, function(err, response, content) {
                     if (err) return error(message.channel, `IP: ${IP}`, 3)
                     try {
-                        var start = JSON.parse(body)
-                        var start2 = JSON.parse(main)
-                        var start3 = JSON.parse(content)
+                        let start = JSON.parse(body)
+                        let start2 = JSON.parse(main)
+                        let start3 = JSON.parse(content)
                 
                         if (start == null || start == []) {
-                            var playersCount = 0
+                            playersCount = 0
                         } else {
-                            var playersCount = start.length;
+                            playersCount = start.length;
                         }
 
                         if (start3 === [] || start3.length === 0) {
-                            var policy = `No policy.`
+                            policy = `No policy.`
                         } else {
-                            var policy = `${start3.join("\n")}`
+                            policy = `${start3.join("\n")}`
                         }
                         
                         var embed = new Discord.RichEmbed()
