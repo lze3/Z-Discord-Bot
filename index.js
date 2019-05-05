@@ -198,6 +198,7 @@ Client.on("message", async message => {
 
 });
 
+/*
 const commonPrefixes = [
     ".",
     "!",
@@ -205,7 +206,6 @@ const commonPrefixes = [
     "-"
 ]
 
-/*
 Client.on("messageDelete", message => {
     if (message.author.bot) return
     
@@ -252,10 +252,12 @@ Client.on("messageDelete", message => {
 Client.on("guildMemberAdd", member => {
     if (botconfig.welcome.channelId === undefined || botconfig.welcome.message === undefined) return
     const welcoming = member.guild.channels.get(botconfig.welcome.channelId)
-    try {
-        welcoming.send(botconfig.welcome.message.replace("{member}", member))
-    } catch(err) {
-        welcoming.send(err.toString())
+    if (botconfig.welcome.showMessage || botconfig.welcome.showMessage === undefined) {
+        try {
+            welcoming.send(botconfig.welcome.message.replace("{member}", member))
+        } catch(err) {
+            welcoming.send(err.toString())
+        }
     }
 })
 
