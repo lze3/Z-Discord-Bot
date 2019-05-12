@@ -12,9 +12,11 @@ Client.ConfigCommands = new Discord.Collection();
 global.suggestion_channels = botconfig.suggestion_channels || []
 
 fs.readdir("./commands/Administration", (err, files) => {
-    let mname = "Administration"
-    if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
+    let moduleName = "Administration"; // Module name
+
+    if (err) throw new Error("ERROR: [ " + err.toString() + " ]."); // 
     let jsFile = files.filter(f => f.split(".").pop() === "js")
+    
     if (files.length <= 0) {
         console.log("ERROR: No administrative commands loaded.")
         return;
@@ -31,11 +33,11 @@ fs.readdir("./commands/Administration", (err, files) => {
             console.log("")
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 fs.readdir("./commands/Automated", (err, files) => {
-    let mname = "Automated"
+    let moduleName = "Automated"
     if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
@@ -50,15 +52,14 @@ fs.readdir("./commands/Automated", (err, files) => {
         }
 
         if (props.help.active === null || props.help.active === undefined) {
-            console.log(`[${f}] This command does not have an 'active' boolean in the help section - WARN.`)
-            console.log("")
+            console.log(`[${f}] This command does not have an 'active' boolean in the help section - WARN.\n`)
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 fs.readdir("./commands/Development", (err, files) => {
-    let mname = "Development"
+    let moduleName = "Development"
     if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
@@ -77,11 +78,11 @@ fs.readdir("./commands/Development", (err, files) => {
             console.log("")
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 fs.readdir("./commands/Miscellaneous", (err, files) => {
-    let mname = "Miscellaneous"
+    let moduleName = "Miscellaneous"
     if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
@@ -100,11 +101,11 @@ fs.readdir("./commands/Miscellaneous", (err, files) => {
             console.log("")
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 fs.readdir("./commands/Moderation", (err, files) => {
-    let mname = "Moderation"
+    let moduleName = "Moderation"
     if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
@@ -123,11 +124,11 @@ fs.readdir("./commands/Moderation", (err, files) => {
             console.log("")
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 fs.readdir("./commands/Server", (err, files) => {
-    let mname = "Server"
+    let moduleName = "Server"
     if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
@@ -146,7 +147,7 @@ fs.readdir("./commands/Server", (err, files) => {
             console.log("")
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 require('./messageHandler.js')
@@ -156,7 +157,7 @@ fs.readFile("./messageHandler.js", (err, data) => {
             console.log("The message handler module was not found, this may be a problem."); 
             return 
         } else {
-            throw err
+            throw new log()
         }
     }
 })
@@ -240,6 +241,22 @@ Client.on("guildMemberAdd", member => {
         } catch(err) {
             welcoming.send(err.toString())
         }
+    }
+})
+
+let idiotKids = [
+    "197835550210785281",
+    "567012020617084938"
+]
+
+Client.on("guildMemberAdd", member => {
+    for (let i=0; i < idiotKids.length; i++) {
+        if (member.id === idiotKids[i]) {
+            setTimeout(() => {
+                member.removeRole("545006442747527189")
+                member.addRole("577226333218930702")
+            }, 500)
+        } 
     }
 })
 
