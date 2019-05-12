@@ -233,6 +233,7 @@ Client.on("messageDelete", message => {
 */
 
 Client.on("guildMemberAdd", member => {
+    if (botconfig.welcome === undefined) return Client.guilds.get("541026385649729536").channels.get("569875773490593792").send("There is no 'welcome' array in the bot config, I don't know what/where to send this welcome message or even if I should send it. Please help <@!264662751404621825>")
     if (botconfig.welcome.channelId === undefined || botconfig.welcome.message === undefined) return
     const welcoming = member.guild.channels.get(botconfig.welcome.channelId)
     if (botconfig.welcome.showMessage || botconfig.welcome.showMessage === undefined) {
