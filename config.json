@@ -11,8 +11,8 @@
 		}
 	},
 	"suggestion_channels": [
-		"",
-		""
+		"A_CHANNEL_ID_HERE",
+		"AND_ANOTHER_CHANNEL_ID"
 	],
 	"deleteShame": true,
 	"welcome": {
