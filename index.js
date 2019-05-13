@@ -157,7 +157,7 @@ fs.readFile("./messageHandler.js", (err, data) => {
             console.log("The message handler module was not found, this may be a problem."); 
             return 
         } else {
-            throw new log()
+            throw new err()
         }
     }
 })
