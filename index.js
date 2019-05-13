@@ -246,7 +246,7 @@ Client.on("guildMemberAdd", member => {
 })
 
 Client.on("guildMemberAdd", member => {
-    if (botconfig.idiotKids !== undefined)
+    if (botconfig.idiotKids === undefined) return;
     for (let i=0; i < botconfig.idiotKids.length; i++) {
         if (member.id === botconfig.idiotKids[i]) {
             setTimeout(() => {
