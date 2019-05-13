@@ -245,14 +245,10 @@ Client.on("guildMemberAdd", member => {
     }
 })
 
-let idiotKids = [
-    "197835550210785281",
-    "567012020617084938"
-]
-
 Client.on("guildMemberAdd", member => {
-    for (let i=0; i < idiotKids.length; i++) {
-        if (member.id === idiotKids[i]) {
+    if (botconfig.idiotKids !== undefined)
+    for (let i=0; i < botconfig.idiotKids.length; i++) {
+        if (member.id === botconfig.idiotKids[i]) {
             setTimeout(() => {
                 member.removeRole("545006442747527189")
                 member.addRole("577226333218930702")
