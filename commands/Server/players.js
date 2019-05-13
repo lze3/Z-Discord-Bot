@@ -37,16 +37,16 @@ module.exports.run = async (Client, message, args) => {
                 if (err) return error(message.channel, `IP: ${IP}`)
                     try {
 
-                        var start = JSON.parse(body)
-                        var start2 = JSON.parse(main)
+                        let start = JSON.parse(body)
+                        let start2 = JSON.parse(main)
                 
                         if (start == null || start == []) {
-                            var playersCount = 0
+                            playersCount = 0
                         } else {
-                            var playersCount = start.length;
+                            playersCount = start.length;
                         }
 
-                        var embed = new Discord.RichEmbed()
+                        let embed = new Discord.RichEmbed()
                         .setColor("#54C86D")
                         .setAuthor("Server Information" , `https://i.imgur.com/PnzJ35e.png`)
                         .setTitle(`Player count: ${playersCount}/${start2.vars.sv_maxClients}`)

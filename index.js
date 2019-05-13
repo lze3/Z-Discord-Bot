@@ -2,17 +2,21 @@ global.botconfig = require("./botconfig.json");
 global.Discord = require("discord.js");
 global.fs = require("fs");
 global.Client = new Discord.Client({disableEveryone: true});
-global.prefix = botconfig.prefix
-global.request = require('request')
+global.prefix = botconfig.prefix;
+global.request = require('request');
+global.colors = require('colors');
+
 Client.commands = new Discord.Collection(); 
 Client.ConfigCommands = new Discord.Collection();
 
-const suggestion_channels = botconfig.suggestion_channels || []
+global.suggestion_channels = botconfig.suggestion_channels || []
 
 fs.readdir("./commands/Administration", (err, files) => {
-    let mname = "Administration"
-    if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
+    let moduleName = "Administration"; // Module name
+
+    if (err) throw new Error("ERROR: [ " + err.toString() + " ]."); // 
     let jsFile = files.filter(f => f.split(".").pop() === "js")
+    
     if (files.length <= 0) {
         console.log("ERROR: No administrative commands loaded.")
         return;
@@ -29,11 +33,11 @@ fs.readdir("./commands/Administration", (err, files) => {
             console.log("")
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 fs.readdir("./commands/Automated", (err, files) => {
-    let mname = "Automated"
+    let moduleName = "Automated"
     if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
@@ -48,15 +52,14 @@ fs.readdir("./commands/Automated", (err, files) => {
         }
 
         if (props.help.active === null || props.help.active === undefined) {
-            console.log(`[${f}] This command does not have an 'active' boolean in the help section - WARN.`)
-            console.log("")
+            console.log(`[${f}] This command does not have an 'active' boolean in the help section - WARN.\n`)
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 fs.readdir("./commands/Development", (err, files) => {
-    let mname = "Development"
+    let moduleName = "Development"
     if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
@@ -75,11 +78,11 @@ fs.readdir("./commands/Development", (err, files) => {
             console.log("")
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 fs.readdir("./commands/Miscellaneous", (err, files) => {
-    let mname = "Miscellaneous"
+    let moduleName = "Miscellaneous"
     if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
@@ -98,11 +101,11 @@ fs.readdir("./commands/Miscellaneous", (err, files) => {
             console.log("")
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 fs.readdir("./commands/Moderation", (err, files) => {
-    let mname = "Moderation"
+    let moduleName = "Moderation"
     if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
@@ -121,11 +124,11 @@ fs.readdir("./commands/Moderation", (err, files) => {
             console.log("")
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
 
 fs.readdir("./commands/Server", (err, files) => {
-    let mname = "Server"
+    let moduleName = "Server"
     if (err) { console.log("ERROR: [ " + err.toString() + " ]."); return }
     let jsFile = files.filter(f => f.split(".").pop() === "js")
     if (files.length <= 0) {
@@ -144,13 +147,26 @@ fs.readdir("./commands/Server", (err, files) => {
             console.log("")
         }
     })
-    console.log(`[${mname}] module loaded.`)
+    console.log(`[${moduleName}] module loaded.`)
 });
+
+require('./messageHandler.js')
+fs.readFile("./messageHandler.js", (err, data) => {
+    if (err) {
+        if(err.toString().includes("no such file")) { 
+            console.log("The message handler module was not found, this may be a problem."); 
+            return 
+        } else {
+            throw new err()
+        }
+    }
+})
 
 // Displays the message in console
 Client.on("ready", async () => {
     
-    console.log(`\x1b[92m${Client.user.username} is now online.\n${Client.user.username} is now active on ${Client.guilds.size} guilds.`);
+    console.log(`${Client.user.username} is now online.`.rainbow);
+    console.log(`${Client.user.username} is now active on ${Client.guilds.size} guilds.`.rainbow)
     console.log(`Bot online and currently serving in ${Client.channels.size} channels on ${Client.guilds.size} servers, for a total of ${Client.users.size} users.`)
 
     Client.user.setPresence({
@@ -164,40 +180,8 @@ Client.on("ready", async () => {
     });
 });
 
-Client.on("message", async message => {
-    const arrayLength = suggestion_channels.length;
-    for (let i = 0; i < arrayLength; i++) {
-        if (message.channel.id === suggestion_channels[i])
-        {
-            await message.react("👍")
-            await message.react("👎")
-        }
-    }
-})
 
-// Bot Start
-Client.on("message", async message => {
-    if(message.author.bot) return;
-    if(message.channel.type === "dm") return;
-	// if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    const messageArray = message.content.split(" ");
-    const cmd = messageArray[0];
-    const args = messageArray.slice(1);
-    if (!message.content.startsWith(prefix)) return;
-    let commandfile = Client.commands.get(cmd.slice(prefix.length));
-    if (commandfile) {
-        let embed = new Discord.RichEmbed()
-        .setColor("#117EA6")
-        .setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
-        .setDescription(`Used \`${cmd.slice(1)}\` in <#${message.channel.id}>\n${cmd} ${args.join(" ")}`)
-        .setTimestamp()
-
-        commandfile.run(Client, message, args);
-        message.guild.channels.get("554365078401449990").send(embed)
-    } 
-
-});
-
+/*
 const commonPrefixes = [
     ".",
     "!",
@@ -205,7 +189,6 @@ const commonPrefixes = [
     "-"
 ]
 
-/*
 Client.on("messageDelete", message => {
     if (message.author.bot) return
     
@@ -250,12 +233,27 @@ Client.on("messageDelete", message => {
 */
 
 Client.on("guildMemberAdd", member => {
+    if (botconfig.welcome === undefined) return Client.guilds.get("541026385649729536").channels.get("569875773490593792").send("There is no 'welcome' array in the bot config, I don't know what/where to send this welcome message or even if I should send it. Please help <@!264662751404621825>")
     if (botconfig.welcome.channelId === undefined || botconfig.welcome.message === undefined) return
     const welcoming = member.guild.channels.get(botconfig.welcome.channelId)
-    try {
-        welcoming.send(botconfig.welcome.message.replace("{member}", member))
-    } catch(err) {
-        welcoming.send(err.toString())
+    if (botconfig.welcome.showMessage || botconfig.welcome.showMessage === undefined) {
+        try {
+            welcoming.send(botconfig.welcome.message.replace("{member}", member))
+        } catch(err) {
+            welcoming.send(err.toString())
+        }
+    }
+})
+
+Client.on("guildMemberAdd", member => {
+    if (botconfig.idiotKids === undefined) return;
+    for (let i=0; i < botconfig.idiotKids.length; i++) {
+        if (member.id === botconfig.idiotKids[i]) {
+            setTimeout(() => {
+                member.removeRole("545006442747527189")
+                member.addRole("577226333218930702")
+            }, 500)
+        } 
     }
 })
 
