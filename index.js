@@ -165,9 +165,9 @@ fs.readFile("./messageHandler.js", (err, data) => {
 // Displays the message in console
 Client.on("ready", async () => {
     
-    console.log(`${Client.user.username} is now online.`.rainbow);
-    console.log(`${Client.user.username} is now active on ${Client.guilds.size} guilds.`.rainbow)
-    console.log(`Bot online and currently serving in ${Client.channels.size} channels on ${Client.guilds.size} servers, for a total of ${Client.users.size} users.`)
+    console.log(`${Client.user.username} is now online.`.green);
+    console.log(`${Client.user.username} is now active on ${Client.guilds.size} guilds.`.green)
+    console.log(`Bot online and currently serving in ${Client.channels.size} channels on ${Client.guilds.size} servers, for a total of ${Client.users.size} users.`.green)
 
     Client.user.setPresence({
         status: "online",
