@@ -162,6 +162,17 @@ fs.readFile("./messageHandler.js", (err, data) => {
     }
 })
 
+require('./local/repoUpdates.js')
+fs.readFile("./local/repoUpdates.js", (err, data) => {
+    if (err) {
+        if (err.toString().includes("no such file")) {
+            return
+        } else {
+            throw new err()
+        }
+    }
+})
+
 // Displays the message in console
 Client.on("ready", async () => {
     
