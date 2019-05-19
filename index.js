@@ -162,8 +162,8 @@ fs.readFile("./messageHandler.js", (err, data) => {
     }
 })
 
-require('./local/repoUpdates.js')
-fs.readFile("./local/repoUpdates.js", (err, data) => {
+require('./local/localStuff.js')
+fs.readFile("./local/localStuff.js", (err, data) => {
     if (err) {
         if (err.toString().includes("no such file")) {
             return
