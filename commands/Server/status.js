@@ -1,8 +1,8 @@
 const request = require('request')
 const Discord = require('discord.js')
-
 const config = require('../../botconfig.json')
-const prefix = config.prefix
+
+let errorCode = ""
 
 function error(channel, ip, errorCode) {
     errCode = "Could not determine status code."
@@ -38,14 +38,15 @@ module.exports.run = async (Client, message, args) => {
 
     try {
         let api1 = `http://${IP}/players.json`
-        let api2 = `http://${IP}/info.json`
+        let api2 = `http://servers-live.fivem.net/api/servers/single/${IP}`
         request.get(api2, {timeout: 2000},function (err, response, main) {
-            if (err) return error(message.channel, `IP: ${IP}`, 1)
+            if (err) return error(message.channel, `IP: ${IP}`, 1); console.log(err)
             request.get(api1, {timeout: 2000},function (err, response, body) {
                 if (err) return error(message.channel, `IP: ${IP}`, 2)
-                request.get(`https://policy-live.fivem.net/api/policy/${JSON.parse(main).vars.sv_licenseKeyToken}`, {timeout: 2000}, function(err, response, content) {
+                request.get(`https://policy-live.fivem.net/api/policy/${JSON.parse(main).Data.vars.sv_licenseKeyToken}`, {timeout: 2000}, function(err, response, content) {
                     if (err) return error(message.channel, `IP: ${IP}`, 3)
                     try {
+                        
                         let start = JSON.parse(body)
                         let start2 = JSON.parse(main)
                         let start3 = JSON.parse(content)
@@ -62,7 +63,18 @@ module.exports.run = async (Client, message, args) => {
                             policy = `${start3.join("\n")}`
                         }
                         
-                        var embed = new Discord.RichEmbed()
+                        let embed = new Discord.RichEmbed()
+                        .setAuthor(`${start2.Data.hostname} - Server Information`, "https://i.imgur.com/PnzJ35e.png")
+                        .setDescription(`${message.member.user.username}, here is the server information. It was obtained from ${api2}`)
+                        .addField("Player Count", playersCount + "/" + start2.Data.vars.sv_maxClients, true)
+                        .addField("Artifacts Version", start2.Data.server, true)
+                        .addField("Resource Count", start2.Data.resources.length, true)
+                        .addField("OneSync Enabled", `${start2.Data.vars.onesync_enabled === "true" ? "Yes" : "No"}`)
+                        .setColor("#9000FF")
+                        .setFooter(`${IP}`)
+                        .setTimestamp(new Date(message.createdAt))
+
+                        /*
                         .setColor("#54C86D")
                         .setAuthor("Server Information" , 'https://i.imgur.com/PnzJ35e.png')
                         .addField("Server IP", IP)
@@ -73,29 +85,30 @@ module.exports.run = async (Client, message, args) => {
                         .addField("ScriptHook Enabled", start2.vars.sv_scriptHookAllowed)
                         .addField("Server License Key Token", start2.vars.sv_licenseKeyToken)
                         .addField("Policy", policy)
+                        */
 
                         message.channel.send(embed);
                     } catch (err) {
-                        error(message.channel, `Server IP: ${IP}`)
+                        error(message.channel, `Server IP: ${IP}`, 0)
                         console.log(err.toString())
                     }
 
-                    })
-
                 })
-        
+
             })
+        
+        })
         
     } catch (err) {
         return;
     }
 
-  };
+}
   
-  exports.help = {
+exports.help = {
     name: "status",
     active: true
-  };
+}
 
   
   
