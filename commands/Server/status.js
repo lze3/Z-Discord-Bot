@@ -5,13 +5,25 @@ const config = require('../../botconfig.json')
 let errorCode = ""
 
 function error(channel, ip, errorCode) {
-    errCode = "Could not determine status code."
-    if (errorCode.toString() === "1") 
-        errCode = "404 - `info.json could not be reached.`"
-    if (errorCode.toString() === "2")
-        errCode = "404 - `players.json could not be reached.`"
-    if (errorCode.toString() === "3")
-        errCode = "404 - `Server policy could not be obtained.`"
+    let errCode
+    switch (errorCode) {
+        case 1:
+            errCode = "404 - `info.json could not be reached.`"
+            break
+        case 2:
+            errCode = "404 - `players.json could not be reached.`"
+            break
+        case 3:
+            errCode = "404 - `Server policy could not be obtained.`" 
+            break
+        
+        case undefined:
+            ""
+
+        default:
+            errCode = "Could not determine error code."
+    }
+    
     embed = new Discord.RichEmbed()
     .setTitle("Error")    
     .setColor('#FA3838')
