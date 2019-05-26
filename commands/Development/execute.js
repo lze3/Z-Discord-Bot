@@ -9,10 +9,6 @@ module.exports.run = async(Client, message, args) => {
         }
         let code_delim = args.join(" ").split("\`\`\`")
         code = code_delim[1].replace("js", "")
-        console.log(`
-            code_delim -> ${typeof(code_delim)} | ${typeof(code_delim) == 'object' ? code_delim[1] : code_delim}
-            code -> ${typeof(code)} | ${code}`
-        )
         eval(code)
     } catch(err) {
         const errembed = new Discord.RichEmbed()
