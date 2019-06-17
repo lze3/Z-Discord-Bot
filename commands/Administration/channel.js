@@ -52,6 +52,9 @@ module.exports.run = async(Client, message, args) => {
             .setThumbnail('https://w.wew.wtf/impcab.png')
 
             message.channel.send(chanInfo).then(msg => msg.delete(20000))
+    } else if (args[0] === "create") {
+        let channelName = args[1] !== undefined ? args[1] : "placeholder"
+        message.guild.createChannel(channelName, "text")
     }
     
 }
