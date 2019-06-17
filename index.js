@@ -184,8 +184,8 @@ Client.on("ready", async () => {
         status: "online",
         afk: false,
         game: {
-            name: "Follow JHodgson1 on Twitch!",
-            url: "https://twitch.tv/jhodgson1",
+            name: "Follow Zeemah on Twitch!",
+            url: "https://twitch.tv/Zeemah",
             type: "STREAMING"
         } 
     });
