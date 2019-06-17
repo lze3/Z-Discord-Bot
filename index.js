@@ -162,19 +162,30 @@ fs.readFile("./messageHandler.js", (err, data) => {
     }
 })
 
+require('./local/localStuff.js')
+fs.readFile("./local/localStuff.js", (err, data) => {
+    if (err) {
+        if (err.toString().includes("no such file")) {
+            return
+        } else {
+            throw new err()
+        }
+    }
+})
+
 // Displays the message in console
 Client.on("ready", async () => {
     
-    console.log(`${Client.user.username} is now online.`.rainbow);
-    console.log(`${Client.user.username} is now active on ${Client.guilds.size} guilds.`.rainbow)
-    console.log(`Bot online and currently serving in ${Client.channels.size} channels on ${Client.guilds.size} servers, for a total of ${Client.users.size} users.`)
+    console.log(`${Client.user.username} is now online.`.green);
+    console.log(`${Client.user.username} is now active on ${Client.guilds.size} guilds.`.green)
+    console.log(`Bot online and currently serving in ${Client.channels.size} channels on ${Client.guilds.size} servers, for a total of ${Client.users.size} users.`.green)
 
     Client.user.setPresence({
         status: "online",
         afk: false,
         game: {
-            name: "Follow JHodgson1 on Twitch!",
-            url: "https://twitch.tv/jhodgson1",
+            name: "Follow Zeemah on Twitch!",
+            url: "https://twitch.tv/Zeemah",
             type: "STREAMING"
         } 
     });
