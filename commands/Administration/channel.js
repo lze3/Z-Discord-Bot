@@ -10,18 +10,19 @@ module.exports.run = async(Client, message, args) => {
         if (args[1] === 'topic') {
             let topic = args.join(" ").slice(args[0].length+args[1].length+1)
             await message.channel.setTopic(topic, `${message.member.user.username} told me to.`);
-            message.channel.send(`${message.author}, I just set the channel topic to \n\`${message.channel.topic}\``)
+            message.channel.send(`${message.author}, I just set the channel topic to \n\`${message.channel.topic}\``).then(msg => msg.delete(50000))
         }
         else if (args[1] === 'name') {
             let name = args[2]
             await message.channel.setName(name, `${message.member.user.username} told me to.`);
-            message.channel.send(`${message.author}, I just set the channel name to \n\`${message.channel.name}\``)
+            message.channel.send(`${message.author}, I just set the channel name to \n\`${message.channel.name}\``).then(msg => msg.delete(50000))
         }
         else if (args[1] === 'parent') {
             let parent = args[2]
             await message.channel.setParent(parent, `${message.member.user.username} told me to.`).catch(err => { message.channel.send(err.toString()); return })
-            message.channel.send(`${message.author}, I just set the channel parent to \n\`${message.channel.parent.name}\``)
+            message.channel.send(`${message.author}, I just set the channel parent to \n\`${message.channel.parent.name}\``).then(msg => msg.delete(50000))
         }
+        message.delete()
     } else if (args[0] === 'info') {
         if (!args[1]) 
             channel = message.channel
@@ -50,7 +51,7 @@ module.exports.run = async(Client, message, args) => {
             .setColor('#3498DB')
             .setThumbnail('https://w.wew.wtf/impcab.png')
 
-            message.channel.send(chanInfo)
+            message.channel.send(chanInfo).then(msg => msg.delete(50000))
     }
     
 }
