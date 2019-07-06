@@ -17,7 +17,7 @@ module.exports.run = async(Client, message, args) => {
         .setFooter(highestRole.name)
         .setTimestamp()
 
-        try { message.channel.send(embed) }.catch(console.err)
+        try { message.channel.send(embed) } catch(console.err)
         message.author.send(`You sent an announcement without setting a title. To set a title embed the title within quotes. For example:\n${prefix}announce "Title" The other important stuff...`)
     } else { // if there is a title set using "title"
         let title = deliminator[1].replace("\"", "")
