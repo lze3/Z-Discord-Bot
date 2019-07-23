@@ -48,28 +48,73 @@ module.exports.run = async (Client, message, args) => {
         Title = "Server Information"
     }
 
+    let api1 = `http://${IP}/players.json`
+    let api2 = `http://servers-live.fivem.net/api/servers/single/${IP}`
+    
+    start  = []
+    start2 = []
+    start3 = []
     try {
-        let api1 = `http://${IP}/players.json`
-        let api2 = `http://servers-live.fivem.net/api/servers/single/${IP}`
-        request.get(api2, {timeout: 2000},function (err, response, main) {
-            if (err) return error(message.channel, `IP: ${IP}`, 1); console.log(err)
-            request.get(api1, {timeout: 2000},function (err, response, body) {
-                if (err) return error(message.channel, `IP: ${IP}`, 2)
-                request.get(`https://policy-live.fivem.net/api/policy/${JSON.parse(main).Data.vars.sv_licenseKeyToken}`, {timeout: 2000}, function(err, response, content) {
-                    if (err) return error(message.channel, `IP: ${IP}`, 3)
-                    try {
+        request.get(api1, {
+            timeout: 2000
+        }, function(err, response, main) {
+            if (err) return message.channel.send(err)
+            start = JSON.parse(main)
+        })
+    } catch(err) {
+        message.channel.send(err)
+    }
+
+    try {
+        request.get(api2, {
+            timeout: 2000
+        }, function(err, response, main) {
+            if (err) return message.channel.send(err)
+            try {
+                start = JSON.parse(main)
+            } catch(err) {
+                start = ""
+            }
+        })
+    } catch(err) {
+        message.channel.send(err)
+    }
+
+    try {
+        request.get(`https://policy-live.fivem.net/api/policy/${start.Data.vars.sv_licenseKeyToken}`, {
+            timeout: 2000
+        }, function(err, response, main) {
+            if (err) return message.channel.send(err)
+            start3 = JSON.parse(main)
+        })
+    } catch(err) {
+        message.channel.send(err)
+    }
+
+    try {
+
+        // request.get(api2, {timeout: 2000},function (err, response, main) {
+        //     if (err) return error(message.channel, `IP: ${IP}`, 1); console.log(err)
+        //     request.get(api1, {timeout: 2000},function (err, response, body) {
+        //         if (err) return error(message.channel, `IP: ${IP}`, 2)
+        //         request.get(`https://policy-live.fivem.net/api/policy/${JSON.parse(main).Data.vars.sv_licenseKeyToken}`, {timeout: 2000}, function(err, response, content) {
+        //             if (err) return error(message.channel, `IP: ${IP}`, 3)
+        //             try {
                         
-                        let start = JSON.parse(body)
-                        let start2 = JSON.parse(main)
-                        let start3 = JSON.parse(content)
+                        // let start = JSON.parse(body)
+                        // let start2 = JSON.parse(main)
+                        // let start3 = JSON.parse(content)
                 
-                        if (start == null || start == []) {
+                        if (start2.length < 1)
+                            return error(message.channel, IP, 2)
+
+                        if (start === null || start === "") {
                             playersCount = 0
                         } else {
                             playersCount = start.length;
                         }
 
-                        if (start3 === [] || start3.length === 0) {
+                        if (start3 === null || start3 === [] || start3.length === 0) {
                             policy = `No policy.`
                         } else {
                             policy = `${start3.join("\n")}`
@@ -81,7 +126,8 @@ module.exports.run = async (Client, message, args) => {
                         .addField("Player Count", playersCount + "/" + start2.Data.vars.sv_maxClients, true)
                         .addField("Artifacts Version", start2.Data.server, true)
                         .addField("Resource Count", start2.Data.resources.length, true)
-                        .addField("OneSync Enabled", `${start2.Data.vars.onesync_enabled === "true" ? "Yes" : "No"}`)
+                        .addField("OneSync Enabled", `${start2.Data.vars.onesync_enabled === "true" ? "Yes" : "No"}`, true)
+                        .addField("Policies", policy, true)
                         .setColor("#9000FF")
                         .setFooter(`${IP}`)
                         .setTimestamp(new Date(message.createdAt))
@@ -105,15 +151,15 @@ module.exports.run = async (Client, message, args) => {
                         console.log(err.toString())
                     }
 
-                })
+    //             })
 
-            })
+    //         })
         
-        })
+    //     })
         
-    } catch (err) {
-        return;
-    }
+    // } catch (err) {
+    //     return;
+    // }
 
 }
   
