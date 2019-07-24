@@ -8,6 +8,9 @@ let colour = "#3BE08D"
 
 module.exports.run = async(Client, message, args) => {
     logChannel = message.guild.channels.get(logChannel)
+        .then(() =>  { })
+        .catch(err => console.log(err)) 
+
     request.get("https://servers-live.fivem.net/api/servers/single/142.44.214.152:704", {timeout: 2000}, function(err, response, body) {
         if (err) {
             return info = err.toString()
@@ -42,7 +45,7 @@ module.exports.run = async(Client, message, args) => {
                         timestamp: new Date()
                     }
                 })
-            }, 2500)
+            }, 2500) // updates every 2500 msec
         })
     })
 
